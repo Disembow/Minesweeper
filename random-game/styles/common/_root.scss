@@ -1,0 +1,26 @@
+body {
+  background: no-repeat center url('./assets/images/bg.jpg');
+}
+
+body,
+html {
+  height: 100%;
+}
+
+#root {
+  max-width: 60rem;
+  min-height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header,
+footer {
+  height: 3rem;
+}
+
+.main {
+  flex: 1 1 auto;
+  position: relative;
+}

@@ -1,1 +1,3 @@
-console.log('init');
+import { init } from './app.js';
+
+init();

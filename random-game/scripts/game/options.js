@@ -22,6 +22,7 @@ const options = {
     scoreboardH: 40,
     smileSize: 40,
     edgeH: 3,
+    isMouseDown: false,
   },
 };
 

@@ -7,6 +7,7 @@ const drawStartGameButton = (canvas, ctx, sprite) => {
   const x = canvas.width / 2 - smileSize / 2;
   const y = borderSize + headerH / 2 - smileSize / 2;
 
+  ctx.clearRect(x, y, smileSize, smileSize);
   ctx.drawImage(sprite, 0, 24, 26, 26, x, y, smileSize, smileSize);
 };
 
@@ -47,10 +48,18 @@ const drawField = (ctx, sprite) => {
   }
 };
 
+const drawStartGameButtonOnClick = (canvas, ctx, sprite) => {
+  const x = canvas.width / 2 - smileSize / 2;
+  const y = borderSize + headerH / 2 - smileSize / 2;
+
+  ctx.clearRect(x, y, smileSize, smileSize);
+  ctx.drawImage(sprite, 54, 24, 26, 26, x, y, smileSize, smileSize);
+};
+
 const drawControls = (canvas, ctx, sprite) => {
   drawStartGameButton(canvas, ctx, sprite);
   drawBoards(canvas, ctx, sprite);
   drawField(ctx, sprite);
 };
 
-export { drawControls };
+export { drawControls, drawStartGameButtonOnClick, drawStartGameButton };

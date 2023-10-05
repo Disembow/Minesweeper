@@ -1,3 +1,4 @@
+import { handleClick, handleMouseDown, handleMouseUp } from '../game/handleMouseEvents.js';
 import { options } from '../game/options.js';
 import { BORDER_COLOR_BRIGHT, BORDER_COLOR_SHADOWED, MAIN_BG_COLOR } from '../game/variables.js';
 import { loadSprites } from '../sprites/loadSprites.js';
@@ -94,6 +95,10 @@ const defineCanvas = async (cellsW, cellsH) => {
   const sprite = await loadSprites();
 
   drawControls(canvas, ctx, sprite);
+
+  canvas.onmousedown = (e) => handleMouseDown(e, canvas, ctx, sprite);
+  document.onmouseup = () => handleMouseUp(canvas, ctx, sprite);
+  canvas.onclick = (e) => handleClick(e, canvas, ctx, sprite);
 };
 
 export { defineCanvas };

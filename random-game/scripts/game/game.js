@@ -6,6 +6,7 @@ const { mines, cellsW, cellsH } = options.expert;
 const startGame = (cellX, cellY) => {
   initialDBFill(cellsW, cellsH);
   createInitialGameState();
+  countNeighborMines();
 };
 
 const restartGame = () => {
@@ -22,6 +23,8 @@ const initialDBFill = (x, y) => {
         isMine: false,
         isOpen: false,
         minesAround: 0,
+        cellX: j,
+        cellY: i,
       });
     }
   }
@@ -48,6 +51,45 @@ const createInitialGameState = () => {
   }
 
   cache.splice(0, cache.length);
+};
+
+const countNeighborMinesAroundCell = (cell) => {
+  let mines = 0;
+  const { isMine, cellX, cellY } = cell;
+
+  if (isMine) {
+    return;
+  }
+
+  for (let i = -1; i <= 1; i++) {
+    for (let j = -1; j <= 1; j++) {
+      if (i === 0 && j === 0) continue;
+
+      const x = cellY + i;
+      const y = cellX + j;
+
+      if (db.game[x]) {
+        if (db.game[x][y]) {
+          const checkTarget = db.game[x][y];
+
+          if (checkTarget.isMine) {
+            mines++;
+          }
+        }
+      }
+    }
+  }
+
+  cell.minesAround = mines;
+};
+
+const countNeighborMines = () => {
+  for (let i = 0; i < cellsH; i++) {
+    for (let j = 0; j < cellsW; j++) {
+      const cell = db.game[i][j];
+      countNeighborMinesAroundCell(cell);
+    }
+  }
 };
 
 export { restartGame, startGame };

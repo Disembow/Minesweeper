@@ -1,21 +1,14 @@
+import { getGameFieldCoords, getMouseCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
+import { restartGame } from './game.js';
 import { options } from './options.js';
 
-const { scoreboardH, smileSize, borderSize, headerH, cellSize, edgeH } = options.game;
+const { smileSize, borderSize, headerH } = options.game;
 
 const handleMouseDown = (event, canvas, ctx, sprite) => {
-  const mouseX = event.offsetX;
-  const mouseY = event.offsetY;
+  const coordsTerms = getStartButtonCoords(event, canvas);
 
-  const smileX = canvas.width / 2 - smileSize / 2;
-  const smileY = borderSize + headerH / 2 - smileSize / 2;
-
-  if (
-    mouseX > smileX &&
-    mouseX < smileX + smileSize &&
-    mouseY > smileY &&
-    mouseY < smileY + smileSize
-  ) {
+  if (coordsTerms) {
     options.game.isMouseDown = true;
     drawStartGameButtonOnClick(canvas, ctx, sprite);
   }
@@ -24,39 +17,21 @@ const handleMouseDown = (event, canvas, ctx, sprite) => {
 const handleMouseUp = (event, canvas, ctx, sprite) => {
   const isMouseDown = options.game.isMouseDown;
 
-  const mouseX = event.offsetX;
-  const mouseY = event.offsetY;
-
-  const smileX = canvas.width / 2 - smileSize / 2;
-  const smileY = borderSize + headerH / 2 - smileSize / 2;
+  const coordsTerms = getStartButtonCoords(event, canvas);
 
   if (isMouseDown) {
     drawStartGameButton(canvas, ctx, sprite);
   }
 
-  if (
-    mouseX > smileX &&
-    mouseX < smileX + smileSize &&
-    mouseY > smileY &&
-    mouseY < smileY + smileSize
-  ) {
+  if (coordsTerms) {
     drawStartGameButton(canvas, ctx, sprite);
   }
 };
 
 // const handleMouseEnter = (event, canvas, ctx, sprite) => {
-//   const mouseX = event.offsetX;
-//   const mouseY = event.offsetY;
+//   const coordsTrems = getStartButtonCoords(event, canvas);
 
-//   const smileX = canvas.width / 2 - smileSize / 2;
-//   const smileY = borderSize + headerH / 2 - smileSize / 2;
-
-//   if (
-//     mouseX > smileX &&
-//     mouseX < smileX + smileSize &&
-//     mouseY > smileY &&
-//     mouseY < smileY + smileSize
-//   ) {
+//   if (coordsTrems) {
 //     options.game.isMouseDown = true;
 //     drawStartGameButtonOnHover(canvas, ctx, sprite);
 //   } else if (options.game.isMouseDown === true) {
@@ -65,6 +40,15 @@ const handleMouseUp = (event, canvas, ctx, sprite) => {
 //   }
 // };
 
-const handleClick = (event, canvas, ctx, sprite) => {};
+const handleClick = (event, canvas, ctx, sprite) => {
+  const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
+  const restartGameTrems = getStartButtonCoords(event, canvas);
+
+  if (restartGameTrems) {
+    restartGame();
+  } else if (startGameTerms) {
+    console.log(cellX, cellY);
+  }
+};
 
 export { handleClick, handleMouseDown, handleMouseUp };

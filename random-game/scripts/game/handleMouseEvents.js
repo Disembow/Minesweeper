@@ -1,6 +1,7 @@
+import { db } from '../db/db.js';
 import { getGameFieldCoords, getMouseCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
-import { restartGame } from './game.js';
+import { restartGame, startGame } from './game.js';
 import { options } from './options.js';
 
 const { smileSize, borderSize, headerH } = options.game;
@@ -47,7 +48,10 @@ const handleClick = (event, canvas, ctx, sprite) => {
   if (restartGameTrems) {
     restartGame();
   } else if (startGameTerms) {
-    console.log(cellX, cellY);
+    if (!db.game) {
+      startGame(cellX, cellY);
+    } else {
+    }
   }
 };
 

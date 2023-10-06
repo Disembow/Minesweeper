@@ -1,3 +1,5 @@
-const db = [];
+const db = {
+  game: null,
+};
 
 export { db };

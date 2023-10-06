@@ -26,4 +26,6 @@ const options = {
   },
 };
 
+Object.freeze(options);
+
 export { options };

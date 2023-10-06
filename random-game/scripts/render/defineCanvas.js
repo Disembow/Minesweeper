@@ -97,7 +97,8 @@ const defineCanvas = async (cellsW, cellsH) => {
   drawControls(canvas, ctx, sprite);
 
   canvas.onmousedown = (e) => handleMouseDown(e, canvas, ctx, sprite);
-  document.onmouseup = () => handleMouseUp(canvas, ctx, sprite);
+  // canvas.onmousemove = (e) => handleMouseEnter(e, canvas, ctx, sprite);
+  document.onmouseup = (e) => handleMouseUp(e, canvas, ctx, sprite);
   canvas.onclick = (e) => handleClick(e, canvas, ctx, sprite);
 };
 

@@ -1,16 +1,22 @@
 import { db } from '../db/db.js';
+import { drawFieldContent } from '../render/drawFieldContent.js';
 import { options } from './options.js';
 
 const { mines, cellsW, cellsH } = options.expert;
 
-const startGame = (cellX, cellY) => {
+const startGame = (ctx, sprite, cellX, cellY) => {
   initialDBFill(cellsW, cellsH);
   createInitialGameState();
   countNeighborMines();
+  openTargetCell(ctx, sprite, cellX, cellY);
 };
 
 const restartGame = () => {
   db.game = null;
+};
+
+const openTargetCell = (ctx, sprite, cellX, cellY) => {
+  drawFieldContent(ctx, sprite, cellX, cellY);
 };
 
 const initialDBFill = (x, y) => {
@@ -92,4 +98,4 @@ const countNeighborMines = () => {
   }
 };
 
-export { restartGame, startGame };
+export { restartGame, startGame, openTargetCell };

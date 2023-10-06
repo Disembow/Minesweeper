@@ -38,7 +38,7 @@ const getGameFieldCoords = (event, canvas) => {
   const cellX = Math.floor((mouseX - fieldX) / cellSize);
   const cellY = Math.floor((mouseY - fieldY) / cellSize);
 
-  return { cellX, cellY, startGameTerms };
+  return { fieldX, fieldY, cellX, cellY, startGameTerms };
 };
 
 export { getMouseCoords, getStartButtonCoords, getGameFieldCoords };

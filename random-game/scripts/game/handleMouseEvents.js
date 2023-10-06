@@ -1,7 +1,7 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getMouseCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
-import { restartGame, startGame } from './game.js';
+import { openTargetCell, restartGame, startGame } from './game.js';
 import { options } from './options.js';
 
 const { smileSize, borderSize, headerH } = options.game;
@@ -49,8 +49,11 @@ const handleClick = (event, canvas, ctx, sprite) => {
     restartGame();
   } else if (startGameTerms) {
     if (!db.game) {
-      startGame(cellX, cellY);
+      // console.log('first click');
+      startGame(ctx, sprite, cellX, cellY);
     } else {
+      // console.log('another click');
+      openTargetCell(ctx, sprite, cellX, cellY);
     }
   }
 };

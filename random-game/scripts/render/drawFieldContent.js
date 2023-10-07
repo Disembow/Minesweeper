@@ -47,4 +47,13 @@ const drawFieldContent = (ctx, sprite, cellX, cellY) => {
   }
 };
 
-export { drawFieldContent };
+const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
+  const targetX = cellX * cellSize + borderSize + edgeH;
+  const targetY = cellY * cellSize + borderSize * 2 + edgeH + headerH;
+
+  const targetCoords = [targetX, targetY, cellSize, cellSize];
+
+  ctx.drawImage(sprite, 34, 51, 16, 16, ...targetCoords);
+};
+
+export { drawFieldContent, drawFieldContentOnContextMenuClick };

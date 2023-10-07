@@ -1,6 +1,7 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getMouseCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
+import { drawFieldContentOnContextMenuClick } from '../render/drawFieldContent.js';
 import { openTargetCell, restartGame, startGame } from './game.js';
 import { options } from './options.js';
 
@@ -58,4 +59,9 @@ const handleClick = (event, canvas, ctx, sprite) => {
   }
 };
 
-export { handleClick, handleMouseDown, handleMouseUp };
+const handleContextMenuClick = (event, canvas, ctx, sprite) => {
+  const { cellX, cellY } = getGameFieldCoords(event, canvas);
+  drawFieldContentOnContextMenuClick(ctx, sprite, cellX, cellY);
+};
+
+export { handleClick, handleMouseDown, handleMouseUp, handleContextMenuClick };

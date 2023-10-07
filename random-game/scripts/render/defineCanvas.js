@@ -1,4 +1,9 @@
-import { handleClick, handleMouseDown, handleMouseUp } from '../game/handleMouseEvents.js';
+import {
+  handleClick,
+  handleContextMenuClick,
+  handleMouseDown,
+  handleMouseUp,
+} from '../game/handleMouseEvents.js';
 import { options } from '../game/options.js';
 import { BORDER_COLOR_BRIGHT, BORDER_COLOR_SHADOWED, MAIN_BG_COLOR } from '../game/variables.js';
 import { loadSprites } from '../sprites/loadSprites.js';
@@ -100,6 +105,13 @@ const defineCanvas = async (cellsW, cellsH) => {
   // canvas.onmousemove = (e) => handleMouseEnter(e, canvas, ctx, sprite);
   document.onmouseup = (e) => handleMouseUp(e, canvas, ctx, sprite);
   canvas.onclick = (e) => handleClick(e, canvas, ctx, sprite);
+
+  document.oncontextmenu = (e) => {
+    if (e.target.classList.contains('canvas')) {
+      return false;
+    }
+  };
+  canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, ctx, sprite);
 };
 
 export { defineCanvas };

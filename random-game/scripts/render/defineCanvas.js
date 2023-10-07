@@ -1,3 +1,4 @@
+import { db } from '../db/db.js';
 import {
   handleClick,
   handleContextMenuClick,
@@ -8,6 +9,7 @@ import { options } from '../game/options.js';
 import { BORDER_COLOR_BRIGHT, BORDER_COLOR_SHADOWED, MAIN_BG_COLOR } from '../game/variables.js';
 import { loadSprites } from '../sprites/loadSprites.js';
 import { drawControls } from './drawControls.js';
+import { drawMinesAmount } from './drawFieldContent.js';
 import { createTag } from './render.js';
 
 const defineCanvas = async (cellsW, cellsH) => {
@@ -15,6 +17,7 @@ const defineCanvas = async (cellsW, cellsH) => {
   createTag('canvas', 'canvas', main);
 
   const { cellSize, borderSize, headerH, edgeH } = options.game;
+  const { mines } = options.expert;
   const fullBorderW = borderSize + edgeH;
 
   const canvas = document.querySelector('.canvas');
@@ -101,8 +104,10 @@ const defineCanvas = async (cellsW, cellsH) => {
 
   drawControls(canvas, ctx, sprite);
 
+  db.currentMines = mines;
+  drawMinesAmount(ctx, sprite, mines);
+
   canvas.onmousedown = (e) => handleMouseDown(e, canvas, ctx, sprite);
-  // canvas.onmousemove = (e) => handleMouseEnter(e, canvas, ctx, sprite);
   document.onmouseup = (e) => handleMouseUp(e, canvas, ctx, sprite);
   canvas.onclick = (e) => handleClick(e, canvas, ctx, sprite);
 

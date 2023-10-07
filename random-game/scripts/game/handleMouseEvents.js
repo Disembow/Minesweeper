@@ -1,11 +1,9 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getMouseCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
-import { drawFieldContentOnContextMenuClick } from '../render/drawFieldContent.js';
+import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
 import { openTargetCell, restartGame, startGame } from './game.js';
 import { options } from './options.js';
-
-const { smileSize, borderSize, headerH } = options.game;
 
 const handleMouseDown = (event, canvas, ctx, sprite) => {
   const coordsTerms = getStartButtonCoords(event, canvas);
@@ -30,18 +28,6 @@ const handleMouseUp = (event, canvas, ctx, sprite) => {
   }
 };
 
-// const handleMouseEnter = (event, canvas, ctx, sprite) => {
-//   const coordsTrems = getStartButtonCoords(event, canvas);
-
-//   if (coordsTrems) {
-//     options.game.isMouseDown = true;
-//     drawStartGameButtonOnHover(canvas, ctx, sprite);
-//   } else if (options.game.isMouseDown === true) {
-//     options.game.isMouseDown = false;
-//     drawStartGameButton(canvas, ctx, sprite);
-//   }
-// };
-
 const handleClick = (event, canvas, ctx, sprite) => {
   const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
   const restartGameTrems = getStartButtonCoords(event, canvas);
@@ -51,6 +37,7 @@ const handleClick = (event, canvas, ctx, sprite) => {
   } else if (startGameTerms) {
     if (!db.game) {
       startGame(ctx, sprite, cellX, cellY);
+      openTargetCell(ctx, sprite, cellX, cellY);
     } else {
       openTargetCell(ctx, sprite, cellX, cellY);
     }
@@ -64,6 +51,10 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
     startGame(ctx, sprite, cellX, cellY);
   }
   drawFieldContentOnContextMenuClick(ctx, sprite, cellX, cellY);
+
+  db.currentMines--;
+
+  drawMinesAmount(ctx, sprite, db.currentMines);
 };
 
 export { handleClick, handleMouseDown, handleMouseUp, handleContextMenuClick };

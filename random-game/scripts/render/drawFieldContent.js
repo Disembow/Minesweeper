@@ -1,7 +1,8 @@
 import { db } from '../db/db.js';
 import { options } from '../game/options.js';
 
-const { cellSize, borderSize, edgeH, headerH } = options.game;
+const { cellSize, borderSize, edgeH, headerH, scoreboardH } = options.game;
+const { mines } = options.expert;
 
 const drawFieldContent = (ctx, sprite, cellX, cellY) => {
   const target = db.game[cellY][cellX];
@@ -66,4 +67,61 @@ const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
   target.flag = !target.flag;
 };
 
-export { drawFieldContent, drawFieldContentOnContextMenuClick };
+const drawNumber = (number, ctx, sprite, column) => {
+  const sw = 14;
+  const sh = 23.5;
+  const k = sh / sw;
+  const dw = 24;
+  const dh = dw * k;
+  const offset = 1.5;
+
+  const y = borderSize + headerH / 2 - scoreboardH / 2;
+  const x = y + (column === 1 ? 0 : column === 2 ? dw - offset - 0.5 : (dw - offset - 0.5) * 2);
+
+  const xCoords = [126, 0, 14, 28, 42, 56, 70, 84, 98, 112];
+
+  switch (number) {
+    case 1:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 2:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 3:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 4:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 5:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 6:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 7:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 8:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 9:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+    case 0:
+      ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
+      break;
+  }
+};
+
+const drawMinesAmount = (ctx, sprite, mines) => {
+  const cents = Math.floor(mines / 100);
+  const tens = Math.floor((mines % 100) / 10);
+  const ones = mines - cents * 100 - tens * 10;
+
+  drawNumber(cents, ctx, sprite, 1);
+  drawNumber(tens, ctx, sprite, 2);
+  drawNumber(ones, ctx, sprite, 3);
+};
+
+export { drawFieldContent, drawFieldContentOnContextMenuClick, drawMinesAmount };

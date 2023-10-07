@@ -50,17 +50,19 @@ const handleClick = (event, canvas, ctx, sprite) => {
     restartGame();
   } else if (startGameTerms) {
     if (!db.game) {
-      // console.log('first click');
       startGame(ctx, sprite, cellX, cellY);
     } else {
-      // console.log('another click');
       openTargetCell(ctx, sprite, cellX, cellY);
     }
   }
 };
 
 const handleContextMenuClick = (event, canvas, ctx, sprite) => {
-  const { cellX, cellY } = getGameFieldCoords(event, canvas);
+  const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
+
+  if (startGameTerms && !db.game) {
+    startGame(ctx, sprite, cellX, cellY);
+  }
   drawFieldContentOnContextMenuClick(ctx, sprite, cellX, cellY);
 };
 

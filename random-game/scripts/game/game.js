@@ -31,6 +31,7 @@ const initialDBFill = (x, y) => {
         minesAround: 0,
         cellX: j,
         cellY: i,
+        flag: false,
       });
     }
   }

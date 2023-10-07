@@ -48,12 +48,22 @@ const drawFieldContent = (ctx, sprite, cellX, cellY) => {
 };
 
 const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
+  const target = db.game[cellY][cellX];
+
   const targetX = cellX * cellSize + borderSize + edgeH;
   const targetY = cellY * cellSize + borderSize * 2 + edgeH + headerH;
 
   const targetCoords = [targetX, targetY, cellSize, cellSize];
 
-  ctx.drawImage(sprite, 34, 51, 16, 16, ...targetCoords);
+  if (!target.isOpen) {
+    if (!target.flag) {
+      ctx.drawImage(sprite, 34, 51, 16, 16, ...targetCoords);
+    } else {
+      ctx.drawImage(sprite, 0, 51, 16, 16, ...targetCoords);
+    }
+  }
+
+  target.flag = !target.flag;
 };
 
 export { drawFieldContent, drawFieldContentOnContextMenuClick };

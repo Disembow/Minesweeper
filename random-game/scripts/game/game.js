@@ -1,4 +1,5 @@
 import { db } from '../db/db.js';
+import { drawField } from '../render/drawControls.js';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './options.js';
 
@@ -16,6 +17,9 @@ const restartGame = (canvas, ctx, sprite) => {
   clearInterval(db.interval);
   stopTimer(canvas, ctx, sprite);
   drawMinesAmount(canvas, ctx, sprite, options.expert.mines, 'stop');
+  drawField(ctx, sprite);
+
+  db.interval = null;
 };
 
 const openTargetCell = (ctx, sprite, cellX, cellY) => {

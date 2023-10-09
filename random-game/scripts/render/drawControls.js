@@ -62,4 +62,4 @@ const drawControls = (canvas, ctx, sprite) => {
   drawField(ctx, sprite);
 };
 
-export { drawControls, drawStartGameButtonOnClick, drawStartGameButton };
+export { drawControls, drawStartGameButtonOnClick, drawStartGameButton, drawField };

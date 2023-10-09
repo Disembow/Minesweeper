@@ -20,19 +20,19 @@ const renderHeader = () => {
   const innerElements = `
     <div class="header__container">
       <h1 class="title">Minesweeper</h1>
-      <div class="mods__container">
-        <span class="mods__item beginner">Beginner</span>
-        <span class="mods__item intermediate">Intermediate</span>
-        <span class="mods__item expert">Expert</span>
-        <span class="mods__item custom">Custom</span>
+      <div class="modes__container">
+        <span class="modes__item beginner">Beginner</span>
+        <span class="modes__item intermediate">Intermediate</span>
+        <span class="modes__item expert">Expert</span>
+        <span class="modes__item custom">Custom</span>
       </div>
     </div>
   `;
 
   header.insertAdjacentHTML('afterbegin', innerElements);
 
-  const mods = document.querySelector('.mods__container');
-  mods.addEventListener('click', ({ target }) => {
+  const modes = document.querySelector('.modes__container');
+  modes.addEventListener('click', ({ target }) => {
     document.querySelector('.active').classList.remove('active');
 
     target.classList.add('active');

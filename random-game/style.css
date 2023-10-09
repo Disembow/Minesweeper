@@ -449,14 +449,14 @@ footer {
   line-height: 125%;
 }
 
-.mods__container {
+.modes__container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 2.5rem;
 }
-.mods__item {
+.modes__item {
   display: block;
   height: 100%;
   font-weight: 600;
@@ -465,7 +465,7 @@ footer {
   text-align: center;
   padding: 0 0.75rem;
 }
-.mods__item:hover {
+.modes__item:hover {
   cursor: pointer;
   color: yellow;
   transition: color 0.5s;

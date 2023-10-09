@@ -66,16 +66,24 @@ const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
   target.flag = !target.flag;
 };
 
-const drawNumber = (number, ctx, sprite, column) => {
+const drawNumber = (number, canvas, ctx, sprite, column, type = 'mines') => {
   const sw = 14;
   const sh = 23.5;
   const k = sh / sw;
   const dw = 24;
   const dh = dw * k;
   const offset = 1.5;
+  let x;
+  let y = borderSize + headerH / 2 - scoreboardH / 2;
 
-  const y = borderSize + headerH / 2 - scoreboardH / 2;
-  const x = y + (column === 1 ? 0 : column === 2 ? dw - offset - 0.5 : (dw - offset - 0.5) * 2);
+  if (type === 'mines') {
+    x = y + (column === 1 ? 0 : column === 2 ? dw - offset - 0.5 : (dw - offset - 0.5) * 2);
+  } else if (type === 'timer') {
+    x =
+      canvas.width -
+      (borderSize + headerH / 2 - scoreboardH / 2) -
+      (column === 1 ? dw : column === 2 ? (dw - offset) * 2 : (dw - offset - 0.5) * 3);
+  }
 
   const xCoords = [126, 0, 14, 28, 42, 56, 70, 84, 98, 112];
 
@@ -113,14 +121,26 @@ const drawNumber = (number, ctx, sprite, column) => {
   }
 };
 
-const drawMinesAmount = (ctx, sprite, mines) => {
+const drawMinesAmount = (canvas, ctx, sprite, mines) => {
   const cents = Math.floor(mines / 100);
   const tens = Math.floor((mines % 100) / 10);
   const ones = mines - cents * 100 - tens * 10;
 
-  drawNumber(cents, ctx, sprite, 1);
-  drawNumber(tens, ctx, sprite, 2);
-  drawNumber(ones, ctx, sprite, 3);
+  drawNumber(cents, canvas, ctx, sprite, 1);
+  drawNumber(tens, canvas, ctx, sprite, 2);
+  drawNumber(ones, canvas, ctx, sprite, 3);
 };
 
-export { drawFieldContent, drawFieldContentOnContextMenuClick, drawMinesAmount };
+const drawTimer = (canvas, ctx, sprite) => {
+  db.timer++;
+
+  const cents = Math.floor(db.timer / 100);
+  const tens = Math.floor((db.timer % 100) / 10);
+  const ones = db.timer - cents * 100 - tens * 10;
+
+  drawNumber(cents, canvas, ctx, sprite, 3, 'timer');
+  drawNumber(tens, canvas, ctx, sprite, 2, 'timer');
+  drawNumber(ones, canvas, ctx, sprite, 1, 'timer');
+};
+
+export { drawFieldContent, drawFieldContentOnContextMenuClick, drawMinesAmount, drawTimer };

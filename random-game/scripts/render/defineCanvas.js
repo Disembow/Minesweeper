@@ -105,7 +105,7 @@ const defineCanvas = async (cellsW, cellsH) => {
   drawControls(canvas, ctx, sprite);
 
   db.currentMines = mines;
-  drawMinesAmount(ctx, sprite, mines);
+  drawMinesAmount(canvas, ctx, sprite, mines);
 
   canvas.onmousedown = (e) => handleMouseDown(e, canvas, ctx, sprite);
   document.onmouseup = (e) => handleMouseUp(e, canvas, ctx, sprite);

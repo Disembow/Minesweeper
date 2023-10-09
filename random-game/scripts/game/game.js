@@ -1,13 +1,14 @@
 import { db } from '../db/db.js';
-import { drawFieldContent } from '../render/drawFieldContent.js';
+import { drawFieldContent, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './options.js';
 
 const { mines, cellsW, cellsH } = options.expert;
 
-const startGame = () => {
+const startGame = (canvas, ctx, sprite) => {
   initialDBFill(cellsW, cellsH);
   createInitialGameState();
   countNeighborMines();
+  runTimer(canvas, ctx, sprite);
 };
 
 const restartGame = () => {
@@ -98,4 +99,9 @@ const countNeighborMines = () => {
   }
 };
 
-export { restartGame, startGame, openTargetCell };
+const runTimer = (canvas, ctx, sprite) => {
+  clearInterval(db.interval);
+  db.interval = setInterval(() => drawTimer(canvas, ctx, sprite), 1000);
+};
+
+export { restartGame, startGame, openTargetCell, runTimer };

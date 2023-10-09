@@ -434,6 +434,9 @@ footer {
 }
 .footer > p {
   font-weight: 700;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .github,

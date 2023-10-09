@@ -14,6 +14,12 @@ const options = {
     cellsW: 30,
     cellsH: 16,
   },
+  //TODO: add popup with custom game settings
+  custom: {
+    mines: 199,
+    cellsW: 45,
+    cellsH: 17,
+  },
   game: {
     cellSize: 30,
     borderSize: 12,

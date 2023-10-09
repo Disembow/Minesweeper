@@ -1,5 +1,4 @@
 import { db } from '../db/db.js';
-import { options } from '../game/options.js';
 import { INITAL_ELEMENTS, INITIAL_GAME_MODE, LOCAL_STORAGE_KEY } from '../game/variables.js';
 import { createTag } from '../helpers/createTag.js';
 import { defineCanvas } from './defineCanvas.js';
@@ -42,7 +41,7 @@ const renderHeader = () => {
 
     const canvas = document.querySelector('.canvas');
     canvas.remove();
-    changeGameMode();
+    defineCanvas();
   });
 };
 
@@ -52,8 +51,8 @@ const changeGameMode = () => {
   gameModeElement.classList.add('active');
 
   db.gameMode = gameMode;
-  const { cellsW, cellsH } = options[db.gameMode];
-  defineCanvas(cellsW, cellsH);
+
+  return gameMode;
 };
 
 const setGameModeToLocalStorage = (mode = INITIAL_GAME_MODE) => {
@@ -76,15 +75,11 @@ const render = (root) => {
     gameMode = INITIAL_GAME_MODE;
   }
 
-  const { cellsW, cellsH } = options[gameMode];
-
   INITAL_ELEMENTS.forEach((tag) => createTag(tag, tag, root));
 
   renderFooter();
   renderHeader();
-  changeGameMode();
-
-  defineCanvas(cellsW, cellsH);
+  defineCanvas();
 };
 
-export { createTag, render };
+export { createTag, render, getGameModeFromLocalStorage, changeGameMode };

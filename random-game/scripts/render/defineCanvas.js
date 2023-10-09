@@ -10,14 +10,17 @@ import { BORDER_COLOR_BRIGHT, BORDER_COLOR_SHADOWED, MAIN_BG_COLOR } from '../ga
 import { loadSprites } from '../sprites/loadSprites.js';
 import { drawControls } from './drawControls.js';
 import { drawMinesAmount } from './drawFieldContent.js';
-import { createTag } from './render.js';
+import { changeGameMode, createTag } from './render.js';
 
-const defineCanvas = async (cellsW, cellsH) => {
+const defineCanvas = async () => {
   const main = document.querySelector('.main');
   createTag('canvas', 'canvas', main);
 
+  const gameMode = changeGameMode();
+
+  const { cellsW, cellsH } = options[gameMode];
   const { cellSize, borderSize, headerH, edgeH } = options.game;
-  const { mines } = options[db.gameMode];
+  const { mines } = options[gameMode];
   const fullBorderW = borderSize + edgeH;
 
   const canvas = document.querySelector('.canvas');

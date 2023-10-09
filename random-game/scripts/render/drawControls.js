@@ -1,7 +1,7 @@
+import { db } from '../db/db.js';
 import { options } from '../game/options.js';
 
 const { scoreboardH, smileSize, borderSize, headerH, cellSize, edgeH } = options.game;
-const { cellsW, cellsH } = options.expert;
 
 const drawStartGameButton = (canvas, ctx, sprite) => {
   const x = canvas.width / 2 - smileSize / 2;
@@ -31,6 +31,8 @@ const drawBoards = (canvas, ctx, sprite) => {
 };
 
 const drawField = (ctx, sprite) => {
+  const { cellsW, cellsH } = options[db.gameMode];
+
   for (let i = 0; i < cellsW; i++) {
     for (let j = 0; j < cellsH; j++) {
       ctx.drawImage(

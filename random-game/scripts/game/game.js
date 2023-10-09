@@ -3,9 +3,9 @@ import { drawField } from '../render/drawControls.js';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './options.js';
 
-const { mines, cellsW, cellsH } = options.expert;
-
 const startGame = (canvas, ctx, sprite) => {
+  const { cellsW, cellsH } = options[db.gameMode];
+
   initialDBFill(cellsW, cellsH);
   createInitialGameState();
   countNeighborMines();
@@ -13,10 +13,13 @@ const startGame = (canvas, ctx, sprite) => {
 };
 
 const restartGame = (canvas, ctx, sprite) => {
+  const { mines } = options[db.gameMode];
+
   db.game = null;
+
   clearInterval(db.interval);
   stopTimer(canvas, ctx, sprite);
-  drawMinesAmount(canvas, ctx, sprite, options.expert.mines, 'stop');
+  drawMinesAmount(canvas, ctx, sprite, mines, 'stop');
   drawField(ctx, sprite);
 
   db.interval = null;
@@ -47,6 +50,8 @@ const initialDBFill = (x, y) => {
 };
 
 const createInitialGameState = () => {
+  const { mines, cellsW, cellsH } = options[db.gameMode];
+
   const cache = [];
 
   for (let m = 0; m < mines; m++) {
@@ -98,6 +103,8 @@ const countNeighborMinesAroundCell = (cell) => {
 };
 
 const countNeighborMines = () => {
+  const { cellsW, cellsH } = options[db.gameMode];
+
   for (let i = 0; i < cellsH; i++) {
     for (let j = 0; j < cellsW; j++) {
       const cell = db.game[i][j];

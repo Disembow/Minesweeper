@@ -123,7 +123,7 @@ const drawNumber = (number, canvas, ctx, sprite, column, type = 'mines') => {
 
 const drawMinesAmount = (canvas, ctx, sprite, mines, type = 'game') => {
   if (type === 'stop') {
-    db.currentMines = options.expert.mines;
+    db.currentMines = options[db.gameMode].mines;
   }
 
   const cents = Math.floor(mines / 100);

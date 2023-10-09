@@ -1,3 +1,4 @@
+import { db } from '../db/db.js';
 import { options } from '../game/options.js';
 import { INITAL_ELEMENTS } from '../game/variables.js';
 import { defineCanvas } from './defineCanvas.js';
@@ -15,8 +16,8 @@ const render = (root) => {
   INITAL_ELEMENTS.forEach((tag) => createTag(tag, tag, root));
 
   //TODO: add level selection
-  const { expert } = options;
-  const { cellsW, cellsH } = expert;
+  db.gameMode = 'beginner';
+  const { cellsW, cellsH } = options[db.gameMode];
 
   defineCanvas(cellsW, cellsH);
 

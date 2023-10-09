@@ -17,7 +17,7 @@ const defineCanvas = async (cellsW, cellsH) => {
   createTag('canvas', 'canvas', main);
 
   const { cellSize, borderSize, headerH, edgeH } = options.game;
-  const { mines } = options.expert;
+  const { mines } = options[db.gameMode];
   const fullBorderW = borderSize + edgeH;
 
   const canvas = document.querySelector('.canvas');

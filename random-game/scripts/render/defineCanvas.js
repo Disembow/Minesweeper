@@ -109,12 +109,11 @@ const defineCanvas = async (cellsW, cellsH) => {
 
   canvas.onmousedown = (e) => handleMouseDown(e, canvas, ctx, sprite);
   document.onmouseup = (e) => handleMouseUp(e, canvas, ctx, sprite);
+
   canvas.onclick = (e) => handleClick(e, canvas, ctx, sprite);
 
   document.oncontextmenu = (e) => {
-    if (e.target.classList.contains('canvas')) {
-      return false;
-    }
+    if (e.target.classList.contains('canvas')) return false;
   };
   canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, ctx, sprite);
 };

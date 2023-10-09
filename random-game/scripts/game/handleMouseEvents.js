@@ -1,5 +1,5 @@
 import { db } from '../db/db.js';
-import { getGameFieldCoords, getMouseCoords, getStartButtonCoords } from '../helpers/getCoords.js';
+import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
 import { openTargetCell, restartGame, startGame } from './game.js';
@@ -36,11 +36,10 @@ const handleClick = (event, canvas, ctx, sprite) => {
     restartGame();
   } else if (startGameTerms) {
     if (!db.game) {
-      startGame(ctx, sprite, cellX, cellY);
-      openTargetCell(ctx, sprite, cellX, cellY);
-    } else {
-      openTargetCell(ctx, sprite, cellX, cellY);
+      startGame();
     }
+
+    openTargetCell(ctx, sprite, cellX, cellY);
   }
 };
 
@@ -50,6 +49,7 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
   if (startGameTerms && !db.game) {
     startGame(ctx, sprite, cellX, cellY);
   }
+
   drawFieldContentOnContextMenuClick(ctx, sprite, cellX, cellY);
 
   if (db.game[cellY][cellX].flag) {

@@ -41,4 +41,4 @@ const getGameFieldCoords = (event, canvas) => {
   return { fieldX, fieldY, cellX, cellY, startGameTerms };
 };
 
-export { getMouseCoords, getStartButtonCoords, getGameFieldCoords };
+export { getStartButtonCoords, getGameFieldCoords };

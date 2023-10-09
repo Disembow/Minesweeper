@@ -1,3 +1,4 @@
-import { init } from './app.js';
+import { ROOT } from './scripts/game/variables.js';
+import { render } from './scripts/render/render.js';
 
-init();
+render(ROOT);

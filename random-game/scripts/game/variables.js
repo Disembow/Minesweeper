@@ -1,6 +1,9 @@
 const ROOT = document.getElementById('root');
 const INITAL_ELEMENTS = ['header', 'main', 'footer'];
 
+const LOCAL_STORAGE_KEY = 'MinesweeperModeByDisembow';
+const INITIAL_GAME_MODE = 'beginner';
+
 const MAIN_BG_COLOR = '#bdbdbd';
 const MAIN_RED = '#ff0000';
 const BORDER_COLOR_BRIGHT = '#ffffff';
@@ -8,9 +11,11 @@ const BORDER_COLOR_SHADOWED = '#7b7b7b';
 
 export {
   ROOT,
+  INITAL_ELEMENTS,
+  LOCAL_STORAGE_KEY,
+  INITIAL_GAME_MODE,
   MAIN_BG_COLOR,
   MAIN_RED,
-  INITAL_ELEMENTS,
   BORDER_COLOR_BRIGHT,
   BORDER_COLOR_SHADOWED,
 };

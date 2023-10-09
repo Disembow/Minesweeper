@@ -121,7 +121,11 @@ const drawNumber = (number, canvas, ctx, sprite, column, type = 'mines') => {
   }
 };
 
-const drawMinesAmount = (canvas, ctx, sprite, mines) => {
+const drawMinesAmount = (canvas, ctx, sprite, mines, type = 'game') => {
+  if (type === 'stop') {
+    db.currentMines = options.expert.mines;
+  }
+
   const cents = Math.floor(mines / 100);
   const tens = Math.floor((mines % 100) / 10);
   const ones = mines - cents * 100 - tens * 10;
@@ -131,8 +135,14 @@ const drawMinesAmount = (canvas, ctx, sprite, mines) => {
   drawNumber(ones, canvas, ctx, sprite, 3);
 };
 
-const drawTimer = (canvas, ctx, sprite) => {
-  db.timer++;
+const drawTimer = (canvas, ctx, sprite, type = 'run') => {
+  if (type === 'run') {
+    db.timer++;
+  }
+
+  if (type === 'stop') {
+    db.timer = null;
+  }
 
   const cents = Math.floor(db.timer / 100);
   const tens = Math.floor((db.timer % 100) / 10);

@@ -2,7 +2,7 @@ import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
-import { openTargetCell, restartGame, runTimer, startGame } from './game.js';
+import { openTargetCell, restartGame, startGame } from './game.js';
 import { options } from './options.js';
 
 const handleMouseDown = (event, canvas, ctx, sprite) => {
@@ -33,7 +33,7 @@ const handleClick = (event, canvas, ctx, sprite) => {
   const restartGameTrems = getStartButtonCoords(event, canvas);
 
   if (restartGameTrems) {
-    restartGame();
+    restartGame(canvas, ctx, sprite);
   } else if (startGameTerms) {
     if (!db.game) {
       startGame(canvas, ctx, sprite);

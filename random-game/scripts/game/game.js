@@ -1,5 +1,5 @@
 import { db } from '../db/db.js';
-import { drawFieldContent, drawTimer } from '../render/drawFieldContent.js';
+import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './options.js';
 
 const { mines, cellsW, cellsH } = options.expert;
@@ -11,8 +11,11 @@ const startGame = (canvas, ctx, sprite) => {
   runTimer(canvas, ctx, sprite);
 };
 
-const restartGame = () => {
+const restartGame = (canvas, ctx, sprite) => {
   db.game = null;
+  clearInterval(db.interval);
+  stopTimer(canvas, ctx, sprite);
+  drawMinesAmount(canvas, ctx, sprite, options.expert.mines, 'stop');
 };
 
 const openTargetCell = (ctx, sprite, cellX, cellY) => {
@@ -104,4 +107,9 @@ const runTimer = (canvas, ctx, sprite) => {
   db.interval = setInterval(() => drawTimer(canvas, ctx, sprite), 1000);
 };
 
-export { restartGame, startGame, openTargetCell, runTimer };
+const stopTimer = (canvas, ctx, sprite) => {
+  clearInterval(db.interval);
+  drawTimer(canvas, ctx, sprite, 'stop');
+};
+
+export { restartGame, startGame, openTargetCell };

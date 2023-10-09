@@ -106,6 +106,31 @@ const countNeighborMines = () => {
   }
 };
 
+const openCellsNearEmptyCell = (ctx, sprite, cell) => {
+  const { cellX, cellY } = cell;
+
+  for (let i = -1; i <= 1; i++) {
+    for (let j = -1; j <= 1; j++) {
+      if (i === 0 && j === 0) continue;
+
+      const x = cellY + i;
+      const y = cellX + j;
+
+      if (db.game[x]) {
+        if (db.game[x][y] && !db.game[x][y].isOpen) {
+          const cellToCheck = db.game[x][y];
+
+          openTargetCell(ctx, sprite, y, x);
+
+          if (cellToCheck.minesAround === 0 && !cellToCheck.isMine && cellToCheck.isOpen) {
+            openCellsNearEmptyCell(ctx, sprite, cellToCheck);
+          }
+        }
+      }
+    }
+  }
+};
+
 const runTimer = (canvas, ctx, sprite) => {
   clearInterval(db.interval);
   db.interval = setInterval(() => drawTimer(canvas, ctx, sprite), 1000);
@@ -116,4 +141,4 @@ const stopTimer = (canvas, ctx, sprite) => {
   drawTimer(canvas, ctx, sprite, 'stop');
 };
 
-export { restartGame, startGame, openTargetCell };
+export { restartGame, startGame, openTargetCell, openCellsNearEmptyCell };

@@ -2,7 +2,7 @@ import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
-import { openTargetCell, restartGame, startGame } from './game.js';
+import { openCellsNearEmptyCell, openTargetCell, restartGame, startGame } from './game.js';
 import { options } from './options.js';
 
 const handleMouseDown = (event, canvas, ctx, sprite) => {
@@ -39,7 +39,14 @@ const handleClick = (event, canvas, ctx, sprite) => {
       startGame(canvas, ctx, sprite);
     }
 
-    openTargetCell(ctx, sprite, cellX, cellY);
+    const targetCell = db.game[cellY][cellX];
+    if (!targetCell.flag) {
+      if (targetCell.minesAround === 0 && !targetCell.isMine) {
+        openCellsNearEmptyCell(ctx, sprite, targetCell);
+      }
+
+      openTargetCell(ctx, sprite, cellX, cellY);
+    }
   }
 };
 

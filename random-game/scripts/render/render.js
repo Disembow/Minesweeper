@@ -19,6 +19,15 @@ const render = (root) => {
   const { cellsW, cellsH } = expert;
 
   defineCanvas(cellsW, cellsH);
+
+  const footer = document.querySelector('.footer');
+  const innerElements = `
+      <a class="github" href="https://github.com/Disembow"></a>
+      <p>2023</p>
+      <a class="rsschool" href="https://rs.school/js-stage0/"></a>
+    `;
+
+  footer.insertAdjacentHTML('afterbegin', innerElements);
 };
 
 export { createTag, render };

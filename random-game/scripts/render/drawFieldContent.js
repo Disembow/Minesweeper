@@ -2,7 +2,6 @@ import { db } from '../db/db.js';
 import { options } from '../game/options.js';
 
 const { cellSize, borderSize, edgeH, headerH, scoreboardH } = options.game;
-const { mines } = options.expert;
 
 const drawFieldContent = (ctx, sprite, cellX, cellY) => {
   const target = db.game[cellY][cellX];

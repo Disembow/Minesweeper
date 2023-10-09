@@ -52,7 +52,11 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
   }
   drawFieldContentOnContextMenuClick(ctx, sprite, cellX, cellY);
 
-  db.currentMines--;
+  if (db.game[cellY][cellX].flag) {
+    db.currentMines--;
+  } else {
+    db.currentMines++;
+  }
 
   drawMinesAmount(ctx, sprite, db.currentMines);
 };

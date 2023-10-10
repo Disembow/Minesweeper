@@ -1,6 +1,10 @@
 import { db } from '../db/db.js';
-import { INITAL_ELEMENTS, INITIAL_GAME_MODE, LOCAL_STORAGE_KEY } from '../game/variables.js';
+import { INITAL_ELEMENTS, INITIAL_GAME_MODE, LOCAL_STORAGE_MODE_KEY } from '../game/variables.js';
 import { createTag } from '../helpers/createTag.js';
+import {
+  getGameModeFromLocalStorage,
+  setGameModeToLocalStorage,
+} from '../helpers/localStoreage.js';
 import { defineCanvas } from './defineCanvas.js';
 
 const renderFooter = () => {
@@ -55,20 +59,9 @@ const changeGameMode = () => {
   return gameMode;
 };
 
-const setGameModeToLocalStorage = (mode = INITIAL_GAME_MODE) => {
-  localStorage.setItem(LOCAL_STORAGE_KEY, mode);
-};
-
-const getGameModeFromLocalStorage = () => {
-  const gameMode = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-  db.gameMode = gameMode;
-
-  return gameMode;
-};
-
 const render = (root) => {
   let gameMode = getGameModeFromLocalStorage();
+  db.gameMode = gameMode;
 
   if (!gameMode) {
     setGameModeToLocalStorage();

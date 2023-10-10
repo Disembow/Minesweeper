@@ -1,5 +1,6 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
+import { getGameTopResults, setGameTopResults } from '../helpers/localStoreage.js';
 import {
   drawStartGameButton,
   drawStartGameButtonOnClick,
@@ -59,7 +60,9 @@ const handleClick = (event, canvas, ctx, sprite) => {
     }
   }
 
-  if (isVictoryGame()) drawWinStateButton(canvas, ctx, sprite);
+  if (isVictoryGame()) {
+    drawWinStateButton(canvas, ctx, sprite);
+  }
 };
 
 const handleContextMenuClick = (event, canvas, ctx, sprite) => {
@@ -79,7 +82,36 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
 
   drawMinesAmount(canvas, ctx, sprite, db.currentMines);
 
-  if (isVictoryGame()) drawWinStateButton(canvas, ctx, sprite);
+  if (isVictoryGame()) {
+    drawWinStateButton(canvas, ctx, sprite);
+
+    const data = getGameTopResults();
+    const gameMode = db.gameMode;
+
+    if (!data) {
+      const rawData = {
+        beginner: [],
+        intermediate: [],
+        expert: [],
+      };
+
+      rawData[gameMode].push({
+        name: 'Anonim',
+        time: db.timer,
+      });
+
+      data = rawData;
+    } else {
+      data[gameMode].push({
+        name: 'Anonim',
+        time: db.timer,
+      });
+
+      data[gameMode].sort((a, b) => a.time - b.time);
+    }
+
+    setGameTopResults(data);
+  }
 };
 
 export { handleClick, handleMouseDown, handleMouseUp, handleContextMenuClick };

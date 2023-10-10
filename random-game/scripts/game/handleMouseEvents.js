@@ -1,8 +1,18 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
-import { drawStartGameButton, drawStartGameButtonOnClick } from '../render/drawControls.js';
+import {
+  drawStartGameButton,
+  drawStartGameButtonOnClick,
+  drawWinStateButton,
+} from '../render/drawControls.js';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
-import { openCellsNearEmptyCell, openTargetCell, restartGame, startGame } from './game.js';
+import {
+  isVictoryGame,
+  openCellsNearEmptyCell,
+  openTargetCell,
+  restartGame,
+  startGame,
+} from './game.js';
 import { options } from './options.js';
 
 const handleMouseDown = (event, canvas, ctx, sprite) => {
@@ -40,14 +50,16 @@ const handleClick = (event, canvas, ctx, sprite) => {
     }
 
     const targetCell = db.game[cellY][cellX];
-    if (!targetCell.flag) {
+    if (!targetCell.flag && !targetCell.isOpen) {
+      openTargetCell(ctx, sprite, cellX, cellY);
+
       if (targetCell.minesAround === 0 && !targetCell.isMine) {
         openCellsNearEmptyCell(ctx, sprite, targetCell);
       }
-
-      openTargetCell(ctx, sprite, cellX, cellY);
     }
   }
+
+  if (isVictoryGame()) drawWinStateButton(canvas, ctx, sprite);
 };
 
 const handleContextMenuClick = (event, canvas, ctx, sprite) => {
@@ -66,6 +78,8 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
   }
 
   drawMinesAmount(canvas, ctx, sprite, db.currentMines);
+
+  if (isVictoryGame()) drawWinStateButton(canvas, ctx, sprite);
 };
 
 export { handleClick, handleMouseDown, handleMouseUp, handleContextMenuClick };

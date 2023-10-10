@@ -64,4 +64,18 @@ const drawControls = (canvas, ctx, sprite) => {
   drawField(ctx, sprite);
 };
 
-export { drawControls, drawStartGameButtonOnClick, drawStartGameButton, drawField };
+const drawWinStateButton = (canvas, ctx, sprite) => {
+  const x = canvas.width / 2 - smileSize / 2;
+  const y = borderSize + headerH / 2 - smileSize / 2;
+
+  ctx.clearRect(x, y, smileSize, smileSize);
+  ctx.drawImage(sprite, 81, 24, 26, 26, x, y, smileSize, smileSize);
+};
+
+export {
+  drawControls,
+  drawStartGameButtonOnClick,
+  drawStartGameButton,
+  drawField,
+  drawWinStateButton,
+};

@@ -27,6 +27,7 @@ const restartGame = (canvas, ctx, sprite) => {
 
 const openTargetCell = (ctx, sprite, cellX, cellY) => {
   drawFieldContent(ctx, sprite, cellX, cellY);
+  db.openedCells++;
 };
 
 const initialDBFill = (x, y) => {
@@ -148,4 +149,24 @@ const stopTimer = (canvas, ctx, sprite) => {
   drawTimer(canvas, ctx, sprite, 'stop');
 };
 
-export { restartGame, startGame, openTargetCell, openCellsNearEmptyCell };
+const isVictoryGame = () => {
+  const { currentMines, openedCells } = db;
+  const { cellsW, cellsH, mines } = options[db.gameMode];
+
+  if (currentMines === 0 && openedCells + mines === cellsW * cellsH) {
+    const map = db.game.flat().filter((e) => e.flag && e.isMine).length;
+
+    if (map === mines) {
+      clearInterval(db.interval);
+      db.interval = null;
+      db.game = null;
+      db.openedCells = null;
+
+      return true;
+    }
+  }
+
+  return false;
+};
+
+export { restartGame, startGame, openTargetCell, openCellsNearEmptyCell, isVictoryGame };

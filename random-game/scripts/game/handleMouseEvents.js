@@ -114,4 +114,16 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
   }
 };
 
-export { handleClick, handleMouseDown, handleMouseUp, handleContextMenuClick };
+const handleResultsTable = () => {
+  const overlay = document.querySelector('.overlay');
+  overlay.classList.add('visible');
+  const popup = document.querySelector('.results__popup');
+  popup.classList.remove('results__popup_hidden');
+  const [first, secont, third, ...rest] = document.querySelectorAll('.subtable');
+  console.log(first, secont, third);
+
+  const data = getGameTopResults();
+  console.log(data);
+};
+
+export { handleClick, handleMouseDown, handleMouseUp, handleContextMenuClick, handleResultsTable };

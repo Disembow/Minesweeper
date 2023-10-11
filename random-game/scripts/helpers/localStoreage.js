@@ -5,7 +5,7 @@ import {
 } from '../game/variables.js';
 
 const setGameModeToLocalStorage = (mode = INITIAL_GAME_MODE) => {
-  if (mode !== 'results') localStorage.setItem(LOCAL_STORAGE_MODE_KEY, mode);
+  localStorage.setItem(LOCAL_STORAGE_MODE_KEY, mode);
 };
 
 const getGameModeFromLocalStorage = () => {

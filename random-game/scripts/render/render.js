@@ -1,5 +1,5 @@
 import { db } from '../db/db.js';
-import { handleResultsTable } from '../game/handleMouseEvents.js';
+import { handleOverlayClick, handleResultsTable } from '../game/handleMouseEvents.js';
 import { INITAL_ELEMENTS, INITIAL_GAME_MODE } from '../game/variables.js';
 import { createTag } from '../helpers/createTag.js';
 import {
@@ -45,7 +45,7 @@ const renderHeader = () => {
       canvas.remove();
       defineCanvas();
 
-      document.querySelector('.overlay').classList.remove('visible');
+      document.querySelector('.overlay').classList.toggle('visible');
     }
 
     modes.classList.remove('modes__container_active');
@@ -143,6 +143,17 @@ const changeGameMode = () => {
   return gameMode;
 };
 
+const addListeners = () => {
+  const menuButton = document.querySelector('.burger__button');
+  menuButton.onclick = () => {
+    document.querySelector('.modes__container').classList.add('modes__container_active');
+
+    document.querySelector('.overlay').classList.toggle('visible');
+  };
+
+  document.querySelector('.overlay').addEventListener('click', handleOverlayClick);
+};
+
 const render = (root) => {
   let gameMode = getGameModeFromLocalStorage();
   db.gameMode = gameMode;
@@ -158,13 +169,7 @@ const render = (root) => {
   renderHeader();
   renderResultsPopup(root);
   defineCanvas();
-
-  const menuButton = document.querySelector('.burger__button');
-  menuButton.onclick = () => {
-    document.querySelector('.modes__container').classList.add('modes__container_active');
-
-    document.querySelector('.overlay').classList.add('visible');
-  };
+  addListeners();
 };
 
 export { createTag, render, getGameModeFromLocalStorage, changeGameMode, renderTopListItems };

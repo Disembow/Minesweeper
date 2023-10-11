@@ -120,8 +120,6 @@ const defineCanvas = async () => {
     if (e.target.classList.contains('canvas')) return false;
   };
   canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, ctx, sprite);
-
-  document.querySelector('.overlay').addEventListener('click', handleOverlayClick);
 };
 
 export { defineCanvas };

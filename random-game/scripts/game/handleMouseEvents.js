@@ -93,6 +93,7 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
 const handleResultsTable = () => {
   const overlay = document.querySelector('.overlay');
   overlay.classList.add('visible');
+
   const popup = document.querySelector('.results__popup');
   popup.classList.remove('results__popup_hidden');
 
@@ -100,7 +101,7 @@ const handleResultsTable = () => {
 };
 
 const handleOverlayClick = (e) => {
-  e.target.classList.remove('visible');
+  e.target.classList.toggle('visible');
   const popup = document.querySelector('.results__popup');
   popup.classList.add('results__popup_hidden');
   const menu = document.querySelector('.modes__container');

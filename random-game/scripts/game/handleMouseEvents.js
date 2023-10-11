@@ -104,6 +104,8 @@ const handleOverlayClick = (e) => {
   e.target.classList.remove('visible');
   const popup = document.querySelector('.results__popup');
   popup.classList.add('results__popup_hidden');
+  const menu = document.querySelector('.modes__container');
+  menu.classList.remove('modes__container_active');
 };
 
 export {

@@ -19,8 +19,13 @@ const renderHeader = () => {
         <span class="modes__item intermediate">Intermediate</span>
         <span class="modes__item expert">Expert</span>
         <span class="modes__item custom">Custom</span>
+        <span class="modes__item results">Results</span>
       </div>
-      <div class="modes__item results">Results</div>
+      <div class="burger__button">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
     </div>
   `;
 
@@ -147,6 +152,13 @@ const render = (root) => {
   renderHeader();
   renderResultsPopup(root);
   defineCanvas();
+
+  const menuButton = document.querySelector('.burger__button');
+  menuButton.onclick = () => {
+    document.querySelector('.modes__container').classList.add('modes__container_active');
+
+    document.querySelector('.overlay').classList.add('visible');
+  };
 };
 
 export { createTag, render, getGameModeFromLocalStorage, changeGameMode, renderTopListItems };

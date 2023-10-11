@@ -4,6 +4,7 @@ import {
   handleContextMenuClick,
   handleMouseDown,
   handleMouseUp,
+  handleOverlayClick,
 } from '../game/handleMouseEvents.js';
 import { options } from '../game/options.js';
 import { BORDER_COLOR_BRIGHT, BORDER_COLOR_SHADOWED, MAIN_BG_COLOR } from '../game/variables.js';
@@ -119,6 +120,8 @@ const defineCanvas = async () => {
     if (e.target.classList.contains('canvas')) return false;
   };
   canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, ctx, sprite);
+
+  document.querySelector('.overlay').addEventListener('click', handleOverlayClick);
 };
 
 export { defineCanvas };

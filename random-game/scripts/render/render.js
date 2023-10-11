@@ -4,6 +4,7 @@ import { INITAL_ELEMENTS, INITIAL_GAME_MODE } from '../game/variables.js';
 import { createTag } from '../helpers/createTag.js';
 import {
   getGameModeFromLocalStorage,
+  getGameTopResults,
   setGameModeToLocalStorage,
 } from '../helpers/localStoreage.js';
 import { defineCanvas } from './defineCanvas.js';
@@ -58,9 +59,6 @@ const renderResultsPopup = (root) => {
   const popup = createTag('div', 'results__popup', root);
   popup.classList.add('results__popup_hidden');
 
-  const overlay = createTag('div', 'overlay', root);
-  // overlay.classList.add('visible');
-
   const innerElements = `
     <h3 class="results__title">Top results</h3>
     <table class="table">
@@ -72,17 +70,17 @@ const renderResultsPopup = (root) => {
         </tr>
       </thead>
       <tbody>
-        <tr class="subtable subtable__one">
+        <tr class="subtable">
           <td colspan="3">Beginner</td>
         </tr>
       </tbody>
       <tbody>
-        <tr class="subtable subtable__two">
+        <tr class="subtable">
           <td colspan="3">Intermediate</td>
         </tr>
       </tbody>
       <tbody>
-        <tr class="subtable subtable__three">
+        <tr class="subtable">
           <td colspan="3">Expert</td>
         </tr>
       </tbody>
@@ -90,9 +88,39 @@ const renderResultsPopup = (root) => {
   `;
 
   popup.insertAdjacentHTML('afterbegin', innerElements);
+
+  createTag('div', 'overlay', root);
 };
 
-const renderTopListItems = () => {};
+const renderTopListItems = () => {
+  const levelsToRemove = document.querySelectorAll('.subtable__data');
+  levelsToRemove?.forEach((e) => e.remove());
+
+  const levels = document.querySelectorAll('.subtable');
+  const results = getGameTopResults();
+  const resultsKeys = Object.keys(results);
+
+  levels.forEach((e, i) => {
+    let rows = '';
+    const key = resultsKeys[i];
+
+    results[key].forEach((r, n) => {
+      if (n < 10) {
+        rows += `
+          <tr class="subtable subtable__data">
+            <th class="table__number">${n + 1}</th>
+            <th class="table__name">${r.name}</th>
+            <th class="table__time">${r.time}</th>
+          </tr>
+        `;
+      } else {
+        return;
+      }
+    });
+
+    e.insertAdjacentHTML('afterend', rows);
+  });
+};
 
 const changeGameMode = () => {
   const gameMode = getGameModeFromLocalStorage();

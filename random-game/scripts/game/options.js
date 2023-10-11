@@ -1,6 +1,6 @@
 const options = {
   beginner: {
-    mines: 2,
+    mines: 10,
     cellsW: 10,
     cellsH: 10,
   },
@@ -28,7 +28,6 @@ const options = {
     scoreboardH: 40,
     smileSize: 40,
     edgeH: 3,
-    isMouseDown: false,
   },
 };
 

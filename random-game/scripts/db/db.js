@@ -5,6 +5,7 @@ const db = {
   openedCells: null,
   timer: null,
   interval: null,
+  isMouseDown: false,
 };
 
 export { db };

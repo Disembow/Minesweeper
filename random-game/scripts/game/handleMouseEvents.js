@@ -22,13 +22,13 @@ const handleMouseDown = (event, canvas, ctx, sprite) => {
   const coordsTerms = getStartButtonCoords(event, canvas);
 
   if (coordsTerms) {
-    options.game.isMouseDown = true;
+    db.isMouseDown = true;
     drawStartGameButtonOnClick(canvas, ctx, sprite);
   }
 };
 
 const handleMouseUp = (event, canvas, ctx, sprite) => {
-  const isMouseDown = options.game.isMouseDown;
+  const isMouseDown = db.isMouseDown;
 
   const coordsTerms = getStartButtonCoords(event, canvas);
 

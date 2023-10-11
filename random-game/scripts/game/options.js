@@ -1,6 +1,6 @@
 const options = {
   beginner: {
-    mines: 10,
+    mines: 2,
     cellsW: 10,
     cellsH: 10,
   },

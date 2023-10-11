@@ -9,6 +9,7 @@ import {
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
 import {
   isVictoryGame,
+  onWinAction,
   openCellsNearEmptyCell,
   openTargetCell,
   restartGame,
@@ -62,6 +63,7 @@ const handleClick = (event, canvas, ctx, sprite) => {
 
   if (isVictoryGame()) {
     drawWinStateButton(canvas, ctx, sprite);
+    onWinAction();
   }
 };
 
@@ -84,33 +86,7 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
 
   if (isVictoryGame()) {
     drawWinStateButton(canvas, ctx, sprite);
-
-    const data = getGameTopResults();
-    const gameMode = db.gameMode;
-
-    if (!data) {
-      const rawData = {
-        beginner: [],
-        intermediate: [],
-        expert: [],
-      };
-
-      rawData[gameMode].push({
-        name: 'Anonim',
-        time: db.timer,
-      });
-
-      data = rawData;
-    } else {
-      data[gameMode].push({
-        name: 'Anonim',
-        time: db.timer,
-      });
-
-      data[gameMode].sort((a, b) => a.time - b.time);
-    }
-
-    setGameTopResults(data);
+    onWinAction();
   }
 };
 
@@ -119,7 +95,7 @@ const handleResultsTable = () => {
   overlay.classList.add('visible');
   const popup = document.querySelector('.results__popup');
   popup.classList.remove('results__popup_hidden');
-  const [first, secont, third, ...rest] = document.querySelectorAll('.subtable');
+  const [first, secont, third] = document.querySelectorAll('.subtable');
   console.log(first, secont, third);
 
   const data = getGameTopResults();

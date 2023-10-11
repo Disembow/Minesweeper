@@ -1,4 +1,5 @@
 import { db } from '../db/db.js';
+import { getGameTopResults, setGameTopResults } from '../helpers/localStoreage.js';
 import { drawField } from '../render/drawControls.js';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './options.js';
@@ -169,4 +170,40 @@ const isVictoryGame = () => {
   return false;
 };
 
-export { restartGame, startGame, openTargetCell, openCellsNearEmptyCell, isVictoryGame };
+const onWinAction = () => {
+  const data = getGameTopResults();
+  const gameMode = db.gameMode;
+
+  if (!data) {
+    const rawData = {
+      beginner: [],
+      intermediate: [],
+      expert: [],
+    };
+
+    rawData[gameMode].push({
+      name: 'Anonim',
+      time: db.timer,
+    });
+
+    data = rawData;
+  } else {
+    data[gameMode].push({
+      name: 'Anonim',
+      time: db.timer,
+    });
+
+    data[gameMode].sort((a, b) => a.time - b.time);
+  }
+
+  setGameTopResults(data);
+};
+
+export {
+  restartGame,
+  startGame,
+  openTargetCell,
+  openCellsNearEmptyCell,
+  isVictoryGame,
+  onWinAction,
+};

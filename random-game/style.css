@@ -586,7 +586,7 @@ footer {
 .results__popup_hidden {
   opacity: 0;
   transition: opacity 0.3s;
-  z-index: 0;
+  z-index: -1;
 }
 
 .results__title {

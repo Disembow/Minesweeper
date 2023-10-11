@@ -16,7 +16,6 @@ import {
   restartGame,
   startGame,
 } from './game.js';
-import { options } from './options.js';
 
 const handleMouseDown = (event, canvas, ctx, sprite) => {
   const coordsTerms = getStartButtonCoords(event, canvas);

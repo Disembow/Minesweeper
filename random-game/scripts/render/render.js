@@ -33,16 +33,22 @@ const renderHeader = () => {
 
   const modes = document.querySelector('.modes__container');
   modes.addEventListener('click', ({ target }) => {
-    document.querySelector('.active').classList.remove('active');
+    if (target.classList.contains('modes__item') && !target.classList.contains('results')) {
+      document.querySelector('.active').classList.remove('active');
 
-    target.classList.add('active');
+      target.classList.add('active');
 
-    const newMode = target.textContent.toLowerCase();
-    setGameModeToLocalStorage(newMode);
+      const newMode = target.textContent.toLowerCase();
+      setGameModeToLocalStorage(newMode);
 
-    const canvas = document.querySelector('.canvas');
-    canvas.remove();
-    defineCanvas();
+      const canvas = document.querySelector('.canvas');
+      canvas.remove();
+      defineCanvas();
+
+      document.querySelector('.overlay').classList.remove('visible');
+    }
+
+    modes.classList.remove('modes__container_active');
   });
 
   const resultsTable = document.querySelector('.results');

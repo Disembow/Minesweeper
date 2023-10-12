@@ -3,14 +3,6 @@ import { options } from '../game/options.js';
 
 const { scoreboardH, smileSize, borderSize, headerH, cellSize, edgeH } = options.game;
 
-const drawStartGameButton = (canvas, ctx, sprite) => {
-  const x = canvas.width / 2 - smileSize / 2;
-  const y = borderSize + headerH / 2 - smileSize / 2;
-
-  ctx.clearRect(x, y, smileSize, smileSize);
-  ctx.drawImage(sprite, 0, 24, 26, 26, x, y, smileSize, smileSize);
-};
-
 const drawBoards = (canvas, ctx, sprite) => {
   const x = borderSize + headerH / 2 - scoreboardH / 2;
   const y = x;
@@ -51,41 +43,65 @@ const drawField = (ctx, sprite) => {
 };
 
 const drawControls = (canvas, ctx, sprite) => {
-  drawStartGameButton(canvas, ctx, sprite);
+  drawButton(canvas, ctx, sprite, 'start');
   drawBoards(canvas, ctx, sprite);
   drawField(ctx, sprite);
 };
 
 //TODO: join into one function
-const drawStartGameButtonOnClick = (canvas, ctx, sprite) => {
+
+const drawButton = (canvas, ctx, sprite, type) => {
   const x = canvas.width / 2 - smileSize / 2;
   const y = borderSize + headerH / 2 - smileSize / 2;
 
   ctx.clearRect(x, y, smileSize, smileSize);
-  ctx.drawImage(sprite, 54, 24, 26, 26, x, y, smileSize, smileSize);
+
+  switch (type) {
+    case 'start':
+      ctx.drawImage(sprite, 0, 24, 26, 26, x, y, smileSize, smileSize);
+      break;
+    case 'click':
+      ctx.drawImage(sprite, 54, 24, 26, 26, x, y, smileSize, smileSize);
+      break;
+    case 'win':
+      ctx.drawImage(sprite, 81, 24, 26, 26, x, y, smileSize, smileSize);
+      break;
+    case 'lose':
+      ctx.drawImage(sprite, 108, 24, 26, 26, x, y, smileSize, smileSize);
+      break;
+  }
 };
 
-const drawWinStateButton = (canvas, ctx, sprite) => {
-  const x = canvas.width / 2 - smileSize / 2;
-  const y = borderSize + headerH / 2 - smileSize / 2;
+// const drawStartGameButton = (canvas, ctx, sprite) => {
+//   const x = canvas.width / 2 - smileSize / 2;
+//   const y = borderSize + headerH / 2 - smileSize / 2;
 
-  ctx.clearRect(x, y, smileSize, smileSize);
-  ctx.drawImage(sprite, 81, 24, 26, 26, x, y, smileSize, smileSize);
-};
+//   ctx.clearRect(x, y, smileSize, smileSize);
+//   ctx.drawImage(sprite, 0, 24, 26, 26, x, y, smileSize, smileSize);
+// };
 
-const drawLoseStateButton = (canvas, ctx, sprite) => {
-  const x = canvas.width / 2 - smileSize / 2;
-  const y = borderSize + headerH / 2 - smileSize / 2;
+// const drawStartGameButtonOnClick = (canvas, ctx, sprite) => {
+//   const x = canvas.width / 2 - smileSize / 2;
+//   const y = borderSize + headerH / 2 - smileSize / 2;
 
-  ctx.clearRect(x, y, smileSize, smileSize);
-  ctx.drawImage(sprite, 108, 24, 26, 26, x, y, smileSize, smileSize);
-};
+//   ctx.clearRect(x, y, smileSize, smileSize);
+//   ctx.drawImage(sprite, 54, 24, 26, 26, x, y, smileSize, smileSize);
+// };
 
-export {
-  drawControls,
-  drawStartGameButtonOnClick,
-  drawStartGameButton,
-  drawField,
-  drawWinStateButton,
-  drawLoseStateButton,
-};
+// const drawWinStateButton = (canvas, ctx, sprite) => {
+//   const x = canvas.width / 2 - smileSize / 2;
+//   const y = borderSize + headerH / 2 - smileSize / 2;
+
+//   ctx.clearRect(x, y, smileSize, smileSize);
+//   ctx.drawImage(sprite, 81, 24, 26, 26, x, y, smileSize, smileSize);
+// };
+
+// const drawLoseStateButton = (canvas, ctx, sprite) => {
+//   const x = canvas.width / 2 - smileSize / 2;
+//   const y = borderSize + headerH / 2 - smileSize / 2;
+
+//   ctx.clearRect(x, y, smileSize, smileSize);
+//   ctx.drawImage(sprite, 108, 24, 26, 26, x, y, smileSize, smileSize);
+// };
+
+export { drawControls, drawButton, drawField };

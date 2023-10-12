@@ -4,7 +4,6 @@ import {
   handleContextMenuClick,
   handleMouseDown,
   handleMouseUp,
-  handleOverlayClick,
 } from '../game/handleMouseEvents.js';
 import { options } from '../game/options.js';
 import { BORDER_COLOR_BRIGHT, BORDER_COLOR_SHADOWED, MAIN_BG_COLOR } from '../game/variables.js';
@@ -112,7 +111,7 @@ const defineCanvas = async () => {
   drawMinesAmount(canvas, ctx, sprite, mines);
 
   canvas.onmousedown = (e) => handleMouseDown(e, canvas, ctx, sprite);
-  document.onmouseup = (e) => handleMouseUp(e, canvas, ctx, sprite);
+  document.onmouseup = () => handleMouseUp(canvas, ctx, sprite);
 
   canvas.onclick = (e) => handleClick(e, canvas, ctx, sprite);
 

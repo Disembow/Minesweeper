@@ -1,12 +1,6 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
-import { getGameTopResults, setGameTopResults } from '../helpers/localStoreage.js';
-import {
-  drawLoseStateButton,
-  drawStartGameButton,
-  drawStartGameButtonOnClick,
-  drawWinStateButton,
-} from '../render/drawControls.js';
+import { drawButton } from '../render/drawControls.js';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
 import { renderTopListItems } from '../render/render.js';
 import {
@@ -24,21 +18,15 @@ const handleMouseDown = (event, canvas, ctx, sprite) => {
 
   if (coordsTerms) {
     db.isMouseDown = true;
-    drawStartGameButtonOnClick(canvas, ctx, sprite);
+    drawButton(canvas, ctx, sprite, 'click');
   }
 };
 
-const handleMouseUp = (event, canvas, ctx, sprite) => {
+const handleMouseUp = (canvas, ctx, sprite) => {
   const isMouseDown = db.isMouseDown;
 
-  const coordsTerms = getStartButtonCoords(event, canvas);
-
   if (isMouseDown) {
-    drawStartGameButton(canvas, ctx, sprite);
-  }
-
-  if (coordsTerms) {
-    drawStartGameButton(canvas, ctx, sprite);
+    drawButton(canvas, ctx, sprite, 'start');
   }
 
   db.isMouseDown = false;
@@ -47,11 +35,6 @@ const handleMouseUp = (event, canvas, ctx, sprite) => {
 const handleClick = (event, canvas, ctx, sprite) => {
   const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
   const restartGameTrems = getStartButtonCoords(event, canvas);
-
-  if (isVictoryGame()) {
-    drawWinStateButton(canvas, ctx, sprite);
-    onWinAction();
-  }
 
   if (startGameTerms) {
     if (!db.game) {
@@ -65,7 +48,7 @@ const handleClick = (event, canvas, ctx, sprite) => {
         openTargetCell(ctx, sprite, cellX, cellY);
 
         if (targetCell.isMine) {
-          drawLoseStateButton(canvas, ctx, sprite);
+          drawButton(canvas, ctx, sprite, 'lose');
           onLoseAction();
         }
 
@@ -99,7 +82,7 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
   drawMinesAmount(canvas, ctx, sprite, db.currentMines);
 
   if (isVictoryGame()) {
-    drawWinStateButton(canvas, ctx, sprite);
+    drawButton(canvas, ctx, sprite, 'win');
     onWinAction();
   }
 };

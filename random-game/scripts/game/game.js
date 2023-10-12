@@ -1,6 +1,6 @@
 import { db } from '../db/db.js';
 import { getGameTopResults, setGameTopResults } from '../helpers/localStoreage.js';
-import { drawField, drawLoseStateButton } from '../render/drawControls.js';
+import { drawField } from '../render/drawControls.js';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './options.js';
 
@@ -207,7 +207,7 @@ const onWinAction = () => {
   setGameTopResults(data);
 };
 
-const onLoseAction = (canvas, ctx, sprite) => {
+const onLoseAction = () => {
   clearInterval(db.interval);
   db.interval = null;
   db.isGameRuns = false;

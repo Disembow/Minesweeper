@@ -30,29 +30,6 @@ const renderHeader = () => {
   `;
 
   header.insertAdjacentHTML('afterbegin', innerElements);
-
-  const modes = document.querySelector('.modes__container');
-  modes.addEventListener('click', ({ target }) => {
-    if (target.classList.contains('modes__item') && !target.classList.contains('results')) {
-      document.querySelector('.active').classList.remove('active');
-
-      target.classList.add('active');
-
-      const newMode = target.textContent.toLowerCase();
-      setGameModeToLocalStorage(newMode);
-
-      const canvas = document.querySelector('.canvas');
-      canvas.remove();
-      defineCanvas();
-
-      document.querySelector('.overlay').classList.toggle('visible');
-    }
-
-    modes.classList.remove('modes__container_active');
-  });
-
-  const resultsTable = document.querySelector('.results');
-  resultsTable.addEventListener('click', handleResultsTable);
 };
 
 const renderFooter = () => {
@@ -152,6 +129,29 @@ const addListeners = () => {
   };
 
   document.querySelector('.overlay').addEventListener('click', handleOverlayClick);
+
+  const modes = document.querySelector('.modes__container');
+  modes.addEventListener('click', ({ target }) => {
+    if (target.classList.contains('modes__item') && !target.classList.contains('results')) {
+      document.querySelector('.active').classList.remove('active');
+
+      target.classList.add('active');
+
+      const newMode = target.textContent.toLowerCase();
+      setGameModeToLocalStorage(newMode);
+
+      const canvas = document.querySelector('.canvas');
+      canvas.remove();
+      defineCanvas();
+
+      document.querySelector('.overlay').classList.remove('visible');
+    }
+
+    modes.classList.remove('modes__container_active');
+  });
+
+  const resultsTable = document.querySelector('.results');
+  resultsTable.addEventListener('click', handleResultsTable);
 };
 
 const render = (root) => {

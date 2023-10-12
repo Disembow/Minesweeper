@@ -52,6 +52,7 @@ const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
 
   const targetX = cellX * cellSize + borderSize + edgeH;
   const targetY = cellY * cellSize + borderSize * 2 + edgeH + headerH;
+  console.log(targetX, targetY);
 
   const targetCoords = [targetX, targetY, cellSize, cellSize];
 

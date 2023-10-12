@@ -39,7 +39,6 @@ const handleClick = (event, canvas, ctx, sprite) => {
   if (startGameTerms) {
     if (!db.game) {
       startGame(canvas, ctx, sprite);
-      db.isGameRuns = true;
     }
 
     if (db.isGameRuns) {

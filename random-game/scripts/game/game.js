@@ -11,6 +11,8 @@ const startGame = (canvas, ctx, sprite) => {
   createInitialGameState();
   countNeighborMines();
   runTimer(canvas, ctx, sprite);
+
+  db.isGameRuns = true;
 };
 
 const restartGame = (canvas, ctx, sprite) => {

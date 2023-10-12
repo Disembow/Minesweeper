@@ -24,6 +24,8 @@ const drawBoards = (canvas, ctx, sprite) => {
 
 const drawField = (ctx, sprite) => {
   const { cellsW, cellsH } = options[db.gameMode];
+  console.log('fieldX', borderSize + edgeH + cellSize * 0);
+  console.log('fieldY', borderSize * 2 + headerH + edgeH + cellSize * 0);
 
   for (let i = 0; i < cellsW; i++) {
     for (let j = 0; j < cellsH; j++) {
@@ -31,8 +33,8 @@ const drawField = (ctx, sprite) => {
         sprite,
         0,
         50,
-        17,
-        17,
+        16,
+        16,
         borderSize + edgeH + cellSize * i,
         borderSize * 2 + headerH + edgeH + cellSize * j,
         cellSize,
@@ -41,14 +43,6 @@ const drawField = (ctx, sprite) => {
     }
   }
 };
-
-const drawControls = (canvas, ctx, sprite) => {
-  drawButton(canvas, ctx, sprite, 'start');
-  drawBoards(canvas, ctx, sprite);
-  drawField(ctx, sprite);
-};
-
-//TODO: join into one function
 
 const drawButton = (canvas, ctx, sprite, type) => {
   const x = canvas.width / 2 - smileSize / 2;
@@ -72,36 +66,10 @@ const drawButton = (canvas, ctx, sprite, type) => {
   }
 };
 
-// const drawStartGameButton = (canvas, ctx, sprite) => {
-//   const x = canvas.width / 2 - smileSize / 2;
-//   const y = borderSize + headerH / 2 - smileSize / 2;
-
-//   ctx.clearRect(x, y, smileSize, smileSize);
-//   ctx.drawImage(sprite, 0, 24, 26, 26, x, y, smileSize, smileSize);
-// };
-
-// const drawStartGameButtonOnClick = (canvas, ctx, sprite) => {
-//   const x = canvas.width / 2 - smileSize / 2;
-//   const y = borderSize + headerH / 2 - smileSize / 2;
-
-//   ctx.clearRect(x, y, smileSize, smileSize);
-//   ctx.drawImage(sprite, 54, 24, 26, 26, x, y, smileSize, smileSize);
-// };
-
-// const drawWinStateButton = (canvas, ctx, sprite) => {
-//   const x = canvas.width / 2 - smileSize / 2;
-//   const y = borderSize + headerH / 2 - smileSize / 2;
-
-//   ctx.clearRect(x, y, smileSize, smileSize);
-//   ctx.drawImage(sprite, 81, 24, 26, 26, x, y, smileSize, smileSize);
-// };
-
-// const drawLoseStateButton = (canvas, ctx, sprite) => {
-//   const x = canvas.width / 2 - smileSize / 2;
-//   const y = borderSize + headerH / 2 - smileSize / 2;
-
-//   ctx.clearRect(x, y, smileSize, smileSize);
-//   ctx.drawImage(sprite, 108, 24, 26, 26, x, y, smileSize, smileSize);
-// };
+const drawControls = (canvas, ctx, sprite) => {
+  drawBoards(canvas, ctx, sprite);
+  drawField(ctx, sprite);
+  drawButton(canvas, ctx, sprite, 'start');
+};
 
 export { drawControls, drawButton, drawField };

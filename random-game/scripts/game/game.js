@@ -195,7 +195,6 @@ const onWinAction = () => {
       expert: [],
     };
 
-    //TODO: Rework
     rawData[gameMode].push({
       name,
       time: db.timer,

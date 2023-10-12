@@ -180,7 +180,7 @@ const isVictoryGame = () => {
 };
 
 const onWinAction = () => {
-  const data = getGameTopResults();
+  let data = getGameTopResults();
   const gameMode = db.gameMode;
 
   if (!data) {

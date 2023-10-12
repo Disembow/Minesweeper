@@ -24,8 +24,6 @@ const drawBoards = (canvas, ctx, sprite) => {
 
 const drawField = (ctx, sprite) => {
   const { cellsW, cellsH } = options[db.gameMode];
-  console.log('fieldX', borderSize + edgeH + cellSize * 0);
-  console.log('fieldY', borderSize * 2 + headerH + edgeH + cellSize * 0);
 
   for (let i = 0; i < cellsW; i++) {
     for (let j = 0; j < cellsH; j++) {

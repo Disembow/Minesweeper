@@ -5,15 +5,23 @@ import { createTag } from '../helpers/createTag.js';
 import {
   getGameModeFromLocalStorage,
   getGameTopResults,
+  getUserNameFromLocalStorage,
   setGameModeToLocalStorage,
+  setUserNameToLocalStorage,
 } from '../helpers/localStoreage.js';
 import { defineCanvas } from './defineCanvas.js';
 
 const renderHeader = () => {
   const header = document.querySelector('.header');
+  const username = getUserNameFromLocalStorage();
+
   const innerElements = `
     <div class="header__container">
-      <h1 class="title">Minesweeper</h1>
+      <form name="username">
+        <input autocomplete="off" name="username" class="username__input" placeholder="Your name..." value="${
+          username || ''
+        }" ${username === '' && 'autofocus'} />
+      </form>
       <div class="modes__container">
         <span class="modes__item beginner">Beginner</span>
         <span class="modes__item intermediate">Intermediate</span>
@@ -152,6 +160,12 @@ const addListeners = () => {
 
   const resultsTable = document.querySelector('.results');
   resultsTable.addEventListener('click', handleResultsTable);
+
+  const form = document.forms[0];
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    setUserNameToLocalStorage(e.target.username.value);
+  };
 };
 
 const render = (root) => {

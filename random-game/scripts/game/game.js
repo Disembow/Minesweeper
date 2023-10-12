@@ -1,5 +1,9 @@
 import { db } from '../db/db.js';
-import { getGameTopResults, setGameTopResults } from '../helpers/localStoreage.js';
+import {
+  getGameTopResults,
+  getUserNameFromLocalStorage,
+  setGameTopResults,
+} from '../helpers/localStoreage.js';
 import { drawField } from '../render/drawControls.js';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './options.js';
@@ -182,6 +186,7 @@ const isVictoryGame = () => {
 const onWinAction = () => {
   let data = getGameTopResults();
   const gameMode = db.gameMode;
+  const name = getUserNameFromLocalStorage();
 
   if (!data) {
     const rawData = {
@@ -192,14 +197,14 @@ const onWinAction = () => {
 
     //TODO: Rework
     rawData[gameMode].push({
-      name: 'Anonim',
+      name,
       time: db.timer,
     });
 
     data = rawData;
   } else {
     data[gameMode].push({
-      name: 'Anonim',
+      name,
       time: db.timer,
     });
 

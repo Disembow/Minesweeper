@@ -38,32 +38,40 @@ const handleMouseUp = (event, canvas, ctx, sprite) => {
   if (coordsTerms) {
     drawStartGameButton(canvas, ctx, sprite);
   }
+
+  db.isMouseDown = false;
 };
 
 const handleClick = (event, canvas, ctx, sprite) => {
   const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
   const restartGameTrems = getStartButtonCoords(event, canvas);
 
-  if (restartGameTrems) {
-    restartGame(canvas, ctx, sprite);
-  } else if (startGameTerms) {
+  if (isVictoryGame()) {
+    drawWinStateButton(canvas, ctx, sprite);
+    onWinAction();
+  }
+
+  if (startGameTerms) {
     if (!db.game) {
       startGame(canvas, ctx, sprite);
+      db.isGameRuns = true;
+      console.log('start');
     }
 
-    const targetCell = db.game[cellY][cellX];
-    if (!targetCell.flag && !targetCell.isOpen) {
-      openTargetCell(ctx, sprite, cellX, cellY);
+    if (db.isGameRuns) {
+      const targetCell = db.game[cellY][cellX];
+      if (!targetCell.flag && !targetCell.isOpen) {
+        openTargetCell(ctx, sprite, cellX, cellY);
 
-      if (targetCell.minesAround === 0 && !targetCell.isMine) {
-        openCellsNearEmptyCell(ctx, sprite, targetCell);
+        if (targetCell.minesAround === 0 && !targetCell.isMine) {
+          openCellsNearEmptyCell(ctx, sprite, targetCell);
+        }
       }
     }
   }
 
-  if (isVictoryGame()) {
-    drawWinStateButton(canvas, ctx, sprite);
-    onWinAction();
+  if (restartGameTrems) {
+    restartGame(canvas, ctx, sprite);
   }
 };
 

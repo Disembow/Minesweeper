@@ -6,6 +6,7 @@ const db = {
   timer: null,
   interval: null,
   isMouseDown: false,
+  isGameRuns: false,
 };
 
 export { db };

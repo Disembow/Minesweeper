@@ -16,14 +16,15 @@ const startGame = (canvas, ctx, sprite) => {
 const restartGame = (canvas, ctx, sprite) => {
   const { mines } = options[db.gameMode];
 
-  db.game = null;
-
   clearInterval(db.interval);
   stopTimer(canvas, ctx, sprite);
   drawMinesAmount(canvas, ctx, sprite, mines, 'stop');
   drawField(ctx, sprite);
 
+  db.game = null;
   db.interval = null;
+  db.openedCells = null;
+  db.isGameRuns = true;
 };
 
 const openTargetCell = (ctx, sprite, cellX, cellY) => {
@@ -129,9 +130,16 @@ const openCellsNearEmptyCell = (ctx, sprite, cell) => {
         if (db.game[x][y] && !db.game[x][y].isOpen) {
           const cellToCheck = db.game[x][y];
 
-          openTargetCell(ctx, sprite, y, x);
+          if (!cellToCheck.flag) {
+            openTargetCell(ctx, sprite, y, x);
+          }
 
-          if (cellToCheck.minesAround === 0 && !cellToCheck.isMine && cellToCheck.isOpen) {
+          if (
+            cellToCheck.minesAround === 0 &&
+            !cellToCheck.isMine &&
+            cellToCheck.isOpen &&
+            !cellToCheck.flag
+          ) {
             openCellsNearEmptyCell(ctx, sprite, cellToCheck);
           }
         }
@@ -151,17 +159,16 @@ const stopTimer = (canvas, ctx, sprite) => {
 };
 
 const isVictoryGame = () => {
-  const { currentMines, openedCells } = db;
-  const { cellsW, cellsH, mines } = options[db.gameMode];
+  const { currentMines } = db;
+  const { mines } = options[db.gameMode];
 
-  if (currentMines === 0 && openedCells + mines === cellsW * cellsH) {
+  if (currentMines === 0 && db.game) {
     const map = db.game.flat().filter((e) => e.flag && e.isMine).length;
 
     if (map === mines) {
       clearInterval(db.interval);
       db.interval = null;
-      db.game = null;
-      db.openedCells = null;
+      db.isGameRuns = false;
 
       return true;
     }
@@ -181,6 +188,7 @@ const onWinAction = () => {
       expert: [],
     };
 
+    //TODO: Rework
     rawData[gameMode].push({
       name: 'Anonim',
       time: db.timer,

@@ -445,6 +445,12 @@ html {
 
 #root {
   position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  position: relative;
   max-width: 60rem;
   min-height: 100%;
   margin: 0 auto;
@@ -455,6 +461,25 @@ html {
 .main {
   flex: 1 1 auto;
   position: relative;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+}
+
+.visible {
+  opacity: 1;
+  z-index: 2;
+  transition: opacity 0.3s;
+  background-color: rgba(0, 0, 0, 0.5019607843);
+  cursor: pointer;
 }
 
 .header {
@@ -498,7 +523,7 @@ html {
     width: 10rem;
     min-height: 15rem;
     flex-direction: column;
-    background-color: #6c79ff;
+    background-color: #164885;
     border-radius: 1rem;
     box-shadow: 0px 0px 24px 8px rgba(0, 0, 0, 0.5019607843);
   }
@@ -517,7 +542,7 @@ html {
 }
 .modes__item:hover {
   cursor: pointer;
-  color: yellow;
+  color: #ffff00;
   transition: color 0.5s;
 }
 
@@ -548,7 +573,7 @@ html {
   top: calc(50% + 0.6rem);
 }
 .burger__button:hover span {
-  background-color: yellow;
+  background-color: #ffff00;
   transition: background-color 0.3s;
 }
 .burger__button:active span {
@@ -562,9 +587,9 @@ html {
 }
 
 .active {
-  border-bottom: 2px solid yellow;
+  border-bottom: 2px solid #ffff00;
   border-radius: 0 0 1rem 1rem;
-  color: yellow;
+  color: #ffff00;
   transition: color 0.5s;
 }
 
@@ -632,7 +657,7 @@ html {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  background-color: #6c79ff;
+  background-color: #164885;
   border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: 0px 0px 24px 8px rgba(0, 0, 0, 0.5019607843);
@@ -649,7 +674,7 @@ html {
   padding: 2rem 0;
 }
 .results__popup::-webkit-scrollbar-thumb {
-  background-color: lightblue;
+  background-color: #add8e6;
   border-radius: 0 1rem 1rem 0;
 }
 .results__popup_hidden {
@@ -691,21 +716,4 @@ th,
 td {
   border: 1px solid #ffffff;
   padding: 0.2rem 0;
-}
-
-.overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: -1;
-}
-
-.visible {
-  opacity: 1;
-  z-index: 2;
-  transition: opacity 0.3s;
-  background-color: rgba(0, 0, 0, 0.5019607843);
-  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

@@ -1,6 +1,6 @@
 import { db } from '../db/db.js';
 import { handleOverlayClick, handleResultsTable } from '../game/handleMouseEvents.js';
-import { INITAL_ELEMENTS, INITIAL_GAME_MODE } from '../game/variables.js';
+import { INITAL_ELEMENTS, INITIAL_GAME_MODE, ROOT } from '../game/variables.js';
 import { createTag } from '../helpers/createTag.js';
 import {
   getGameModeFromLocalStorage,
@@ -77,7 +77,7 @@ const renderResultsPopup = (root) => {
 
   popup.insertAdjacentHTML('afterbegin', innerElements);
 
-  createTag('div', 'overlay', root);
+  createTag('div', 'overlay', ROOT);
 };
 
 const renderTopListItems = () => {
@@ -155,6 +155,8 @@ const addListeners = () => {
 };
 
 const render = (root) => {
+  const wrapper = createTag('div', 'wrapper', root);
+
   let gameMode = getGameModeFromLocalStorage();
   db.gameMode = gameMode;
 
@@ -163,11 +165,11 @@ const render = (root) => {
     gameMode = INITIAL_GAME_MODE;
   }
 
-  INITAL_ELEMENTS.forEach((tag) => createTag(tag, tag, root));
+  INITAL_ELEMENTS.forEach((tag) => createTag(tag, tag, wrapper));
 
   renderFooter();
   renderHeader();
-  renderResultsPopup(root);
+  renderResultsPopup(wrapper);
   defineCanvas();
   addListeners();
 };

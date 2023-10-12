@@ -2,6 +2,7 @@ import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
 import { getGameTopResults, setGameTopResults } from '../helpers/localStoreage.js';
 import {
+  drawLoseStateButton,
   drawStartGameButton,
   drawStartGameButtonOnClick,
   drawWinStateButton,
@@ -10,6 +11,7 @@ import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/d
 import { renderTopListItems } from '../render/render.js';
 import {
   isVictoryGame,
+  onLoseAction,
   onWinAction,
   openCellsNearEmptyCell,
   openTargetCell,
@@ -55,13 +57,17 @@ const handleClick = (event, canvas, ctx, sprite) => {
     if (!db.game) {
       startGame(canvas, ctx, sprite);
       db.isGameRuns = true;
-      console.log('start');
     }
 
     if (db.isGameRuns) {
       const targetCell = db.game[cellY][cellX];
       if (!targetCell.flag && !targetCell.isOpen) {
         openTargetCell(ctx, sprite, cellX, cellY);
+
+        if (targetCell.isMine) {
+          drawLoseStateButton(canvas, ctx, sprite);
+          onLoseAction();
+        }
 
         if (targetCell.minesAround === 0 && !targetCell.isMine) {
           openCellsNearEmptyCell(ctx, sprite, targetCell);

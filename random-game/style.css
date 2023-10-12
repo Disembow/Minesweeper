@@ -555,7 +555,7 @@ html {
   background-color: #ffffff;
   transition: background-color 0.1s;
 }
-@media (max-width: 48rem) {
+@media (max-width: 876px) {
   .burger__button {
     display: block;
   }

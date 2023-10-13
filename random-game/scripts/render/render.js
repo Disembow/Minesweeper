@@ -1,5 +1,9 @@
 import { db } from '../db/db.js';
-import { handleOverlayClick, handleResultsTable } from '../game/handleMouseEvents.js';
+import {
+  handleOverlayClick,
+  handleResultsTable,
+  handleUsernameForm,
+} from '../game/handleMouseEvents.js';
 import { INITAL_ELEMENTS, INITIAL_GAME_MODE, ROOT } from '../game/variables.js';
 import { createTag } from '../helpers/createTag.js';
 import {
@@ -17,10 +21,11 @@ const renderHeader = () => {
 
   const innerElements = `
     <div class="header__container">
-      <form name="username">
+      <form class="form" name="username">
         <input autocomplete="off" name="username" class="username__input" placeholder="Your name..." value="${
           username || ''
         }" ${username === '' && 'autofocus'} />
+        <button class="button__submit" type="submit"></button>
       </form>
       <div class="modes__container">
         <span class="modes__item beginner">Beginner</span>
@@ -162,10 +167,10 @@ const addListeners = () => {
   resultsTable.addEventListener('click', handleResultsTable);
 
   const form = document.forms[0];
-  form.onsubmit = (e) => {
-    e.preventDefault();
-    setUserNameToLocalStorage(e.target.username.value);
-  };
+  form.onsubmit = (e) => handleUsernameForm(e);
+
+  const submitButton = document.querySelector('.button__submit');
+  submitButton.addEventListener('click', handleUsernameForm);
 };
 
 const render = (root) => {

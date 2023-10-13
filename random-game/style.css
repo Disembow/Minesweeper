@@ -496,10 +496,15 @@ html {
   align-items: center;
 }
 
+.form {
+  position: relative;
+  width: 15rem;
+}
+
 .username__input {
   font-size: 2rem;
   margin: 0;
-  width: 13.5rem;
+  width: 100%;
   border-radius: 0.7rem;
   padding-left: 1rem;
   line-height: 125%;
@@ -508,6 +513,19 @@ html {
 }
 .username__input:focus {
   border: 2px solid #ffffff;
+}
+
+.button__submit {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translate(0, -50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("./assets/svg/enter-arrow.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .modes__container {

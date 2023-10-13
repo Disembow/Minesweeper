@@ -1,5 +1,6 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
+import { setUserNameToLocalStorage } from '../helpers/localStoreage.js';
 import { drawButton } from '../render/drawControls.js';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
 import { renderTopListItems } from '../render/render.js';
@@ -104,6 +105,12 @@ const handleOverlayClick = (e) => {
   menu.classList.remove('modes__container_active');
 };
 
+const handleUsernameForm = (e) => {
+  e.preventDefault();
+  const username = document.forms[0].username.value;
+  setUserNameToLocalStorage(username);
+};
+
 export {
   handleClick,
   handleMouseDown,
@@ -111,4 +118,5 @@ export {
   handleContextMenuClick,
   handleResultsTable,
   handleOverlayClick,
+  handleUsernameForm,
 };

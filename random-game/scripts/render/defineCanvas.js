@@ -14,7 +14,11 @@ import { changeGameMode, createTag } from './render.js';
 
 const defineCanvas = async () => {
   const main = document.querySelector('.main');
-  createTag('canvas', 'canvas', main);
+  const canvas = createTag('canvas', 'canvas', main);
+
+  const preloader = createTag('div', 'preloader', document.querySelector('.main'));
+  createTag('div', 'preloader__item', preloader);
+  preloader.classList.remove('preloader_done');
 
   const gameMode = changeGameMode();
 
@@ -23,9 +27,11 @@ const defineCanvas = async () => {
   const { mines } = options[gameMode];
   const fullBorderW = borderSize + edgeH;
 
-  const canvas = document.querySelector('.canvas');
   canvas.width = cellsW * cellSize + borderSize + edgeH * 5 + 2;
   canvas.height = cellsH * cellSize + borderSize * 3 + headerH + edgeH * 2;
+
+  preloader.style.width = `${canvas.width}px`;
+  preloader.style.height = `${canvas.height}px`;
 
   const ctx = canvas.getContext('2d');
 
@@ -109,6 +115,8 @@ const defineCanvas = async () => {
 
   db.currentMines = mines;
   drawMinesAmount(canvas, ctx, sprite, mines);
+
+  preloader.classList.add('preloader_done');
 
   canvas.onmousedown = (e) => handleMouseDown(e, canvas, ctx, sprite);
   document.onmouseup = () => handleMouseUp(canvas, ctx, sprite);

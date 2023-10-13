@@ -93,6 +93,11 @@ const renderResultsPopup = (root) => {
   createTag('div', 'overlay', ROOT);
 };
 
+const renderPreloader = () => {
+  const preloader = createTag('div', 'preloader', document.querySelector('.main'));
+  createTag('div', 'preloader__item', preloader);
+};
+
 const renderTopListItems = () => {
   const levelsToRemove = document.querySelectorAll('.subtable__data');
   levelsToRemove?.forEach((e) => e.remove());
@@ -186,8 +191,10 @@ const render = (root) => {
 
   INITAL_ELEMENTS.forEach((tag) => createTag(tag, tag, wrapper));
 
-  renderFooter();
   renderHeader();
+
+  // renderPreloader();
+  renderFooter();
   renderResultsPopup(wrapper);
   defineCanvas();
   addListeners();

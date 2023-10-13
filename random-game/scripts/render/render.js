@@ -167,10 +167,10 @@ const addListeners = () => {
   resultsTable.addEventListener('click', handleResultsTable);
 
   const form = document.forms[0];
-  form.onsubmit = (e) => handleUsernameForm(e);
+  form.onsubmit = handleUsernameForm;
 
   const submitButton = document.querySelector('.button__submit');
-  submitButton.addEventListener('click', handleUsernameForm);
+  submitButton.onclick = handleUsernameForm;
 };
 
 const render = (root) => {

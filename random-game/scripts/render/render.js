@@ -193,7 +193,7 @@ const render = (root) => {
 
   renderHeader();
 
-  // renderPreloader();
+  renderPreloader();
   renderFooter();
   renderResultsPopup(wrapper);
   defineCanvas();

@@ -1,0 +1,63 @@
+.burger__button {
+  display: none;
+  position: relative;
+  width: 2.8125rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  & span {
+    width: 2.8125rem;
+    height: 2px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $main-white;
+    transition: all 0.3s;
+
+    &:nth-of-type(2) {
+      top: calc(50% - 0.6rem);
+    }
+
+    &:nth-of-type(3) {
+      top: calc(50% + 0.6rem);
+    }
+  }
+
+  &:hover span {
+    background-color: $active-link;
+    transition: background-color 0.3s;
+  }
+
+  &:active span {
+    background-color: $main-white;
+    transition: background-color 0.1s;
+  }
+
+  @media (max-width: 876px) {
+    display: block;
+  }
+}
+
+.active {
+  border-bottom: 2px solid$active-link;
+  border-radius: 0 0 1rem 1rem;
+  color: $active-link;
+  transition: color 0.5s;
+}
+
+.button__submit {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translate(0, -50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url('./assets/svg/enter-arrow.svg');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

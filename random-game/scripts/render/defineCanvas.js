@@ -16,8 +16,7 @@ const defineCanvas = async () => {
   const main = document.querySelector('.main');
   const canvas = createTag('canvas', 'canvas', main);
 
-  const preloader = createTag('div', 'preloader', document.querySelector('.main'));
-  createTag('div', 'preloader__item', preloader);
+  const preloader = document.querySelector('.preloader');
   preloader.classList.remove('preloader_done');
 
   const gameMode = changeGameMode();

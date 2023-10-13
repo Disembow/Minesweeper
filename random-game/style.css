@@ -476,7 +476,7 @@ html {
 
 .visible {
   opacity: 1;
-  z-index: 2;
+  z-index: 3;
   transition: opacity 0.3s;
   background-color: rgba(0, 0, 0, 0.5019607843);
   cursor: pointer;
@@ -515,26 +515,13 @@ html {
   border: 2px solid #ffffff;
 }
 
-.button__submit {
-  position: absolute;
-  top: 50%;
-  right: 0.5rem;
-  transform: translate(0, -50%);
-  width: 1.5rem;
-  height: 1.5rem;
-  background-image: url("./assets/svg/enter-arrow.svg");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .modes__container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 2.5rem;
-  z-index: 5;
+  z-index: 2;
 }
 @media (max-width: 876px) {
   .modes__container {
@@ -548,6 +535,7 @@ html {
     flex-direction: column;
     background-color: #164885;
     border-radius: 1rem;
+    z-index: 5;
     box-shadow: 0px 0px 24px 8px rgba(0, 0, 0, 0.5019607843);
   }
   .modes__container_active {
@@ -565,53 +553,6 @@ html {
 }
 .modes__item:hover {
   cursor: pointer;
-  color: #ffff00;
-  transition: color 0.5s;
-}
-
-.burger__button {
-  display: none;
-  position: relative;
-  width: 2.8125rem;
-  height: 1.25rem;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.burger__button span {
-  width: 2.8125rem;
-  height: 2px;
-  border-radius: 5px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  transition: all 0.3s;
-}
-.burger__button span:nth-of-type(2) {
-  top: calc(50% - 0.6rem);
-}
-.burger__button span:nth-of-type(3) {
-  top: calc(50% + 0.6rem);
-}
-.burger__button:hover span {
-  background-color: #ffff00;
-  transition: background-color 0.3s;
-}
-.burger__button:active span {
-  background-color: #ffffff;
-  transition: background-color 0.1s;
-}
-@media (max-width: 876px) {
-  .burger__button {
-    display: block;
-  }
-}
-
-.active {
-  border-bottom: 2px solid #ffff00;
-  border-radius: 0 0 1rem 1rem;
   color: #ffff00;
   transition: color 0.5s;
 }
@@ -777,4 +718,63 @@ td {
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
+}
+.burger__button {
+  display: none;
+  position: relative;
+  width: 2.8125rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.burger__button span {
+  width: 2.8125rem;
+  height: 2px;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  transition: all 0.3s;
+}
+.burger__button span:nth-of-type(2) {
+  top: calc(50% - 0.6rem);
+}
+.burger__button span:nth-of-type(3) {
+  top: calc(50% + 0.6rem);
+}
+.burger__button:hover span {
+  background-color: #ffff00;
+  transition: background-color 0.3s;
+}
+.burger__button:active span {
+  background-color: #ffffff;
+  transition: background-color 0.1s;
+}
+@media (max-width: 876px) {
+  .burger__button {
+    display: block;
+  }
+}
+
+.active {
+  border-bottom: 2px solid #ffff00;
+  border-radius: 0 0 1rem 1rem;
+  color: #ffff00;
+  transition: color 0.5s;
+}
+
+.button__submit {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translate(0, -50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("./assets/svg/enter-arrow.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
 }/*# sourceMappingURL=style.css.map */

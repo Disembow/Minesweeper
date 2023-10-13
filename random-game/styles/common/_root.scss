@@ -43,7 +43,7 @@ html {
 
 .visible {
   opacity: 1;
-  z-index: 2;
+  z-index: 3;
   transition: opacity 0.3s;
   background-color: $shadow-black;
   cursor: pointer;

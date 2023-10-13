@@ -1,5 +1,3 @@
-#
-
 1. [Task](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/js30%23/js30-9.md)
 2. Screenshot:
 3. [Deploy](https://rolling-scopes-school.github.io/disembow-JSFEPRESCHOOL2023Q2/random-game)

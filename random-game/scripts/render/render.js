@@ -2,8 +2,8 @@ import { db } from '../db/db.js';
 import {
   handleOverlayClick,
   handleResultsTable,
-  handleUsernameForm,
-} from '../game/handleMouseEvents.js';
+  modesHandler,
+} from '../listeners/handleMouseEvents.js';
 import { INITAL_ELEMENTS, INITIAL_GAME_MODE, ROOT } from '../game/variables.js';
 import { createTag } from '../helpers/createTag.js';
 import {
@@ -12,7 +12,10 @@ import {
   getUserNameFromLocalStorage,
   setGameModeToLocalStorage,
 } from '../helpers/localStorage.js';
+import { onFormSubmitListener } from '../listeners/onFormSubmitListener.js';
 import { defineCanvas } from './defineCanvas.js';
+import { toggleOverlay } from '../listeners/handleOverlay.js';
+import { showPopupMenu } from '../listeners/handlePopupMenu.js';
 
 const renderHeader = () => {
   const header = document.querySelector('.header');
@@ -140,41 +143,20 @@ const changeGameMode = () => {
 const addListeners = () => {
   const menuButton = document.querySelector('.burger__button');
   menuButton.onclick = () => {
-    document.querySelector('.modes__container').classList.add('modes__container_active');
-
-    document.querySelector('.overlay').classList.toggle('visible');
+    showPopupMenu();
+    toggleOverlay();
   };
 
-  document.querySelector('.overlay').addEventListener('click', handleOverlayClick);
+  const overlay = document.querySelector('.overlay');
+  overlay.addEventListener('click', handleOverlayClick);
 
   const modes = document.querySelector('.modes__container');
-  modes.addEventListener('click', ({ target }) => {
-    if (target.classList.contains('modes__item') && !target.classList.contains('results')) {
-      document.querySelector('.active').classList.remove('active');
-
-      target.classList.add('active');
-
-      const newMode = target.textContent.toLowerCase();
-      setGameModeToLocalStorage(newMode);
-
-      const canvas = document.querySelector('.canvas');
-      canvas.remove();
-      defineCanvas();
-
-      document.querySelector('.overlay').classList.remove('visible');
-    }
-
-    modes.classList.remove('modes__container_active');
-  });
+  modes.addEventListener('click', modesHandler);
 
   const resultsTable = document.querySelector('.results');
   resultsTable.addEventListener('click', handleResultsTable);
 
-  const form = document.forms[0];
-  form.onsubmit = handleUsernameForm;
-
-  const submitButton = document.querySelector('.button__submit');
-  submitButton.onclick = handleUsernameForm;
+  onFormSubmitListener();
 };
 
 const render = (root) => {

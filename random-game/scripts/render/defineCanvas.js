@@ -4,7 +4,7 @@ import {
   handleContextMenuClick,
   handleMouseDown,
   handleMouseUp,
-} from '../game/handleMouseEvents.js';
+} from '../listeners/handleMouseEvents.js';
 import { options } from '../game/gameOptions.js';
 import { loadSprites } from '../sprites/loadSprites.js';
 import { drawControls } from './drawControls.js';

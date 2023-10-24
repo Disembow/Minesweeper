@@ -1,6 +1,6 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
-import { setUserNameToLocalStorage } from '../helpers/localStorage.js';
+import { setGameModeToLocalStorage, setUserNameToLocalStorage } from '../helpers/localStorage.js';
 import { drawButton } from '../render/drawControls.js';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
 import { renderTopListItems } from '../render/render.js';
@@ -12,7 +12,10 @@ import {
   openTargetCell,
   restartGame,
   startGame,
-} from './gameProcess.js';
+} from '../game/gameProcess.js';
+import { defineCanvas } from '../render/defineCanvas.js';
+import { hideOverlay, showOverlay, toggleOverlay } from './handleOverlay.js';
+import { hidePopupMenu, showResultsMenu } from './handlePopupMenu.js';
 
 const handleMouseDown = (event, canvas, sprite) => {
   const coordsTerms = getStartButtonCoords(event, canvas);
@@ -88,8 +91,7 @@ const handleContextMenuClick = (event, canvas, sprite) => {
 };
 
 const handleResultsTable = () => {
-  const overlay = document.querySelector('.overlay');
-  overlay.classList.add('visible');
+  showOverlay();
 
   const popup = document.querySelector('.results__popup');
   popup.classList.remove('results__popup_hidden');
@@ -97,18 +99,35 @@ const handleResultsTable = () => {
   renderTopListItems();
 };
 
-const handleOverlayClick = (e) => {
-  e.target.classList.toggle('visible');
-  const popup = document.querySelector('.results__popup');
-  popup.classList.add('results__popup_hidden');
-  const menu = document.querySelector('.modes__container');
-  menu.classList.remove('modes__container_active');
+const handleOverlayClick = () => {
+  toggleOverlay();
+  showResultsMenu();
+  hidePopupMenu();
 };
 
 const handleUsernameForm = (e) => {
   e.preventDefault();
   const username = document.forms[0].username.value;
   setUserNameToLocalStorage(username);
+};
+
+const modesHandler = function ({ target }) {
+  if (target.classList.contains('modes__item') && !target.classList.contains('results')) {
+    document.querySelector('.active').classList.remove('active');
+
+    target.classList.add('active');
+
+    const newMode = target.textContent.toLowerCase();
+    setGameModeToLocalStorage(newMode);
+
+    const canvas = document.querySelector('.canvas');
+    canvas.remove();
+    defineCanvas();
+
+    hideOverlay();
+  }
+
+  this.classList.remove('modes__container_active');
 };
 
 export {
@@ -119,4 +138,5 @@ export {
   handleResultsTable,
   handleOverlayClick,
   handleUsernameForm,
+  modesHandler,
 };

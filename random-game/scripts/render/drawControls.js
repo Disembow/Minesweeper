@@ -1,5 +1,5 @@
 import { db } from '../db/db.js';
-import { options } from '../game/options.js';
+import { options } from '../game/gameOptions.js';
 
 const { scoreboardH, smileSize, borderSize, headerH, cellSize, edgeH } = options.game;
 

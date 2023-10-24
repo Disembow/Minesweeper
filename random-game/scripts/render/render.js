@@ -11,8 +11,7 @@ import {
   getGameTopResults,
   getUserNameFromLocalStorage,
   setGameModeToLocalStorage,
-  setUserNameToLocalStorage,
-} from '../helpers/localStoreage.js';
+} from '../helpers/localStorage.js';
 import { defineCanvas } from './defineCanvas.js';
 
 const renderHeader = () => {
@@ -110,13 +109,13 @@ const renderTopListItems = () => {
     let rows = '';
     const key = resultsKeys[i];
 
-    results[key].forEach((r, n) => {
-      if (n < 10) {
+    results[key].forEach((res, num) => {
+      if (num < 10) {
         rows += `
           <tr class="subtable subtable__data">
-            <th class="table__number">${n + 1}</th>
-            <th class="table__name">${r.name}</th>
-            <th class="table__time">${r.time}</th>
+            <th class="table__number">${num + 1}</th>
+            <th class="table__name">${res.name}</th>
+            <th class="table__time">${res.time}</th>
           </tr>
         `;
       } else {
@@ -192,7 +191,6 @@ const render = (root) => {
   INITAL_ELEMENTS.forEach((tag) => createTag(tag, tag, wrapper));
 
   renderHeader();
-
   renderPreloader();
   renderFooter();
   renderResultsPopup(wrapper);

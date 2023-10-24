@@ -1,9 +1,9 @@
 import { db } from '../db/db.js';
-import { options } from '../game/options.js';
-
-const { cellSize, borderSize, edgeH, headerH, scoreboardH } = options.game;
+import { options } from '../game/gameOptions.js';
 
 const drawFieldContent = (ctx, sprite, cellX, cellY) => {
+  const { cellSize, borderSize, edgeH, headerH } = options.game;
+
   const target = db.game[cellY][cellX];
   const targetX = cellX * cellSize + borderSize + edgeH;
   const targetY = cellY * cellSize + borderSize * 2 + edgeH + headerH;
@@ -49,6 +49,8 @@ const drawFieldContent = (ctx, sprite, cellX, cellY) => {
 };
 
 const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
+  const { cellSize, borderSize, edgeH, headerH } = options.game;
+
   const target = db.game[cellY][cellX];
 
   const targetX = cellX * cellSize + borderSize + edgeH;
@@ -69,6 +71,8 @@ const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
 };
 
 const drawNumber = (number, canvas, ctx, sprite, column, type = 'mines') => {
+  const { borderSize, headerH, scoreboardH } = options.game;
+
   const sw = 14;
   const sh = 23.5;
   const k = sh / sw;

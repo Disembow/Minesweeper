@@ -1,6 +1,4 @@
-import { options } from '../game/options.js';
-
-const { smileSize, borderSize, headerH, edgeH, cellSize } = options.game;
+import { options } from '../game/gameOptions.js';
 
 const getMouseCoords = (event) => {
   const mouseX = event.offsetX;
@@ -10,6 +8,8 @@ const getMouseCoords = (event) => {
 };
 
 const getStartButtonCoords = (event, canvas) => {
+  const { smileSize, borderSize, headerH } = options.game;
+
   const { mouseX, mouseY } = getMouseCoords(event);
 
   const smileX = canvas.width / 2 - smileSize / 2;
@@ -25,6 +25,8 @@ const getStartButtonCoords = (event, canvas) => {
 };
 
 const getGameFieldCoords = (event, canvas) => {
+  const { borderSize, headerH, edgeH, cellSize } = options.game;
+
   const { mouseX, mouseY } = getMouseCoords(event);
 
   const fieldX = borderSize + edgeH;

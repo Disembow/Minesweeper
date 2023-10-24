@@ -1,6 +1,6 @@
 import { db } from '../db/db.js';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.js';
-import { setUserNameToLocalStorage } from '../helpers/localStoreage.js';
+import { setUserNameToLocalStorage } from '../helpers/localStorage.js';
 import { drawButton } from '../render/drawControls.js';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
 import { renderTopListItems } from '../render/render.js';
@@ -12,7 +12,7 @@ import {
   openTargetCell,
   restartGame,
   startGame,
-} from './game.js';
+} from './gameProcess.js';
 
 const handleMouseDown = (event, canvas, ctx, sprite) => {
   const coordsTerms = getStartButtonCoords(event, canvas);

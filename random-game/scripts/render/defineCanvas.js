@@ -5,7 +5,7 @@ import {
   handleMouseDown,
   handleMouseUp,
 } from '../game/handleMouseEvents.js';
-import { options } from '../game/options.js';
+import { options } from '../game/gameOptions.js';
 import { BORDER_COLOR_BRIGHT, BORDER_COLOR_SHADOWED, MAIN_BG_COLOR } from '../game/variables.js';
 import { loadSprites } from '../sprites/loadSprites.js';
 import { drawControls } from './drawControls.js';

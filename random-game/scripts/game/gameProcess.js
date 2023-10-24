@@ -3,10 +3,10 @@ import {
   getGameTopResults,
   getUserNameFromLocalStorage,
   setGameTopResults,
-} from '../helpers/localStoreage.js';
+} from '../helpers/localStorage.js';
 import { drawField } from '../render/drawControls.js';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
-import { options } from './options.js';
+import { options } from './gameOptions.js';
 
 const startGame = (canvas, ctx, sprite) => {
   const { cellsW, cellsH } = options[db.gameMode];

@@ -8,24 +8,24 @@ import { drawField } from '../render/drawControls.js';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './gameOptions.js';
 
-const startGame = (canvas, ctx, sprite) => {
+const startGame = (canvas, sprite) => {
   const { cellsW, cellsH } = options[db.gameMode];
 
   initialDBFill(cellsW, cellsH);
   createInitialGameState();
   countNeighborMines();
-  runTimer(canvas, ctx, sprite);
+  runTimer(canvas, sprite);
 
   db.isGameRuns = true;
 };
 
-const restartGame = (canvas, ctx, sprite) => {
+const restartGame = (canvas, sprite) => {
   const { mines } = options[db.gameMode];
 
   clearInterval(db.interval);
-  stopTimer(canvas, ctx, sprite);
-  drawMinesAmount(canvas, ctx, sprite, mines, 'stop');
-  drawField(ctx, sprite);
+  stopTimer(canvas, sprite);
+  drawMinesAmount(canvas, sprite, mines, 'stop');
+  drawField(canvas, sprite);
 
   db.game = null;
   db.interval = null;
@@ -33,8 +33,8 @@ const restartGame = (canvas, ctx, sprite) => {
   db.isGameRuns = true;
 };
 
-const openTargetCell = (ctx, sprite, cellX, cellY) => {
-  drawFieldContent(ctx, sprite, cellX, cellY);
+const openTargetCell = (canvas, sprite, cellX, cellY) => {
+  drawFieldContent(canvas, sprite, cellX, cellY);
   db.openedCells++;
 };
 
@@ -122,7 +122,7 @@ const countNeighborMines = () => {
   }
 };
 
-const openCellsNearEmptyCell = (ctx, sprite, cell) => {
+const openCellsNearEmptyCell = (canvas, sprite, cell) => {
   const { cellX, cellY } = cell;
 
   for (let i = -1; i <= 1; i++) {
@@ -137,7 +137,7 @@ const openCellsNearEmptyCell = (ctx, sprite, cell) => {
           const cellToCheck = db.game[x][y];
 
           if (!cellToCheck.flag) {
-            openTargetCell(ctx, sprite, y, x);
+            openTargetCell(canvas, sprite, y, x);
           }
 
           if (
@@ -146,7 +146,7 @@ const openCellsNearEmptyCell = (ctx, sprite, cell) => {
             cellToCheck.isOpen &&
             !cellToCheck.flag
           ) {
-            openCellsNearEmptyCell(ctx, sprite, cellToCheck);
+            openCellsNearEmptyCell(canvas, sprite, cellToCheck);
           }
         }
       }
@@ -154,14 +154,14 @@ const openCellsNearEmptyCell = (ctx, sprite, cell) => {
   }
 };
 
-const runTimer = (canvas, ctx, sprite) => {
+const runTimer = (canvas, sprite) => {
   clearInterval(db.interval);
-  db.interval = setInterval(() => drawTimer(canvas, ctx, sprite), 1000);
+  db.interval = setInterval(() => drawTimer(canvas, sprite, 'run'), 1000);
 };
 
-const stopTimer = (canvas, ctx, sprite) => {
+const stopTimer = (canvas, sprite) => {
   clearInterval(db.interval);
-  drawTimer(canvas, ctx, sprite, 'stop');
+  drawTimer(canvas, sprite, 'stop');
 };
 
 const isVictoryGame = () => {

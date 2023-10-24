@@ -11,13 +11,11 @@ import { drawControls } from './drawControls.js';
 import { drawMinesAmount } from './drawFieldContent.js';
 import { changeGameMode, createTag } from './render.js';
 import { drawGameFieldBorders } from './drawGameFieldBorders.js';
+import { hidePreloader, showPreloader } from './preloader.js';
 
 const defineCanvas = async () => {
   const main = document.querySelector('.main');
   const canvas = createTag('canvas', 'canvas', main);
-
-  const preloader = document.querySelector('.preloader');
-  preloader.classList.remove('preloader_done');
 
   const gameMode = changeGameMode();
 
@@ -28,30 +26,28 @@ const defineCanvas = async () => {
   canvas.width = cellsW * cellSize + borderSize + edgeH * 5 + 2;
   canvas.height = cellsH * cellSize + borderSize * 3 + headerH + edgeH * 2;
 
-  preloader.style.width = `${canvas.width}px`;
-  preloader.style.height = `${canvas.height}px`;
+  showPreloader(canvas);
 
-  const ctx = canvas.getContext('2d');
   drawGameFieldBorders(canvas);
 
   const sprite = await loadSprites();
 
-  drawControls(canvas, ctx, sprite);
+  drawControls(canvas, sprite);
 
   db.currentMines = mines;
-  drawMinesAmount(canvas, ctx, sprite, mines);
+  drawMinesAmount(canvas, sprite, mines);
 
-  preloader.classList.add('preloader_done');
+  hidePreloader();
 
-  canvas.onmousedown = (e) => handleMouseDown(e, canvas, ctx, sprite);
-  document.onmouseup = () => handleMouseUp(canvas, ctx, sprite);
+  canvas.onmousedown = (e) => handleMouseDown(e, canvas, sprite);
+  document.onmouseup = () => handleMouseUp(canvas, sprite);
 
-  canvas.onclick = (e) => handleClick(e, canvas, ctx, sprite);
+  canvas.onclick = (e) => handleClick(e, canvas, sprite);
 
   document.oncontextmenu = (e) => {
     if (e.target.classList.contains('canvas')) return false;
   };
-  canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, ctx, sprite);
+  canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, sprite);
 };
 
 export { defineCanvas };

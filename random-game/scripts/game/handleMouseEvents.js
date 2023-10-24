@@ -14,64 +14,64 @@ import {
   startGame,
 } from './gameProcess.js';
 
-const handleMouseDown = (event, canvas, ctx, sprite) => {
+const handleMouseDown = (event, canvas, sprite) => {
   const coordsTerms = getStartButtonCoords(event, canvas);
 
   if (coordsTerms) {
     db.isMouseDown = true;
-    drawButton(canvas, ctx, sprite, 'click');
+    drawButton(canvas, sprite, 'click');
   }
 };
 
-const handleMouseUp = (canvas, ctx, sprite) => {
+const handleMouseUp = (canvas, sprite) => {
   const isMouseDown = db.isMouseDown;
 
   if (isMouseDown) {
-    drawButton(canvas, ctx, sprite, 'start');
+    drawButton(canvas, sprite, 'start');
   }
 
   db.isMouseDown = false;
 };
 
-const handleClick = (event, canvas, ctx, sprite) => {
+const handleClick = (event, canvas, sprite) => {
   const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
   const restartGameTrems = getStartButtonCoords(event, canvas);
 
   if (startGameTerms) {
     if (!db.game) {
-      startGame(canvas, ctx, sprite);
+      startGame(canvas, sprite);
     }
 
     if (db.isGameRuns) {
       const targetCell = db.game[cellY][cellX];
       if (!targetCell.flag && !targetCell.isOpen) {
-        openTargetCell(ctx, sprite, cellX, cellY);
+        openTargetCell(canvas, sprite, cellX, cellY);
 
         if (targetCell.isMine) {
-          drawButton(canvas, ctx, sprite, 'lose');
+          drawButton(canvas, sprite, 'lose');
           onLoseAction();
         }
 
         if (targetCell.minesAround === 0 && !targetCell.isMine) {
-          openCellsNearEmptyCell(ctx, sprite, targetCell);
+          openCellsNearEmptyCell(canvas, sprite, targetCell);
         }
       }
     }
   }
 
   if (restartGameTrems) {
-    restartGame(canvas, ctx, sprite);
+    restartGame(canvas, sprite);
   }
 };
 
-const handleContextMenuClick = (event, canvas, ctx, sprite) => {
+const handleContextMenuClick = (event, canvas, sprite) => {
   const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
 
   if (startGameTerms && !db.game) {
-    startGame(canvas, ctx, sprite);
+    startGame(canvas, sprite);
   }
 
-  drawFieldContentOnContextMenuClick(ctx, sprite, cellX, cellY);
+  drawFieldContentOnContextMenuClick(canvas, sprite, cellX, cellY);
 
   if (db.game[cellY][cellX].flag) {
     db.currentMines--;
@@ -79,10 +79,10 @@ const handleContextMenuClick = (event, canvas, ctx, sprite) => {
     db.currentMines++;
   }
 
-  drawMinesAmount(canvas, ctx, sprite, db.currentMines);
+  drawMinesAmount(canvas, sprite, db.currentMines);
 
   if (isVictoryGame()) {
-    drawButton(canvas, ctx, sprite, 'win');
+    drawButton(canvas, sprite, 'win');
     onWinAction();
   }
 };

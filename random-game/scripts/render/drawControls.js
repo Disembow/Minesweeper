@@ -3,7 +3,9 @@ import { options } from '../game/gameOptions.js';
 
 const { scoreboardH, smileSize, borderSize, headerH, cellSize, edgeH } = options.game;
 
-const drawBoards = (canvas, ctx, sprite) => {
+const drawBoards = (canvas, sprite) => {
+  const ctx = canvas.getContext('2d');
+
   const x = borderSize + headerH / 2 - scoreboardH / 2;
   const y = x;
   const sw = 14;
@@ -22,7 +24,8 @@ const drawBoards = (canvas, ctx, sprite) => {
   ctx.drawImage(sprite, 126, 0, sw, sh, canvas.width - x - (dw - offset - 0.5) * 3, y, dw, dh);
 };
 
-const drawField = (ctx, sprite) => {
+const drawField = (canvas, sprite) => {
+  const ctx = canvas.getContext('2d');
   const { cellsW, cellsH } = options[db.gameMode];
 
   for (let i = 0; i < cellsW; i++) {
@@ -42,7 +45,9 @@ const drawField = (ctx, sprite) => {
   }
 };
 
-const drawButton = (canvas, ctx, sprite, type) => {
+const drawButton = (canvas, sprite, type) => {
+  const ctx = canvas.getContext('2d');
+
   const x = canvas.width / 2 - smileSize / 2;
   const y = borderSize + headerH / 2 - smileSize / 2;
 
@@ -64,10 +69,10 @@ const drawButton = (canvas, ctx, sprite, type) => {
   }
 };
 
-const drawControls = (canvas, ctx, sprite) => {
-  drawBoards(canvas, ctx, sprite);
-  drawField(ctx, sprite);
-  drawButton(canvas, ctx, sprite, 'start');
+const drawControls = (canvas, sprite) => {
+  drawBoards(canvas, sprite);
+  drawField(canvas, sprite);
+  drawButton(canvas, sprite, 'start');
 };
 
 export { drawControls, drawButton, drawField };

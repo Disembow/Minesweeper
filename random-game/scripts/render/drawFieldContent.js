@@ -1,7 +1,8 @@
 import { db } from '../db/db.js';
 import { options } from '../game/gameOptions.js';
 
-const drawFieldContent = (ctx, sprite, cellX, cellY) => {
+const drawFieldContent = (canvas, sprite, cellX, cellY) => {
+  const ctx = canvas.getContext('2d');
   const { cellSize, borderSize, edgeH, headerH } = options.game;
 
   const target = db.game[cellY][cellX];
@@ -48,7 +49,9 @@ const drawFieldContent = (ctx, sprite, cellX, cellY) => {
   }
 };
 
-const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
+const drawFieldContentOnContextMenuClick = (canvas, sprite, cellX, cellY) => {
+  const ctx = canvas.getContext('2d');
+
   const { cellSize, borderSize, edgeH, headerH } = options.game;
 
   const target = db.game[cellY][cellX];
@@ -70,7 +73,9 @@ const drawFieldContentOnContextMenuClick = (ctx, sprite, cellX, cellY) => {
   target.flag = !target.flag;
 };
 
-const drawNumber = (number, canvas, ctx, sprite, column, type = 'mines') => {
+const drawNumber = (number, canvas, sprite, column, type = 'mines') => {
+  const ctx = canvas.getContext('2d');
+
   const { borderSize, headerH, scoreboardH } = options.game;
 
   const sw = 14;
@@ -96,7 +101,9 @@ const drawNumber = (number, canvas, ctx, sprite, column, type = 'mines') => {
   ctx.drawImage(sprite, xCoords[number], 0, sw, sh, x, y, dw, dh);
 };
 
-const drawMinesAmount = (canvas, ctx, sprite, mines, type = 'game') => {
+const drawMinesAmount = (canvas, sprite, mines, type = 'game') => {
+  const ctx = canvas.getContext('2d');
+
   if (type === 'stop') {
     db.currentMines = options[db.gameMode].mines;
   }
@@ -105,12 +112,12 @@ const drawMinesAmount = (canvas, ctx, sprite, mines, type = 'game') => {
   const tens = Math.floor((mines % 100) / 10);
   const ones = mines - cents * 100 - tens * 10;
 
-  drawNumber(cents, canvas, ctx, sprite, 1);
-  drawNumber(tens, canvas, ctx, sprite, 2);
-  drawNumber(ones, canvas, ctx, sprite, 3);
+  drawNumber(cents, canvas, sprite, 1);
+  drawNumber(tens, canvas, sprite, 2);
+  drawNumber(ones, canvas, sprite, 3);
 };
 
-const drawTimer = (canvas, ctx, sprite, type = 'run') => {
+const drawTimer = (canvas, sprite, type = 'run') => {
   if (type === 'run') {
     db.timer++;
   }
@@ -123,9 +130,9 @@ const drawTimer = (canvas, ctx, sprite, type = 'run') => {
   const tens = Math.floor((db.timer % 100) / 10);
   const ones = db.timer - cents * 100 - tens * 10;
 
-  drawNumber(cents, canvas, ctx, sprite, 3, 'timer');
-  drawNumber(tens, canvas, ctx, sprite, 2, 'timer');
-  drawNumber(ones, canvas, ctx, sprite, 1, 'timer');
+  drawNumber(cents, canvas, sprite, 3, 'timer');
+  drawNumber(tens, canvas, sprite, 2, 'timer');
+  drawNumber(ones, canvas, sprite, 1, 'timer');
 };
 
 export { drawFieldContent, drawFieldContentOnContextMenuClick, drawMinesAmount, drawTimer };

@@ -499,6 +499,7 @@ html {
 .form {
   position: relative;
   width: 15rem;
+  border-radius: 0.7rem;
 }
 
 .username__input {
@@ -506,13 +507,16 @@ html {
   margin: 0;
   width: 100%;
   border-radius: 0.7rem;
-  padding-left: 1rem;
+  padding: 0 0 0.3rem 1rem;
   line-height: 125%;
   background-color: #164885;
   color: #ffffff;
+  border: 1px solid #ffffff;
+  transform: outline 0.3s;
 }
 .username__input:focus {
-  border: 2px solid #ffffff;
+  transform: outline 0.3s;
+  outline: 2px solid #ffffff;
 }
 
 .modes__container {

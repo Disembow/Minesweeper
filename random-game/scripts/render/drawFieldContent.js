@@ -102,8 +102,6 @@ const drawNumber = (number, canvas, sprite, column, type = 'mines') => {
 };
 
 const drawMinesAmount = (canvas, sprite, mines, type = 'game') => {
-  const ctx = canvas.getContext('2d');
-
   if (type === 'stop') {
     db.currentMines = options[db.gameMode].mines;
   }

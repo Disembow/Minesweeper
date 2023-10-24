@@ -14,8 +14,7 @@ const options = {
     cellsW: 30,
     cellsH: 16,
   },
-  //TODO: add popup with custom game settings
-  custom: {
+  nightmare: {
     mines: 199,
     cellsW: 45,
     cellsH: 17,

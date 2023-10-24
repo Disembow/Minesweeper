@@ -33,7 +33,7 @@ const renderHeader = () => {
         <span class="modes__item beginner">Beginner</span>
         <span class="modes__item intermediate">Intermediate</span>
         <span class="modes__item expert">Expert</span>
-        <span class="modes__item custom">Custom</span>
+        <span class="modes__item nightmare">Nightmare</span>
         <span class="modes__item results">Results</span>
       </div>
       <div class="burger__button">

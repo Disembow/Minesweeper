@@ -1,7 +1,7 @@
 import { db } from '../db/db.ts';
 import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.ts';
 import { setGameModeToLocalStorage, setUserNameToLocalStorage } from '../helpers/localStorage.ts';
-import { drawButton } from '../render/drawControls.js';
+import { drawButton } from '../render/drawControls.ts';
 import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.js';
 import { renderTopListItems } from '../render/render.js';
 import {

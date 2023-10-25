@@ -1,10 +1,17 @@
 import { db } from '../db/db.ts';
 import { options } from '../game/gameOptions.ts';
 
-const { scoreboardH, smileSize, borderSize, headerH, cellSize, edgeH } = options.game;
+enum ButtonStateType {
+  START = 'start',
+  CLICK = 'click',
+  WIN = 'win',
+  LOSE = 'lose',
+}
 
-const drawBoards = (canvas, sprite) => {
-  const ctx = canvas.getContext('2d');
+const drawBoards = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
+  const { scoreboardH, borderSize, headerH } = options.game;
+
+  const ctx = <CanvasRenderingContext2D>canvas.getContext('2d');
 
   const x = borderSize + headerH / 2 - scoreboardH / 2;
   const y = x;
@@ -24,29 +31,35 @@ const drawBoards = (canvas, sprite) => {
   ctx.drawImage(sprite, 126, 0, sw, sh, canvas.width - x - (dw - offset - 0.5) * 3, y, dw, dh);
 };
 
-const drawField = (canvas, sprite) => {
-  const ctx = canvas.getContext('2d');
-  const { cellsW, cellsH } = options[db.gameMode];
+const drawField = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
+  const { borderSize, headerH, cellSize, edgeH } = options.game;
 
-  for (let i = 0; i < cellsW; i++) {
-    for (let j = 0; j < cellsH; j++) {
-      ctx.drawImage(
-        sprite,
-        0,
-        50,
-        16,
-        16,
-        borderSize + edgeH + cellSize * i,
-        borderSize * 2 + headerH + edgeH + cellSize * j,
-        cellSize,
-        cellSize,
-      );
+  const ctx = <CanvasRenderingContext2D>canvas.getContext('2d');
+  if (db.gameMode) {
+    const { cellsW, cellsH } = options[db.gameMode];
+
+    for (let i = 0; i < cellsW; i++) {
+      for (let j = 0; j < cellsH; j++) {
+        ctx.drawImage(
+          sprite,
+          0,
+          50,
+          16,
+          16,
+          borderSize + edgeH + cellSize * i,
+          borderSize * 2 + headerH + edgeH + cellSize * j,
+          cellSize,
+          cellSize,
+        );
+      }
     }
   }
 };
 
-const drawButton = (canvas, sprite, type) => {
-  const ctx = canvas.getContext('2d');
+const drawButton = (canvas: HTMLCanvasElement, sprite: HTMLImageElement, type: ButtonStateType) => {
+  const { smileSize, borderSize, headerH } = options.game;
+
+  const ctx = <CanvasRenderingContext2D>canvas.getContext('2d');
 
   const x = canvas.width / 2 - smileSize / 2;
   const y = borderSize + headerH / 2 - smileSize / 2;
@@ -69,10 +82,10 @@ const drawButton = (canvas, sprite, type) => {
   }
 };
 
-const drawControls = (canvas, sprite) => {
+const drawControls = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
   drawBoards(canvas, sprite);
   drawField(canvas, sprite);
-  drawButton(canvas, sprite, 'start');
+  drawButton(canvas, sprite, ButtonStateType.START);
 };
 
-export { drawControls, drawButton, drawField };
+export { ButtonStateType, drawControls, drawButton, drawField };

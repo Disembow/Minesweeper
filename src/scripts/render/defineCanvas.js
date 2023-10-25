@@ -7,7 +7,7 @@ import {
 } from '../listeners/handleMouseEvents.js';
 import { options } from '../game/gameOptions.ts';
 import { loadSprites } from '../sprites/loadSprites.ts';
-import { drawControls } from './drawControls.js';
+import { drawControls } from './drawControls.ts';
 import { drawMinesAmount } from './drawFieldContent.js';
 import { changeGameMode, createTag } from './render.js';
 import { drawGameFieldBorders } from './drawGameFieldBorders.js';

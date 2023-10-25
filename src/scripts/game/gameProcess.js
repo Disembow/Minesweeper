@@ -4,7 +4,7 @@ import {
   getUserNameFromLocalStorage,
   setGameTopResults,
 } from '../helpers/localStorage.ts';
-import { drawField } from '../render/drawControls.js';
+import { drawField } from '../render/drawControls.ts';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
 import { options } from './gameOptions.ts';
 

@@ -4,14 +4,14 @@ import {
   handleResultsTable,
   modesHandler,
 } from '../listeners/handleMouseEvents.js';
-import { INITAL_ELEMENTS, INITIAL_GAME_MODE, ROOT } from '../game/variables.js';
-import { createTag } from '../helpers/createTag.js';
+import { INITAL_ELEMENTS, INITIAL_GAME_MODE, ROOT } from '../game/variables.ts';
+import { createTag } from '../helpers/createTag.ts';
 import {
   getGameModeFromLocalStorage,
   getGameTopResults,
   getUserNameFromLocalStorage,
   setGameModeToLocalStorage,
-} from '../helpers/localStorage.js';
+} from '../helpers/localStorage.ts';
 import { onFormSubmitListener } from '../listeners/onFormSubmitListener.js';
 import { defineCanvas } from './defineCanvas.js';
 import { toggleOverlay } from '../listeners/handleOverlay.js';

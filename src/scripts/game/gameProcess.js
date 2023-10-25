@@ -5,7 +5,7 @@ import {
   setGameTopResults,
 } from '../helpers/localStorage.ts';
 import { drawField } from '../render/drawControls.ts';
-import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
+import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.ts';
 import { options } from './gameOptions.ts';
 
 const startGame = (canvas, sprite) => {

@@ -8,7 +8,7 @@ import {
 import { options } from '../game/gameOptions.ts';
 import { loadSprites } from '../sprites/loadSprites.ts';
 import { drawControls } from './drawControls.ts';
-import { drawMinesAmount } from './drawFieldContent.js';
+import { drawMinesAmount } from './drawFieldContent.ts';
 import { changeGameMode, createTag } from './render.js';
 import { drawGameFieldBorders } from './drawGameFieldBorders.js';
 import { hidePreloader, showPreloader } from './preloader.ts';

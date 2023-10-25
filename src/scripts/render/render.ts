@@ -1,10 +1,10 @@
-import { db } from '../db/db.ts';
+import { GameModes, db } from '../db/db.ts';
 import {
   handleOverlayClick,
   handleResultsTable,
   modesHandler,
-} from '../listeners/handleMouseEvents.js';
-import { INITAL_ELEMENTS, INITIAL_GAME_MODE, ROOT } from '../game/variables.ts';
+} from '../listeners/handleMouseEvents.ts';
+import { INITAL_ELEMENTS, ROOT } from '../game/variables.ts';
 import { createTag } from '../helpers/createTag.ts';
 import {
   getGameModeFromLocalStorage,
@@ -12,10 +12,10 @@ import {
   getUserNameFromLocalStorage,
   setGameModeToLocalStorage,
 } from '../helpers/localStorage.ts';
-import { onFormSubmitListener } from '../listeners/onFormSubmitListener.js';
-import { defineCanvas } from './defineCanvas.js';
-import { toggleOverlay } from '../listeners/handleOverlay.js';
-import { showPopupMenu } from '../listeners/handlePopupMenu.js';
+import { onFormSubmitListener } from '../listeners/onFormSubmitListener.ts';
+import { defineCanvas } from './defineCanvas.ts';
+import { toggleOverlay } from '../listeners/handleOverlay.ts';
+import { showPopupMenu } from '../listeners/handlePopupMenu.ts';
 
 const renderHeader = () => {
   const header = document.querySelector('.header');
@@ -44,7 +44,7 @@ const renderHeader = () => {
     </div>
   `;
 
-  header.insertAdjacentHTML('afterbegin', innerElements);
+  header?.insertAdjacentHTML('afterbegin', innerElements);
 };
 
 const renderFooter = () => {
@@ -55,10 +55,10 @@ const renderFooter = () => {
       <a class="rsschool" href="https://rs.school/js-stage0/"></a>
     `;
 
-  footer.insertAdjacentHTML('afterbegin', innerElements);
+  footer?.insertAdjacentHTML('afterbegin', innerElements);
 };
 
-const renderResultsPopup = (root) => {
+const renderResultsPopup = (root: HTMLDivElement) => {
   const popup = createTag('div', 'results__popup', root);
   popup.classList.add('results__popup_hidden');
 
@@ -96,7 +96,8 @@ const renderResultsPopup = (root) => {
 };
 
 const renderPreloader = () => {
-  const preloader = createTag('div', 'preloader', document.querySelector('.main'));
+  const main = <HTMLElement>document.querySelector('.main');
+  const preloader = createTag('div', 'preloader', main);
   createTag('div', 'preloader__item', preloader);
 };
 
@@ -104,70 +105,77 @@ const renderTopListItems = () => {
   const levelsToRemove = document.querySelectorAll('.subtable__data');
   levelsToRemove?.forEach((e) => e.remove());
 
-  const levels = document.querySelectorAll('.subtable');
+  // const levels = document.querySelectorAll('.subtable');
   const results = getGameTopResults();
-  const resultsKeys = Object.keys(results);
 
-  levels.forEach((e, i) => {
-    let rows = '';
-    const key = resultsKeys[i];
+  if (results) {
+    console.log(results);
 
-    results[key].forEach((res, num) => {
-      if (num < 10) {
-        rows += `
-          <tr class="subtable subtable__data">
-            <th class="table__number">${num + 1}</th>
-            <th class="table__name">${res.name}</th>
-            <th class="table__time">${res.time}</th>
-          </tr>
-        `;
-      } else {
-        return;
-      }
-    });
+    // const resultsKeys: GameModes[] = Object.keys(results);
 
-    e.insertAdjacentHTML('afterend', rows);
-  });
+    // levels.forEach((e, i) => {
+    //   let rows = '';
+    //   const key = resultsKeys[i];
+
+    //   results[key].forEach((res, num) => {
+    //     if (num < 10) {
+    //       rows += `
+    //         <tr class="subtable subtable__data">
+    //           <th class="table__number">${num + 1}</th>
+    //           <th class="table__name">${res.name}</th>
+    //           <th class="table__time">${res.time}</th>
+    //         </tr>
+    //       `;
+    //     } else {
+    //       return;
+    //     }
+    //   });
+
+    //   e.insertAdjacentHTML('afterend', rows);
+    // });
+  }
 };
 
 const changeGameMode = () => {
   const gameMode = getGameModeFromLocalStorage();
   const gameModeElement = document.querySelector(`.${gameMode}`);
-  gameModeElement.classList.add('active');
+  gameModeElement?.classList.add('active');
 
-  db.gameMode = gameMode;
+  if (db.gameMode && gameMode) {
+    db.gameMode = gameMode;
+  }
 
   return gameMode;
 };
 
 const addListeners = () => {
-  const menuButton = document.querySelector('.burger__button');
+  const menuButton = <HTMLButtonElement>document.querySelector('.burger__button');
   menuButton.onclick = () => {
     showPopupMenu();
     toggleOverlay();
   };
 
-  const overlay = document.querySelector('.overlay');
-  overlay.addEventListener('click', handleOverlayClick);
+  const overlay = <HTMLDivElement>document.querySelector('.overlay');
+  overlay?.addEventListener('click', handleOverlayClick);
 
-  const modes = document.querySelector('.modes__container');
+  const modes = <HTMLDivElement>document.querySelector('.modes__container');
   modes.addEventListener('click', modesHandler);
 
-  const resultsTable = document.querySelector('.results');
+  const resultsTable = <HTMLDivElement>document.querySelector('.results');
   resultsTable.addEventListener('click', handleResultsTable);
 
   onFormSubmitListener();
 };
 
-const render = (root) => {
-  const wrapper = createTag('div', 'wrapper', root);
+const render = (root: HTMLDivElement) => {
+  const wrapper = <HTMLDivElement>createTag('div', 'wrapper', root);
 
   let gameMode = getGameModeFromLocalStorage();
   db.gameMode = gameMode;
 
   if (!gameMode) {
     setGameModeToLocalStorage();
-    gameMode = INITIAL_GAME_MODE;
+    gameMode = GameModes.BEGINNER;
   }
 
   INITAL_ELEMENTS.forEach((tag) => createTag(tag, tag, wrapper));

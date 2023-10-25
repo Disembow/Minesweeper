@@ -24,10 +24,15 @@ const getStartButtonCoords = (event: MouseEvent, canvas: HTMLCanvasElement): boo
   return restartGameCoordsTrems;
 };
 
-const getGameFieldCoords = (
-  event: MouseEvent,
-  canvas: HTMLCanvasElement,
-): Record<string, number | boolean> => {
+type FieldCoords = {
+  fieldX: number;
+  fieldY: number;
+  cellX: number;
+  cellY: number;
+  startGameTerms: boolean;
+};
+
+const getGameFieldCoords = (event: MouseEvent, canvas: HTMLCanvasElement): FieldCoords => {
   const { borderSize, headerH, edgeH, cellSize } = options.game;
 
   const { mouseX, mouseY } = getMouseCoords(event);

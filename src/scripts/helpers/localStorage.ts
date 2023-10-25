@@ -1,17 +1,17 @@
+import { GameModes } from '../db/db.ts';
 import { IRawData } from '../game/gameProcess.ts';
 import {
-  INITIAL_GAME_MODE,
   LOCAL_STORAGE_MODE_KEY,
   LOCAL_STORAGE_RESULTS_KEY,
   LOCAL_STORAGE_USERNAME_KEY,
 } from '../game/variables.ts';
 
-const setGameModeToLocalStorage = (mode: string = INITIAL_GAME_MODE): void => {
+const setGameModeToLocalStorage = (mode: GameModes = GameModes.BEGINNER): void => {
   localStorage.setItem(LOCAL_STORAGE_MODE_KEY, mode);
 };
 
-const getGameModeFromLocalStorage = (): string | null => {
-  return localStorage.getItem(LOCAL_STORAGE_MODE_KEY);
+const getGameModeFromLocalStorage = (): GameModes | null => {
+  return <GameModes | null>localStorage.getItem(LOCAL_STORAGE_MODE_KEY);
 };
 
 const setUserNameToLocalStorage = (username: string): void => {

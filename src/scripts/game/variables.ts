@@ -1,10 +1,9 @@
-const ROOT = document.getElementById('root');
+const ROOT = <HTMLDivElement>document.getElementById('root');
 const INITAL_ELEMENTS = ['header', 'main', 'footer'];
 
 const LOCAL_STORAGE_USERNAME_KEY = 'MinesweeperUserNameByDisembow';
 const LOCAL_STORAGE_MODE_KEY = 'MinesweeperModeByDisembow';
 const LOCAL_STORAGE_RESULTS_KEY = 'MinesweeperResultsByDisembow';
-const INITIAL_GAME_MODE = 'beginner';
 
 const MAIN_BG_COLOR = '#bdbdbd';
 const MAIN_RED = '#ff0000';
@@ -17,7 +16,6 @@ export {
   LOCAL_STORAGE_USERNAME_KEY,
   LOCAL_STORAGE_MODE_KEY,
   LOCAL_STORAGE_RESULTS_KEY,
-  INITIAL_GAME_MODE,
   MAIN_BG_COLOR,
   MAIN_RED,
   BORDER_COLOR_BRIGHT,

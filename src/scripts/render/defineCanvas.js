@@ -10,7 +10,7 @@ import { loadSprites } from '../sprites/loadSprites.ts';
 import { drawControls } from './drawControls.ts';
 import { drawMinesAmount } from './drawFieldContent.ts';
 import { changeGameMode, createTag } from './render.js';
-import { drawGameFieldBorders } from './drawGameFieldBorders.js';
+import { drawGameFieldBorders } from './drawGameFieldBorders.ts';
 import { hidePreloader, showPreloader } from './preloader.ts';
 
 const defineCanvas = async () => {

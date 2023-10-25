@@ -12,7 +12,7 @@ import {
   openTargetCell,
   restartGame,
   startGame,
-} from '../game/gameProcess.js';
+} from '../game/gameProcess.ts';
 import { defineCanvas } from '../render/defineCanvas.js';
 import { hideOverlay, showOverlay, toggleOverlay } from './handleOverlay.js';
 import { hidePopupMenu, showResultsMenu } from './handlePopupMenu.js';

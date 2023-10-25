@@ -1,3 +1,10 @@
+enum GameModes {
+  BEGINNER = 'beginner',
+  INTERMEDIATE = 'intermediate',
+  EXPERT = 'expert',
+  NIGHTMARE = 'nightmare',
+}
+
 type GameType = {
   isMine: boolean;
   isOpen: boolean;
@@ -9,7 +16,7 @@ type GameType = {
 
 interface DB {
   game: GameType[][] | null;
-  gameMode: string | null;
+  gameMode: GameModes | null;
   currentMines: number | null;
   openedCells: number | null;
   timer: number | null;
@@ -29,4 +36,5 @@ const db: DB = {
   isGameRuns: false,
 };
 
-export { db };
+export { GameModes, db };
+export type { GameType };

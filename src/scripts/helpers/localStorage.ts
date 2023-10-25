@@ -1,3 +1,4 @@
+import { IRawData } from '../game/gameProcess.ts';
 import {
   INITIAL_GAME_MODE,
   LOCAL_STORAGE_MODE_KEY,
@@ -21,12 +22,12 @@ const getUserNameFromLocalStorage = (): string | null => {
   return localStorage.getItem(LOCAL_STORAGE_USERNAME_KEY);
 };
 
-const setGameTopResults = (res: string): void => {
+const setGameTopResults = (res: IRawData): void => {
   const rawData = JSON.stringify(res);
   localStorage.setItem(LOCAL_STORAGE_RESULTS_KEY, rawData);
 };
 
-const getGameTopResults = (): string | null => {
+const getGameTopResults = (): IRawData | null => {
   const rawData: string | null = localStorage.getItem(LOCAL_STORAGE_RESULTS_KEY);
 
   if (rawData) return JSON.parse(rawData);

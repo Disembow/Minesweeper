@@ -1,4 +1,4 @@
-import { db } from '../db/db.js';
+import { db } from '../db/db.ts';
 import {
   getGameTopResults,
   getUserNameFromLocalStorage,
@@ -6,7 +6,7 @@ import {
 } from '../helpers/localStorage.ts';
 import { drawField } from '../render/drawControls.js';
 import { drawFieldContent, drawMinesAmount, drawTimer } from '../render/drawFieldContent.js';
-import { options } from './gameOptions.js';
+import { options } from './gameOptions.ts';
 
 const startGame = (canvas, sprite) => {
   const { cellsW, cellsH } = options[db.gameMode];

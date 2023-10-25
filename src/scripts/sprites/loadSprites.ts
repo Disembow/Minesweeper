@@ -1,4 +1,4 @@
-const loadSprites = () => {
+const loadSprites = (): Promise<HTMLImageElement> => {
   const sprite = new Image();
   sprite.src = './src/assets/sprites/minesweeper-sprites.png';
 

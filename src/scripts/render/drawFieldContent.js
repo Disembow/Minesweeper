@@ -1,5 +1,5 @@
-import { db } from '../db/db.js';
-import { options } from '../game/gameOptions.js';
+import { db } from '../db/db.ts';
+import { options } from '../game/gameOptions.ts';
 
 const drawFieldContent = (canvas, sprite, cellX, cellY, type = 'game') => {
   const ctx = canvas.getContext('2d');

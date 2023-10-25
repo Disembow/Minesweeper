@@ -1,4 +1,6 @@
-const options = {
+type OptionsType = Record<string, Record<string, number>>;
+
+const options: OptionsType = {
   beginner: {
     mines: 10,
     cellsW: 10,

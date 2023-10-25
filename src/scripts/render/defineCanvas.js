@@ -1,17 +1,17 @@
-import { db } from '../db/db.js';
+import { db } from '../db/db.ts';
 import {
   handleClick,
   handleContextMenuClick,
   handleMouseDown,
   handleMouseUp,
 } from '../listeners/handleMouseEvents.js';
-import { options } from '../game/gameOptions.js';
-import { loadSprites } from '../sprites/loadSprites.js';
+import { options } from '../game/gameOptions.ts';
+import { loadSprites } from '../sprites/loadSprites.ts';
 import { drawControls } from './drawControls.js';
 import { drawMinesAmount } from './drawFieldContent.js';
 import { changeGameMode, createTag } from './render.js';
 import { drawGameFieldBorders } from './drawGameFieldBorders.js';
-import { hidePreloader, showPreloader } from './preloader.js';
+import { hidePreloader, showPreloader } from './preloader.ts';
 
 const defineCanvas = async () => {
   const main = document.querySelector('.main');

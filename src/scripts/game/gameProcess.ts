@@ -208,7 +208,8 @@ const isVictoryGame = () => {
   }
 };
 
-export type IRawData = Record<GameModes, { name: string; time: number }[]>;
+export type GameResultsType = { name: string; time: number };
+export type RawDataType = Record<GameModes, GameResultsType[]>;
 
 const onWinAction = (): void => {
   let data = getGameTopResults();
@@ -217,7 +218,7 @@ const onWinAction = (): void => {
 
   if (gameMode && name && db.timer) {
     if (!data) {
-      const rawData: IRawData = {
+      const rawData: RawDataType = {
         beginner: [],
         intermediate: [],
         expert: [],
@@ -238,9 +239,9 @@ const onWinAction = (): void => {
 
       data[gameMode].sort((a, b) => a.time - b.time);
     }
-
-    setGameTopResults(data);
   }
+
+  setGameTopResults(data);
 };
 
 const onLoseAction = (canvas: HTMLCanvasElement, sprite: HTMLImageElement): void => {

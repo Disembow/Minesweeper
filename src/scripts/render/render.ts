@@ -7,6 +7,7 @@ import {
 import { INITAL_ELEMENTS, ROOT } from '../game/variables.ts';
 import { createTag } from '../helpers/createTag.ts';
 import {
+  checkIsUserHasName,
   getGameModeFromLocalStorage,
   getGameTopResults,
   getUserNameFromLocalStorage,
@@ -74,17 +75,22 @@ const renderResultsPopup = (root: HTMLDivElement) => {
       </thead>
       <tbody>
         <tr class="subtable">
-          <td colspan="3">Beginner</td>
+          <td colspan="3">${GameModes.BEGINNER}</td>
         </tr>
       </tbody>
       <tbody>
         <tr class="subtable">
-          <td colspan="3">Intermediate</td>
+          <td colspan="3">${GameModes.INTERMEDIATE}</td>
         </tr>
       </tbody>
       <tbody>
         <tr class="subtable">
-          <td colspan="3">Expert</td>
+          <td colspan="3">${GameModes.EXPERT}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr class="subtable">
+          <td colspan="3">${GameModes.NIGHTMARE}</td>
         </tr>
       </tbody>
     </table>
@@ -105,34 +111,29 @@ const renderTopListItems = () => {
   const levelsToRemove = document.querySelectorAll('.subtable__data');
   levelsToRemove?.forEach((e) => e.remove());
 
-  // const levels = document.querySelectorAll('.subtable');
+  const levels = document.querySelectorAll('.subtable');
   const results = getGameTopResults();
 
   if (results) {
-    console.log(results);
+    const resultsKeys = <GameModes[]>Object.keys(results);
+    levels.forEach((e, i) => {
+      let rows = '';
 
-    // const resultsKeys: GameModes[] = Object.keys(results);
-
-    // levels.forEach((e, i) => {
-    //   let rows = '';
-    //   const key = resultsKeys[i];
-
-    //   results[key].forEach((res, num) => {
-    //     if (num < 10) {
-    //       rows += `
-    //         <tr class="subtable subtable__data">
-    //           <th class="table__number">${num + 1}</th>
-    //           <th class="table__name">${res.name}</th>
-    //           <th class="table__time">${res.time}</th>
-    //         </tr>
-    //       `;
-    //     } else {
-    //       return;
-    //     }
-    //   });
-
-    //   e.insertAdjacentHTML('afterend', rows);
-    // });
+      results[resultsKeys[i]].forEach((res, num) => {
+        if (num < 10) {
+          rows += `
+            <tr class="subtable subtable__data">
+              <th class="table__number">${num + 1}</th>
+              <th class="table__name">${res.name}</th>
+              <th class="table__time">${res.time}</th>
+            </tr>
+          `;
+        } else {
+          return;
+        }
+      });
+      e.insertAdjacentHTML('afterend', rows);
+    });
   }
 };
 
@@ -186,6 +187,7 @@ const render = (root: HTMLDivElement) => {
   renderResultsPopup(wrapper);
   defineCanvas();
   addListeners();
+  checkIsUserHasName();
 };
 
 export { createTag, render, getGameModeFromLocalStorage, changeGameMode, renderTopListItems };

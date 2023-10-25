@@ -15,13 +15,10 @@ const drawFieldContent = (canvas, sprite, cellX, cellY, type = 'game') => {
   target.isOpen = true;
 
   if (target.isMine && type === 'game') {
-    console.log('game');
     ctx.drawImage(sprite, 102, 51, ...targetCoords);
   } else if (target.isMine && type === 'loss') {
-    // console.log('loss');
     ctx.drawImage(sprite, 85, 51, ...targetCoords);
   } else if (!target.isMine && type === 'error') {
-    console.log('error');
     ctx.drawImage(sprite, 119, 51, ...targetCoords);
   } else {
     switch (target.minesAround) {

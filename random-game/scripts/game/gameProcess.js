@@ -231,7 +231,6 @@ const onLoseAction = (canvas, sprite) => {
 
   mines.forEach((e) => openTargetCell(canvas, sprite, e.cellX, e.cellY, 'loss'));
   errors.forEach((e) => openTargetCell(canvas, sprite, e.cellX, e.cellY, 'error'));
-  console.log(errors);
 };
 
 export {

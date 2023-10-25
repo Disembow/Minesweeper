@@ -52,7 +52,7 @@ const handleClick = (event, canvas, sprite) => {
 
         if (targetCell.isMine) {
           drawButton(canvas, sprite, 'lose');
-          onLoseAction();
+          onLoseAction(canvas, sprite);
         }
 
         if (targetCell.minesAround === 0 && !targetCell.isMine) {

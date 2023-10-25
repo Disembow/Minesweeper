@@ -33,8 +33,8 @@ const restartGame = (canvas, sprite) => {
   db.isGameRuns = true;
 };
 
-const openTargetCell = (canvas, sprite, cellX, cellY) => {
-  drawFieldContent(canvas, sprite, cellX, cellY);
+const openTargetCell = (canvas, sprite, cellX, cellY, type = 'game') => {
+  drawFieldContent(canvas, sprite, cellX, cellY, type);
   db.openedCells++;
 };
 
@@ -213,10 +213,25 @@ const onWinAction = () => {
   setGameTopResults(data);
 };
 
-const onLoseAction = () => {
+const onLoseAction = (canvas, sprite) => {
   clearInterval(db.interval);
   db.interval = null;
   db.isGameRuns = false;
+
+  const mines = [];
+  const errors = [];
+
+  db.game.flat().forEach((e) => {
+    if (e.isMine && !e.isOpen) {
+      mines.push(e);
+    } else if (!e.isMine && e.flag) {
+      errors.push(e);
+    }
+  });
+
+  mines.forEach((e) => openTargetCell(canvas, sprite, e.cellX, e.cellY, 'loss'));
+  errors.forEach((e) => openTargetCell(canvas, sprite, e.cellX, e.cellY, 'error'));
+  console.log(errors);
 };
 
 export {

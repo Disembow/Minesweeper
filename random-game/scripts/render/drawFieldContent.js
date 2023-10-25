@@ -1,7 +1,7 @@
 import { db } from '../db/db.js';
 import { options } from '../game/gameOptions.js';
 
-const drawFieldContent = (canvas, sprite, cellX, cellY) => {
+const drawFieldContent = (canvas, sprite, cellX, cellY, type = 'game') => {
   const ctx = canvas.getContext('2d');
   const { cellSize, borderSize, edgeH, headerH } = options.game;
 
@@ -14,8 +14,15 @@ const drawFieldContent = (canvas, sprite, cellX, cellY) => {
 
   target.isOpen = true;
 
-  if (target.isMine) {
+  if (target.isMine && type === 'game') {
+    console.log('game');
     ctx.drawImage(sprite, 102, 51, ...targetCoords);
+  } else if (target.isMine && type === 'loss') {
+    // console.log('loss');
+    ctx.drawImage(sprite, 85, 51, ...targetCoords);
+  } else if (!target.isMine && type === 'error') {
+    console.log('error');
+    ctx.drawImage(sprite, 119, 51, ...targetCoords);
   } else {
     switch (target.minesAround) {
       case 0:

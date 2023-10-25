@@ -164,7 +164,11 @@ const drawTimer = (canvas: HTMLCanvasElement, sprite: HTMLImageElement, type: 'r
     db.timer = null;
   }
 
-  if (db.timer && type === 'run') {
+  if (type === 'run') {
+    if (!db.timer) {
+      db.timer = 0;
+    }
+
     db.timer++;
 
     const cents = Math.floor(db.timer / 100);

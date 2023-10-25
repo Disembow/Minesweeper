@@ -175,8 +175,9 @@ const openCellsNearEmptyCell = (
 const runTimer = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
   if (db.interval) {
     clearInterval(db.interval);
-    db.interval = setInterval(() => drawTimer(canvas, sprite, 'run'), 1000);
   }
+
+  db.interval = setInterval(() => drawTimer(canvas, sprite, 'run'), 1000);
 };
 
 const stopTimer = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {

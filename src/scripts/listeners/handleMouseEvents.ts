@@ -123,7 +123,7 @@ const handleUsernameForm = (e: SubmitEvent) => {
 
 const modesHandler = (e: MouseEvent) => {
   if (
-    e.target instanceof HTMLDivElement &&
+    e.target instanceof HTMLElement &&
     e.target.classList.contains('modes__item') &&
     !e.target.classList.contains('results')
   ) {

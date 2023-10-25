@@ -139,12 +139,13 @@ const renderTopListItems = () => {
 
 const changeGameMode = () => {
   const gameMode = getGameModeFromLocalStorage();
-  const gameModeElement = document.querySelector(`.${gameMode}`);
-  gameModeElement?.classList.add('active');
 
   if (db.gameMode && gameMode) {
     db.gameMode = gameMode;
   }
+
+  const gameModeElement = document.querySelector(`.${gameMode}`);
+  gameModeElement?.classList.add('active');
 
   return gameMode;
 };
@@ -172,11 +173,12 @@ const render = (root: HTMLDivElement) => {
   const wrapper = <HTMLDivElement>createTag('div', 'wrapper', root);
 
   let gameMode = getGameModeFromLocalStorage();
-  db.gameMode = gameMode;
 
   if (!gameMode) {
     setGameModeToLocalStorage();
-    gameMode = GameModes.BEGINNER;
+    db.gameMode = GameModes.BEGINNER;
+  } else {
+    db.gameMode = gameMode;
   }
 
   INITAL_ELEMENTS.forEach((tag) => createTag(tag, tag, wrapper));

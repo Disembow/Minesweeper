@@ -1,0 +1,13 @@
+@import './styles/global/_normalize.scss';
+@import './styles/global/_reset.scss';
+@import './styles/global/_variables.scss';
+@import './styles/global/_fonts.scss';
+
+@import './styles/common/root.scss';
+
+@import './styles/components/header.scss';
+@import './styles/components/footer.scss';
+@import './styles/components/canvas.scss';
+@import './styles/components/popup.scss';
+@import './styles/components/loader.scss';
+@import './styles/components/button.scss';

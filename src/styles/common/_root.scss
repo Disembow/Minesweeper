@@ -1,0 +1,50 @@
+body {
+  background-image: url('./assets/images/bg.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+#root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 60rem;
+  min-height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 1 auto;
+  position: relative;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+}
+
+.visible {
+  opacity: 1;
+  z-index: 3;
+  transition: opacity 0.3s;
+  background-color: $shadow-black;
+  cursor: pointer;
+}

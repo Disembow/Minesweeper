@@ -10,7 +10,7 @@ import { changeGameMode } from '../../scripts/render/render';
 const Canvas: FC = () => {
   const gameMode = changeGameMode() || 'beginner';
 
-  const { cellsW, cellsH, mines } = options[gameMode];
+  const { cellsW, cellsH } = options[gameMode];
   const { cellSize, borderSize, headerH, edgeH } = options.game;
 
   const width = cellsW * cellSize + borderSize + edgeH * 5 + 2;

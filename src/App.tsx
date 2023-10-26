@@ -5,11 +5,11 @@ import Overlay from './components/UI/Overlay/Overlay';
 
 export const App = () => {
   return (
-    <>
+    <div className="wrapper">
       <Header />
       <Main />
       <Footer />
       <Overlay />
-    </>
+    </div>
   );
 };

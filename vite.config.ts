@@ -11,4 +11,7 @@ export default defineConfig({
     port: 6606,
     open: true,
   },
+  css: {
+    devSourcemap: true,
+  },
 });

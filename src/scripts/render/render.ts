@@ -172,7 +172,7 @@ const addListeners = () => {
 const render = (root: HTMLDivElement) => {
   const wrapper = <HTMLDivElement>createTag('div', 'wrapper', root);
 
-  let gameMode = getGameModeFromLocalStorage();
+  const gameMode = getGameModeFromLocalStorage();
 
   if (!gameMode) {
     setGameModeToLocalStorage();

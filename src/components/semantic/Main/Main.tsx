@@ -1,5 +1,5 @@
 import { FC } from 'react';
-// import Preloader from '../UI/Preloader/Preloader';
+// import Preloader from '../../UI/Preloader/Preloader';
 
 interface IMain {
   children: JSX.Element;

@@ -1,4 +1,4 @@
-import { getUserNameFromLocalStorage } from '../../../../../scripts/helpers/localStorage';
+import { getUserNameFromLocalStorage } from '../../../../../helpers/gameActions/localStorage';
 
 const UserNameForm = () => {
   const username = getUserNameFromLocalStorage();

@@ -1,5 +1,5 @@
-import { db } from '../db/db.ts';
-import { options } from '../game/gameOptions.ts';
+import { db } from '../../app/db/db.ts';
+import { options } from '../../app/db/gameOptions.ts';
 
 const drawFieldContent = (
   canvas: HTMLCanvasElement,

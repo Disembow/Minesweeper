@@ -1,5 +1,5 @@
-import { toggleOverlay } from '../../../../../scripts/listeners/handleOverlay';
-import { showPopupMenu } from '../../../../../scripts/listeners/handlePopupMenu';
+import { toggleOverlay } from '../../../../UI/Overlay/handleOverlay';
+import { showPopupMenu } from '../../../../GameBoard/handlers/handlePopupMenu';
 
 const BurgerButton = () => {
   const handleClick = () => {

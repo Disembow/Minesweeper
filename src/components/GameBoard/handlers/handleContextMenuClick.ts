@@ -1,11 +1,11 @@
-import { db } from '../../../scripts/db/db';
-import { isVictoryGame, onWinAction, startGame } from '../../../scripts/game/gameProcess';
-import { getGameFieldCoords } from '../../../scripts/helpers/getCoords';
-import { ButtonStateType, drawButton } from '../../../scripts/render/drawControls';
+import { db } from '../../../app/db/db';
+import { isVictoryGame, onWinAction, startGame } from '../../../helpers/gameActions/gameProcess';
+import { getGameFieldCoords } from '../../../helpers/gameActions/getCoords';
+import { ButtonStateType, drawButton } from '../../../helpers/draw/drawControls';
 import {
   drawFieldContentOnContextMenuClick,
   drawMinesAmount,
-} from '../../../scripts/render/drawFieldContent';
+} from '../../../helpers/draw/drawFieldContent';
 
 export const handleContextMenuClick = (
   event: React.MouseEvent,

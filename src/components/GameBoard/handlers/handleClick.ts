@@ -1,13 +1,13 @@
-import { db } from '../../../scripts/db/db';
+import { db } from '../../../app/db/db';
 import {
   onLoseAction,
   openCellsNearEmptyCell,
   openTargetCell,
   restartGame,
   startGame,
-} from '../../../scripts/game/gameProcess';
-import { getGameFieldCoords, getStartButtonCoords } from '../../../scripts/helpers/getCoords';
-import { ButtonStateType, drawButton } from '../../../scripts/render/drawControls';
+} from '../../../helpers/gameActions/gameProcess';
+import { getGameFieldCoords, getStartButtonCoords } from '../../../helpers/gameActions/getCoords';
+import { ButtonStateType, drawButton } from '../../../helpers/draw/drawControls';
 
 export const handleClick = (
   event: React.MouseEvent,

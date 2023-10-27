@@ -1,5 +1,5 @@
-import { db } from '../../../scripts/db/db';
-import { ButtonStateType, drawButton } from '../../../scripts/render/drawControls';
+import { db } from '../../../app/db/db';
+import { ButtonStateType, drawButton } from '../../../helpers/draw/drawControls';
 
 export const handleMouseUp = (
   canvas: HTMLCanvasElement | null,

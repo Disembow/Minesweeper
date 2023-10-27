@@ -1,16 +1,16 @@
-import { db } from '../db/db.ts';
+import { db } from '../../app/db/db.ts';
 import {
   handleClick,
   handleContextMenuClick,
   handleMouseDown,
   handleMouseUp,
 } from '../listeners/handleMouseEvents.ts';
-import { options } from '../game/gameOptions.ts';
-import { loadSprites } from '../sprites/loadSprites.ts';
-import { drawControls } from './drawControls.ts';
-import { drawMinesAmount } from './drawFieldContent.ts';
+import { options } from '../../app/db/gameOptions.ts';
+import { loadSprites } from '../../helpers/sprites/loadSprites.ts';
+import { drawControls } from '../../helpers/draw/drawControls.ts';
+import { drawMinesAmount } from '../../helpers/draw/drawFieldContent.ts';
 import { changeGameMode, createTag } from './render.ts';
-import { drawGameFieldBorders } from './drawGameFieldBorders.ts';
+import { drawGameFieldBorders } from '../../helpers/draw/drawGameFieldBorders.ts';
 import { hidePreloader, showPreloader } from './preloader.ts';
 
 const defineCanvas = async () => {

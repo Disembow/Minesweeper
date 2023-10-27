@@ -1,10 +1,10 @@
-import { GameModes, db } from '../db/db.ts';
+import { GameModes, db } from '../../app/db/db.ts';
 import {
   handleOverlayClick,
   handleResultsTable,
   modesHandler,
 } from '../listeners/handleMouseEvents.ts';
-import { INITAL_ELEMENTS, ROOT } from '../game/variables.ts';
+import { INITAL_ELEMENTS, ROOT } from '../../app/db/variables.ts';
 import { createTag } from '../helpers/createTag.ts';
 import {
   checkIsUserHasName,
@@ -12,11 +12,11 @@ import {
   getGameTopResults,
   getUserNameFromLocalStorage,
   setGameModeToLocalStorage,
-} from '../helpers/localStorage.ts';
+} from '../../helpers/gameActions/localStorage.ts';
 import { onFormSubmitListener } from '../listeners/onFormSubmitListener.ts';
 import { defineCanvas } from './defineCanvas.ts';
-import { toggleOverlay } from '../listeners/handleOverlay.ts';
-import { showPopupMenu } from '../listeners/handlePopupMenu.ts';
+import { toggleOverlay } from '../../components/UI/Overlay/handleOverlay.ts';
+import { showPopupMenu } from '../../components/GameBoard/handlers/handlePopupMenu.ts';
 
 const renderHeader = () => {
   const header = document.querySelector('.header');

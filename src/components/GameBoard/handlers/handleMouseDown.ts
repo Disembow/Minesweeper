@@ -1,6 +1,6 @@
-import { db } from '../../../scripts/db/db';
-import { getStartButtonCoords } from '../../../scripts/helpers/getCoords';
-import { ButtonStateType, drawButton } from '../../../scripts/render/drawControls';
+import { db } from '../../../app/db/db';
+import { getStartButtonCoords } from '../../../helpers/gameActions/getCoords';
+import { ButtonStateType, drawButton } from '../../../helpers/draw/drawControls';
 
 export const handleMouseDown = (
   event: React.MouseEvent,

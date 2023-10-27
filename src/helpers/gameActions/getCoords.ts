@@ -1,4 +1,4 @@
-import { options } from '../game/gameOptions.ts';
+import { options } from '../../app/db/gameOptions.ts';
 
 const getMouseCoords = (event: React.MouseEvent): Record<string, number> => {
   const mouseX = event.nativeEvent.offsetX;

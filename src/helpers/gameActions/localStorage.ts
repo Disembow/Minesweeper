@@ -1,10 +1,10 @@
-import { GameModes } from '../db/db.ts';
-import { RawDataType } from '../game/gameProcess.ts';
+import { GameModes } from '../../app/db/db.ts';
+import { RawDataType } from './gameProcess.ts';
 import {
   LOCAL_STORAGE_MODE_KEY,
   LOCAL_STORAGE_RESULTS_KEY,
   LOCAL_STORAGE_USERNAME_KEY,
-} from '../game/variables.ts';
+} from '../../app/db/variables.ts';
 
 const setGameModeToLocalStorage = (mode: string = GameModes.BEGINNER): void => {
   localStorage.setItem(LOCAL_STORAGE_MODE_KEY, mode);

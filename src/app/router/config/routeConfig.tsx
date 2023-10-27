@@ -1,7 +1,7 @@
 import { RouteProps } from 'react-router-dom';
 import { AppRoutes, RoutePaths } from './routes';
 import GameBoard from '../../../components/GameBoard/GameBoard';
-import { GameModes } from '../../../scripts/db/db';
+import { GameModes } from '../../db/db';
 import HomePage from '../../../components/pages/HomePage/HomePage';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {

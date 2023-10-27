@@ -1,10 +1,10 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import { options } from '../../scripts/game/gameOptions';
-import { drawGameFieldBorders } from '../../scripts/render/drawGameFieldBorders';
-import { loadSprites } from '../../scripts/sprites/loadSprites';
-import { drawControls } from '../../scripts/render/drawControls';
-import { GameModes, db } from '../../scripts/db/db';
-import { drawMinesAmount } from '../../scripts/render/drawFieldContent';
+import { options } from '../../app/db/gameOptions';
+import { drawGameFieldBorders } from '../../helpers/draw/drawGameFieldBorders';
+import { loadSprites } from '../../helpers/sprites/loadSprites';
+import { drawControls } from '../../helpers/draw/drawControls';
+import { GameModes, db } from '../../app/db/db';
+import { drawMinesAmount } from '../../helpers/draw/drawFieldContent';
 import { handleClick } from './handlers/handleClick';
 import { handleMouseDown } from './handlers/handleMouseDown';
 import { handleMouseUp } from './handlers/handleMouseUp';

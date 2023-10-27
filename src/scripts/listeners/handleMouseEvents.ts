@@ -1,8 +1,14 @@
-import { db } from '../db/db.ts';
-import { getGameFieldCoords, getStartButtonCoords } from '../helpers/getCoords.ts';
-import { setGameModeToLocalStorage, setUserNameToLocalStorage } from '../helpers/localStorage.ts';
-import { ButtonStateType, drawButton } from '../render/drawControls.ts';
-import { drawFieldContentOnContextMenuClick, drawMinesAmount } from '../render/drawFieldContent.ts';
+import { db } from '../../app/db/db.ts';
+import { getGameFieldCoords, getStartButtonCoords } from '../../helpers/gameActions/getCoords.ts';
+import {
+  setGameModeToLocalStorage,
+  setUserNameToLocalStorage,
+} from '../../helpers/gameActions/localStorage.ts';
+import { ButtonStateType, drawButton } from '../../helpers/draw/drawControls.ts';
+import {
+  drawFieldContentOnContextMenuClick,
+  drawMinesAmount,
+} from '../../helpers/draw/drawFieldContent.ts';
 import { renderTopListItems } from '../render/render.ts';
 import {
   isVictoryGame,
@@ -12,10 +18,17 @@ import {
   openTargetCell,
   restartGame,
   startGame,
-} from '../game/gameProcess.ts';
+} from '../../helpers/gameActions/gameProcess.ts';
 import { defineCanvas } from '../render/defineCanvas.ts';
-import { hideOverlay, showOverlay, toggleOverlay } from './handleOverlay.ts';
-import { hidePopupMenu, showResultsMenu } from './handlePopupMenu.ts';
+import {
+  hideOverlay,
+  showOverlay,
+  toggleOverlay,
+} from '../../components/UI/Overlay/handleOverlay.ts';
+import {
+  hidePopupMenu,
+  showResultsMenu,
+} from '../../components/GameBoard/handlers/handlePopupMenu.ts';
 
 const handleMouseDown = (
   event: React.MouseEvent<HTMLCanvasElement, MouseEvent>,

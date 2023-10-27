@@ -1,5 +1,5 @@
-import { hideOverlay } from '../../../scripts/listeners/handleOverlay';
-import { hidePopupMenu } from '../../../scripts/listeners/handlePopupMenu';
+import { hideOverlay } from './handleOverlay';
+import { hidePopupMenu } from '../../GameBoard/handlers/handlePopupMenu';
 
 const Overlay = () => {
   const handleClick = () => {

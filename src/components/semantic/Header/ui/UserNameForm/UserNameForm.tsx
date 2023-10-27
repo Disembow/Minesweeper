@@ -1,20 +1,34 @@
-import { getUserNameFromLocalStorage } from '../../../../../helpers/gameActions/localStorage';
+import { useEffect, useState } from 'react';
+import {
+  getUserNameFromLocalStorage,
+  setUserNameToLocalStorage,
+} from '../../../../../helpers/gameActions/localStorage';
 
 const UserNameForm = () => {
-  const username = getUserNameFromLocalStorage();
+  const [username, setUsername] = useState<string>('');
+
+  useEffect(() => {
+    const nickname = getUserNameFromLocalStorage();
+    nickname ? setUsername(nickname) : setUsername('Anonymous');
+  }, []);
+
+  const handleUsernameForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    setUserNameToLocalStorage(username);
+  };
 
   return (
-    <form className={'form'} name="username">
+    <form className={'form'} onSubmit={handleUsernameForm}>
       <input
         autoComplete={'off'}
         name={'username'}
         className={'username__input'}
         placeholder={'Your name...'}
-        value={username || ''}
+        value={username === 'Anonymous' ? '' : username}
         autoFocus={username === ''}
-        onChange={console.log} //!TODO: rework
+        onChange={(e) => setUsername(e.target.value)}
       />
-      <button className="button__submit" type="submit"></button>
+      <button className="button__submit" type="submit" onClick={handleUsernameForm} />
     </form>
   );
 };

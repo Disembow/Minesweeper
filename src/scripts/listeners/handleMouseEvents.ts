@@ -1,9 +1,6 @@
 import { db } from '../../app/db/db.ts';
 import { getGameFieldCoords, getStartButtonCoords } from '../../helpers/gameActions/getCoords.ts';
-import {
-  setGameModeToLocalStorage,
-  setUserNameToLocalStorage,
-} from '../../helpers/gameActions/localStorage.ts';
+import { setUserNameToLocalStorage } from '../../helpers/gameActions/localStorage.ts';
 import { ButtonStateType, drawButton } from '../../helpers/draw/drawControls.ts';
 import {
   drawFieldContentOnContextMenuClick,
@@ -147,9 +144,6 @@ const modesHandler = (e: MouseEvent) => {
     document.querySelector('.active')?.classList.remove('active');
 
     e.target.classList.add('active');
-
-    const newMode = e.target.textContent?.toLowerCase();
-    setGameModeToLocalStorage(newMode);
 
     const canvas = document.querySelector('.canvas');
     canvas?.remove();

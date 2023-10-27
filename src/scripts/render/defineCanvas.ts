@@ -1,10 +1,5 @@
 import { db } from '../../app/db/db.ts';
-import {
-  handleClick,
-  handleContextMenuClick,
-  handleMouseDown,
-  handleMouseUp,
-} from '../listeners/handleMouseEvents.ts';
+import { handleMouseUp } from '../listeners/handleMouseEvents.ts';
 import { options } from '../../app/db/gameOptions.ts';
 import { loadSprites } from '../../helpers/sprites/loadSprites.ts';
 import { drawControls } from '../../helpers/draw/drawControls.ts';
@@ -40,17 +35,13 @@ const defineCanvas = async () => {
 
     hidePreloader();
 
-    // canvas.onmousedown = (e) => handleMouseDown(e, canvas, sprite);
     document.onmouseup = () => handleMouseUp(canvas, sprite);
-
-    // canvas.onclick = (e) => handleClick(e, canvas, sprite);
 
     document.oncontextmenu = (e: MouseEvent) => {
       if (e.target instanceof HTMLElement && e.target.classList.contains('canvas')) {
         return false;
       }
     };
-    // canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, sprite);
   }
 };
 

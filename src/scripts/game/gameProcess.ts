@@ -52,7 +52,7 @@ const initialDBFill = (x: number, y: number): void => {
   const arr = new Array(y);
 
   for (let i = 0; i < y; i++) {
-    arr[i] = new Array();
+    arr[i] = [];
     for (let j = 0; j < x; j++) {
       arr[i].push({
         isMine: false,

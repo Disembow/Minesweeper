@@ -98,20 +98,22 @@ const Canvas: FC<ICanvas> = ({ gameMode }) => {
   ) => {
     const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
 
-    if (startGameTerms && !db.game) {
-      startGame(canvas, sprite);
-    }
-
-    drawFieldContentOnContextMenuClick(canvas, sprite, cellX, cellY);
-
-    if (db.currentMines) {
-      if (db.game && db.game[cellY][cellX].flag) {
-        db.currentMines--;
-      } else {
-        db.currentMines++;
+    if (startGameTerms) {
+      if (!db.game) {
+        startGame(canvas, sprite);
       }
 
-      drawMinesAmount(canvas, sprite, db.currentMines);
+      drawFieldContentOnContextMenuClick(canvas, sprite, cellX, cellY);
+
+      if (db.currentMines && db.isGameRuns) {
+        if (db.game && db.game[cellY][cellX].flag) {
+          db.currentMines--;
+        } else {
+          db.currentMines++;
+        }
+
+        drawMinesAmount(canvas, sprite, db.currentMines);
+      }
     }
 
     if (isVictoryGame()) {

@@ -16,11 +16,11 @@ export const Header = () => {
             placeholder={'Your name...'}
             value={username || ''}
             autoFocus={username === ''}
-            onChange={console.log}
+            onChange={console.log} //!TODO: rework
           />
           <button className="button__submit" type="submit"></button>
         </form>
-        <div className="modes__container" /*onClick={modesHandler}*/>
+        <div className="modes__container">
           <AppLink linkTo={RoutePaths.home}>Home</AppLink>
           <AppLink linkTo={RoutePaths.beginner}>Beginner</AppLink>
           <AppLink linkTo={RoutePaths.intermediate}>Intermediate</AppLink>

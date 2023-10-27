@@ -161,24 +161,23 @@ const drawMinesAmount = (
 
 const drawTimer = (canvas: HTMLCanvasElement, sprite: HTMLImageElement, type: 'run' | 'stop') => {
   if (type === 'stop') {
-    db.timer = null;
+    db.timer = 0;
   }
 
   if (type === 'run') {
     if (!db.timer) {
       db.timer = 0;
     }
-
     db.timer++;
-
-    const cents = Math.floor(db.timer / 100);
-    const tens = Math.floor((db.timer % 100) / 10);
-    const ones = db.timer - cents * 100 - tens * 10;
-
-    drawNumber(cents, canvas, sprite, 3, 'timer');
-    drawNumber(tens, canvas, sprite, 2, 'timer');
-    drawNumber(ones, canvas, sprite, 1, 'timer');
   }
+
+  const cents = Math.floor(db.timer / 100);
+  const tens = Math.floor((db.timer % 100) / 10);
+  const ones = db.timer - cents * 100 - tens * 10;
+
+  drawNumber(cents, canvas, sprite, 3, 'timer');
+  drawNumber(tens, canvas, sprite, 2, 'timer');
+  drawNumber(ones, canvas, sprite, 1, 'timer');
 };
 
 export { drawFieldContent, drawFieldContentOnContextMenuClick, drawMinesAmount, drawTimer };

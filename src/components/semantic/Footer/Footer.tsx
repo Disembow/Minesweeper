@@ -1,9 +1,13 @@
 const Footer = () => {
   return (
     <footer className="footer">
-      <a className="github" href="https://github.com/Disembow"></a>
+      <a className="github" href="https://github.com/Disembow" target="_blank"></a>
       <p>2023</p>
-      <a className="rsschool" href="https://rs.school/js-stage0/"></a>
+      <a
+        className="linkedin"
+        href="https://www.linkedin.com/in/yauhen-naliotau-435238240/"
+        target="_blank"
+      ></a>
     </footer>
   );
 };

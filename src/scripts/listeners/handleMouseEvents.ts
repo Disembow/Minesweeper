@@ -18,7 +18,7 @@ import { hideOverlay, showOverlay, toggleOverlay } from './handleOverlay.ts';
 import { hidePopupMenu, showResultsMenu } from './handlePopupMenu.ts';
 
 const handleMouseDown = (
-  event: MouseEvent,
+  event: React.MouseEvent<HTMLCanvasElement, MouseEvent>,
   canvas: HTMLCanvasElement,
   sprite: HTMLImageElement,
 ) => {
@@ -40,7 +40,11 @@ const handleMouseUp = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
   db.isMouseDown = false;
 };
 
-const handleClick = (event: MouseEvent, canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
+const handleClick = (
+  event: React.MouseEvent,
+  canvas: HTMLCanvasElement,
+  sprite: HTMLImageElement,
+) => {
   const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
   const restartGameTrems = getStartButtonCoords(event, canvas);
 
@@ -72,7 +76,7 @@ const handleClick = (event: MouseEvent, canvas: HTMLCanvasElement, sprite: HTMLI
 };
 
 const handleContextMenuClick = (
-  event: MouseEvent,
+  event: React.MouseEvent,
   canvas: HTMLCanvasElement,
   sprite: HTMLImageElement,
 ) => {

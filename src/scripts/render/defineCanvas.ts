@@ -40,17 +40,17 @@ const defineCanvas = async () => {
 
     hidePreloader();
 
-    canvas.onmousedown = (e) => handleMouseDown(e, canvas, sprite);
+    // canvas.onmousedown = (e) => handleMouseDown(e, canvas, sprite);
     document.onmouseup = () => handleMouseUp(canvas, sprite);
 
-    canvas.onclick = (e) => handleClick(e, canvas, sprite);
+    // canvas.onclick = (e) => handleClick(e, canvas, sprite);
 
     document.oncontextmenu = (e: MouseEvent) => {
       if (e.target instanceof HTMLElement && e.target.classList.contains('canvas')) {
         return false;
       }
     };
-    canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, sprite);
+    // canvas.oncontextmenu = (e) => handleContextMenuClick(e, canvas, sprite);
   }
 };
 

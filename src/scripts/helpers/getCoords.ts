@@ -1,13 +1,13 @@
 import { options } from '../game/gameOptions.ts';
 
-const getMouseCoords = (event: MouseEvent): Record<string, number> => {
-  const mouseX = event.offsetX;
-  const mouseY = event.offsetY;
+const getMouseCoords = (event: React.MouseEvent): Record<string, number> => {
+  const mouseX = event.nativeEvent.offsetX;
+  const mouseY = event.nativeEvent.offsetY;
 
   return { mouseX, mouseY };
 };
 
-const getStartButtonCoords = (event: MouseEvent, canvas: HTMLCanvasElement): boolean => {
+const getStartButtonCoords = (event: React.MouseEvent, canvas: HTMLCanvasElement): boolean => {
   const { smileSize, borderSize, headerH } = options.game;
 
   const { mouseX, mouseY } = getMouseCoords(event);
@@ -32,7 +32,7 @@ type FieldCoords = {
   startGameTerms: boolean;
 };
 
-const getGameFieldCoords = (event: MouseEvent, canvas: HTMLCanvasElement): FieldCoords => {
+const getGameFieldCoords = (event: React.MouseEvent, canvas: HTMLCanvasElement): FieldCoords => {
   const { borderSize, headerH, edgeH, cellSize } = options.game;
 
   const { mouseX, mouseY } = getMouseCoords(event);

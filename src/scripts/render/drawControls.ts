@@ -35,6 +35,7 @@ const drawField = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
   const { borderSize, headerH, cellSize, edgeH } = options.game;
 
   const ctx = <CanvasRenderingContext2D>canvas.getContext('2d');
+
   if (db.gameMode) {
     const { cellsW, cellsH } = options[db.gameMode];
 

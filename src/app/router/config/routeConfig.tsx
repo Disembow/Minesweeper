@@ -2,7 +2,7 @@ import { RouteProps } from 'react-router-dom';
 import { AppRoutes, RoutePaths } from './routes';
 import Canvas from '../../../components/Canvas/Canvas';
 import { GameModes } from '../../../scripts/db/db';
-import HomePage from '../../../components/Main/HomePage';
+import HomePage from '../../../components/pages/HomePage/HomePage';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.HOME]: {

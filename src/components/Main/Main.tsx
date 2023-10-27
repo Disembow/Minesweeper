@@ -1,10 +1,14 @@
-import Canvas from '../Canvas/Canvas';
+import { FC } from 'react';
 // import Preloader from '../UI/Preloader/Preloader';
 
-const Main = () => {
+interface IMain {
+  children: JSX.Element;
+}
+
+const Main: FC<IMain> = ({ children }) => {
   return (
     <main className="main">
-      <Canvas />
+      {children}
       {/* <Preloader /> */}
     </main>
   );

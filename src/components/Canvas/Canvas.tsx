@@ -1,6 +1,5 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { options } from '../../scripts/game/gameOptions';
-import { changeGameMode, getGameModeFromLocalStorage } from '../../scripts/render/render';
 import { drawGameFieldBorders } from '../../scripts/render/drawGameFieldBorders';
 import { loadSprites } from '../../scripts/sprites/loadSprites';
 import { ButtonStateType, drawButton, drawControls } from '../../scripts/render/drawControls';
@@ -10,7 +9,6 @@ import {
   drawMinesAmount,
 } from '../../scripts/render/drawFieldContent';
 import { getGameFieldCoords, getStartButtonCoords } from '../../scripts/helpers/getCoords';
-import { setGameModeToLocalStorage } from '../../scripts/helpers/localStorage';
 import {
   isVictoryGame,
   onLoseAction,
@@ -26,7 +24,11 @@ type CanvasStateType = {
   height: number;
 };
 
-const Canvas: FC = () => {
+interface ICanvas {
+  gameMode: GameModes;
+}
+
+const Canvas: FC<ICanvas> = ({ gameMode }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvasState, setCanvasState] = useState<CanvasStateType>();
   const [sprite, setSprite] = useState<HTMLImageElement>();
@@ -119,7 +121,6 @@ const Canvas: FC = () => {
   };
 
   useEffect(() => {
-    const gameMode = changeGameMode() || 'beginner'; //! replace
     const { cellsW, cellsH, mines } = options[gameMode];
     const { cellSize, borderSize, headerH, edgeH } = options.game;
 
@@ -133,36 +134,25 @@ const Canvas: FC = () => {
     const draw = async (canvas: HTMLCanvasElement | null, mines: number) => {
       if (canvas) {
         const sprite = await loadSprites();
-
-        const gameMode = getGameModeFromLocalStorage();
-
-        if (!gameMode) {
-          setGameModeToLocalStorage();
-          db.gameMode = GameModes.BEGINNER;
-        } else {
-          db.gameMode = gameMode;
-        }
-
-        drawGameFieldBorders(canvas);
         setSprite(sprite);
 
-        drawControls(canvas, sprite);
+        db.gameMode = gameMode; //!TODO: update
         db.currentMines = mines;
+
+        drawGameFieldBorders(canvas);
+        drawControls(canvas, sprite);
         drawMinesAmount(canvas, sprite, mines);
 
         document.onmouseup = () => handleMouseUp(canvas, sprite);
         document.oncontextmenu = (e: MouseEvent) => {
-          if (e.target instanceof HTMLCanvasElement && e.target.classList.contains('canvas')) {
-            console.log('click');
-
+          if (e.target instanceof HTMLCanvasElement && e.target.classList.contains('canvas'))
             return false;
-          }
         };
       }
     };
 
     draw(canvas, mines);
-  }, []);
+  }, [gameMode]);
 
   return (
     <canvas

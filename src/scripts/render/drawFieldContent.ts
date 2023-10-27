@@ -122,7 +122,7 @@ const drawNumber = (
   const dh = dw * k;
   const offset = 1.5;
   let x;
-  let y = borderSize + headerH / 2 - scoreboardH / 2;
+  const y = borderSize + headerH / 2 - scoreboardH / 2;
 
   if (type === 'mines') {
     x = y + (column === 1 ? 0 : column === 2 ? dw - offset - 0.5 : (dw - offset - 0.5) * 2);

@@ -1,36 +1,9 @@
-import {
-  getUserNameFromLocalStorage,
-  setGameModeToLocalStorage,
-} from '../../scripts/helpers/localStorage';
-import { hideOverlay } from '../../scripts/listeners/handleOverlay';
-import { defineCanvas } from '../../scripts/render/defineCanvas';
+import { RoutePaths } from '../../app/router/config/routes';
+import AppLink from '../../app/router/ui/AppLink';
+import { getUserNameFromLocalStorage } from '../../scripts/helpers/localStorage';
 
 export const Header = () => {
   const username = getUserNameFromLocalStorage();
-
-  const modesHandler = (e: React.MouseEvent) => {
-    if (
-      e.target instanceof HTMLElement &&
-      e.target.classList.contains('modes__item') &&
-      !e.target.classList.contains('results')
-    ) {
-      document.querySelector('.active')?.classList.remove('active');
-
-      e.target.classList.add('active');
-
-      const newMode = e.target.textContent?.toLowerCase();
-      setGameModeToLocalStorage(newMode);
-
-      const canvas = document.querySelector('.canvas');
-      canvas?.remove();
-      defineCanvas();
-
-      hideOverlay();
-    }
-
-    const container = document.querySelector('.modes__container_active');
-    container?.classList.remove('modes__container_active');
-  };
 
   return (
     <header className={'header'}>
@@ -47,12 +20,13 @@ export const Header = () => {
           />
           <button className="button__submit" type="submit"></button>
         </form>
-        <div className="modes__container" onClick={modesHandler}>
-          <span className="modes__item beginner">Beginner</span>
-          <span className="modes__item intermediate">Intermediate</span>
-          <span className="modes__item expert">Expert</span>
-          <span className="modes__item nightmare">Nightmare</span>
-          <span className="modes__item results">Results</span>
+        <div className="modes__container" /*onClick={modesHandler}*/>
+          <AppLink linkTo={RoutePaths.home}>Home</AppLink>
+          <AppLink linkTo={RoutePaths.beginner}>Beginner</AppLink>
+          <AppLink linkTo={RoutePaths.intermediate}>Intermediate</AppLink>
+          <AppLink linkTo={RoutePaths.expert}>Expert</AppLink>
+          <AppLink linkTo={RoutePaths.nightmare}>Nightmare</AppLink>
+          <AppLink linkTo={RoutePaths.results}>Results</AppLink>
         </div>
         <div className="burger__button">
           <span></span>

@@ -220,10 +220,10 @@ const onWinAction = (): void => {
   if (gameMode && name && db.timer) {
     if (!data) {
       const rawData: RawDataType = {
-        beginner: [],
-        intermediate: [],
-        expert: [],
-        nightmare: [],
+        [GameModes.BEGINNER]: [],
+        [GameModes.INTERMEDIATE]: [],
+        [GameModes.EXPERT]: [],
+        [GameModes.NIGHTMARE]: [],
       };
 
       rawData[gameMode].push({

@@ -1,13 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface IInitialState {}
+interface IInitialState {
+  isPopupMenuVisible: boolean;
+}
 
-const initialState: IInitialState = {};
+const initialState: IInitialState = {
+  isPopupMenuVisible: false,
+};
 
 const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: {},
+  reducers: {
+    togglePopupMenuVisibility: (state) => {
+      state.isPopupMenuVisible = !state.isPopupMenuVisible;
+    },
+  },
 });
 
 export default gameSlice.reducer;
+export const { togglePopupMenuVisibility } = gameSlice.actions;

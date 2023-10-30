@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { hidePopupMenu } from '../../../../components/GameBoard/handlers/handlePopupMenu';
-import { hideOverlay } from '../../../../components/UI/Overlay/handleOverlay';
 import cls from './AppLink.module.scss';
+import { useAppDispatch } from '../../../store/hooks';
+import { togglePopupMenuVisibility } from '../../../store/slices/gameSlice';
 
 interface IAppLink {
   linkTo: string;
@@ -10,9 +10,12 @@ interface IAppLink {
 }
 
 const AppLink: FC<IAppLink> = ({ linkTo, children }) => {
+  const dispatch = useAppDispatch();
+
   const handleClick = () => {
-    hidePopupMenu();
-    hideOverlay();
+    if (window.innerWidth <= 876) {
+      dispatch(togglePopupMenuVisibility());
+    }
   };
 
   return (

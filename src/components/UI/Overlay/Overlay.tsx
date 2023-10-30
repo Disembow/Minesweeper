@@ -1,14 +1,17 @@
-import { hideOverlay } from './handleOverlay';
-import { hidePopupMenu } from '../../GameBoard/handlers/handlePopupMenu';
 import cls from './Overlay.module.scss';
+import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
+import { togglePopupMenuVisibility } from '../../../app/store/slices/gameSlice';
+import { classNames } from '../../../helpers/classNames/classNames';
 
 const Overlay = () => {
-  const handleClick = () => {
-    hideOverlay();
-    hidePopupMenu();
-  };
+  const isVisible = useAppSelector((state) => state.game.isPopupMenuVisible);
+  const dispatch = useAppDispatch();
 
-  return <div className={cls.overlay} onClick={handleClick} />;
+  const handleClick = () => dispatch(togglePopupMenuVisibility());
+
+  return (
+    <div className={classNames(cls.overlay, { [cls.visible]: isVisible })} onClick={handleClick} />
+  );
 };
 
 export default Overlay;

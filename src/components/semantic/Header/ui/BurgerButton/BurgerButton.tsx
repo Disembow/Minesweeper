@@ -1,12 +1,11 @@
-import { toggleOverlay } from '../../../../UI/Overlay/handleOverlay';
-import { showPopupMenu } from '../../../../GameBoard/handlers/handlePopupMenu';
 import cls from './BurgerButton.module.scss';
+import { togglePopupMenuVisibility } from '../../../../../app/store/slices/gameSlice';
+import { useAppDispatch } from '../../../../../app/store/hooks';
 
 const BurgerButton = () => {
-  const handleClick = () => {
-    showPopupMenu();
-    toggleOverlay();
-  };
+  const dispatch = useAppDispatch();
+
+  const handleClick = () => dispatch(togglePopupMenuVisibility());
 
   return (
     <div className={cls.burger__button} onClick={handleClick}>

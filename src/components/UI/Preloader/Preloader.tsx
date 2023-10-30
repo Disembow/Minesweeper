@@ -1,7 +1,9 @@
+import cls from './Preloader.module.scss';
+
 const Preloader = () => {
   return (
-    <div className="preloader">
-      <div className={`preloader__item`} />
+    <div className={cls.preloader}>
+      <div className={cls.preloader__item} />
     </div>
   );
 };

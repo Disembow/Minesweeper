@@ -41,23 +41,3 @@
     display: block;
   }
 }
-
-.active {
-  border-bottom: 2px solid$active-link;
-  border-radius: 0 0 1rem 1rem;
-  color: $active-link;
-  transition: color 0.5s;
-}
-
-.button__submit {
-  position: absolute;
-  top: 50%;
-  right: 0.5rem;
-  transform: translate(0, -50%);
-  width: 1.5rem;
-  height: 1.5rem;
-  background-image: url('./assets/svg/enter-arrow.svg');
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: cover;
-}

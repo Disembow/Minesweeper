@@ -1,0 +1,30 @@
+@import '../../../../styles/global/mixin';
+
+.modes__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  z-index: 2;
+
+  @media (max-width: 876px) {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    transform: translateY(-20rem);
+    transition: transform 0.3s;
+    width: 10rem;
+    min-height: 15rem;
+    flex-direction: column;
+    background-color: $main-blue;
+    border-radius: 1rem;
+    z-index: 5;
+    @include shadow;
+
+    &_active {
+      transition: transform 0.3s;
+      transform: translateY(0);
+    }
+  }
+}

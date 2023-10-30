@@ -18,6 +18,7 @@ import {
   restartGame,
   startGame,
 } from '../../helpers/gameActions/gameProcess';
+import cls from './GameBoard.module.scss';
 
 type GameBoardStateType = {
   width: number;
@@ -151,18 +152,17 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     db.isMouseDown = false;
   };
 
-  if (sprite)
-    return (
-      <canvas
-        className={'canvas'}
-        ref={canvasRef}
-        width={canvasState?.width}
-        height={canvasState?.height}
-        onMouseDown={(e) => handleMouseDown(e, canvasRef.current!, sprite)}
-        onClick={(e) => handleClick(e, canvasRef.current!, sprite)}
-        onContextMenu={(e) => handleContextMenuClick(e, canvasRef.current!, sprite)}
-      />
-    );
+  return (
+    <canvas
+      className={cls.canvas}
+      ref={canvasRef}
+      width={canvasState?.width}
+      height={canvasState?.height}
+      onMouseDown={(e) => handleMouseDown(e, canvasRef.current!, sprite!)}
+      onClick={(e) => handleClick(e, canvasRef.current!, sprite!)}
+      onContextMenu={(e) => handleContextMenuClick(e, canvasRef.current!, sprite!)}
+    />
+  );
 };
 
 export default GameBoard;

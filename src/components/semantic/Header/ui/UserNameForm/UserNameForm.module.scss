@@ -1,0 +1,36 @@
+.form {
+  position: relative;
+  width: 15rem;
+  border-radius: 0.7rem;
+}
+
+.username__input {
+  font-size: 2rem;
+  margin: 0;
+  width: 100%;
+  border-radius: 0.7rem;
+  padding: 0 0 0.3rem 1rem;
+  line-height: 125%;
+  background-color: $main-blue;
+  color: $main-white;
+  border: 1px solid $main-white;
+  transform: outline 0.3s;
+
+  &:focus {
+    transform: outline 0.3s;
+    outline: 2px solid $main-white;
+  }
+}
+
+.button__submit {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translate(0, -50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url('./src/assets/svg/enter-arrow.svg');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

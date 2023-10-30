@@ -1,9 +1,10 @@
 import { RoutePaths } from '../../config/routes';
 import AppLink from './AppLink';
+import cls from './NavBar.module.scss';
 
 const NavBar = () => {
   return (
-    <div className="modes__container">
+    <div className={cls.modes__container}>
       <AppLink linkTo={RoutePaths.home}>Home</AppLink>
       <AppLink linkTo={RoutePaths.beginner}>Beginner</AppLink>
       <AppLink linkTo={RoutePaths.intermediate}>Intermediate</AppLink>

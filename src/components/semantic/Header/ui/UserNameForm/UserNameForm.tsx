@@ -3,6 +3,7 @@ import {
   getUserNameFromLocalStorage,
   setUserNameToLocalStorage,
 } from '../../../../../helpers/gameActions/localStorage';
+import cls from './UserNameForm.module.scss';
 
 const UserNameForm = () => {
   const [username, setUsername] = useState<string>('');
@@ -18,17 +19,17 @@ const UserNameForm = () => {
   };
 
   return (
-    <form className={'form'} onSubmit={handleUsernameForm}>
+    <form className={cls.form} onSubmit={handleUsernameForm}>
       <input
         autoComplete={'off'}
         name={'username'}
-        className={'username__input'}
+        className={cls.username__input}
         placeholder={'Your name...'}
         value={username === 'Anonymous' ? '' : username}
         autoFocus={username === ''}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <button className="button__submit" type="submit" onClick={handleUsernameForm} />
+      <button className={cls.button__submit} type="submit" onClick={handleUsernameForm} />
     </form>
   );
 };

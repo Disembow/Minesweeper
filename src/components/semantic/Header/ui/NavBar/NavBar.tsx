@@ -1,7 +1,7 @@
-import { classNames } from '../../../../helpers/classNames/classNames';
-import { useAppSelector } from '../../../store/hooks';
-import { RoutePaths } from '../../config/routes';
-import AppLink from './AppLink';
+import { classNames } from '../../../../../helpers/classNames/classNames';
+import { useAppSelector } from '../../../../../app/store/hooks';
+import { RoutePaths } from '../../../../../app/router/config/routes';
+import AppLink from '../AppLink/AppLink';
 import cls from './NavBar.module.scss';
 
 const NavBar = () => {

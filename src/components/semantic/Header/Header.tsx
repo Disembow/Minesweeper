@@ -1,4 +1,4 @@
-import NavBar from '../../../app/router/ui/navigation/NavBar';
+import NavBar from './ui/NavBar/NavBar';
 import BurgerButton from './ui/BurgerButton/BurgerButton';
 import UserNameForm from './ui/UserNameForm/UserNameForm';
 import cls from './Header.module.scss';

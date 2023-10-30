@@ -9,6 +9,8 @@ import { handleClick } from './handlers/handleClick';
 import { handleMouseDown } from './handlers/handleMouseDown';
 import { handleMouseUp } from './handlers/handleMouseUp';
 import { handleContextMenuClick } from './handlers/handleContextMenuClick';
+import { useAppDispatch } from '../../app/store/hooks';
+import { changeGameMode } from '../../app/store/slices/gameSlice';
 
 type GameBoardStateType = {
   width: number;
@@ -21,6 +23,7 @@ interface IGameBoard {
 
 const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const dispatch = useAppDispatch();
   const [canvasState, setCanvasState] = useState<GameBoardStateType>();
   const [sprite, setSprite] = useState<HTMLImageElement>();
 
@@ -40,8 +43,9 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
         const sprite = await loadSprites();
         setSprite(sprite);
 
-        db.gameMode = gameMode; //!TODO: update
-        db.currentMines = mines;
+        dispatch(changeGameMode({ gameMode, mines }));
+        // db.gameMode = gameMode; //!TODO: update
+        // db.currentMines = mines;
 
         drawGameFieldBorders(canvas);
         drawControls(canvas, sprite);
@@ -52,7 +56,7 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     };
 
     draw(canvas, mines);
-  }, [gameMode]);
+  }, [dispatch, gameMode]);
 
   return (
     <canvas

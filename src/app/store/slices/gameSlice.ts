@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { GameModes } from '../../db/db';
 
 type GameType = {
@@ -35,7 +35,22 @@ const initialState: IInitialState = {
 const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: {},
+  reducers: {
+    changeGameMode: (state, { payload }: PayloadAction<{ gameMode: GameModes; mines: number }>) => {
+      state.gameMode = payload.gameMode;
+      state.currentMines = payload.mines;
+    },
+    setCurrentGame: (state, { payload }: PayloadAction<GameType[][]>) => {
+      state.game = payload;
+    },
+    removeCurrentGame: (state) => {
+      state.game = null;
+      state.interval = null;
+      state.openedCells = null;
+      state.isGameRuns = true;
+    },
+  },
 });
 
 export default gameSlice.reducer;
+export const { changeGameMode } = gameSlice.actions;

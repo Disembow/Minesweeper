@@ -22,7 +22,7 @@ interface IGameBoard {
 const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvasState, setCanvasState] = useState<GameBoardStateType>();
-  const [sprite, setSprite] = useState<HTMLImageElement>();
+  const [sprite, setSprites] = useState<HTMLImageElement>();
 
   useEffect(() => {
     const { cellsW, cellsH, mines } = options[gameMode];
@@ -38,7 +38,7 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     const draw = async (canvas: HTMLCanvasElement | null, mines: number) => {
       if (canvas) {
         const sprite = await loadSprites();
-        setSprite(sprite);
+        setSprites(sprite);
 
         db.gameMode = gameMode;
         db.currentMines = mines;

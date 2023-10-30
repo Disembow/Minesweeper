@@ -1,29 +1,29 @@
 import { RouteProps } from 'react-router-dom';
 import { AppRoutes, RoutePaths } from './routes';
-import GameBoard from '../../../components/GameBoard/GameBoard';
 import { GameModes } from '../../db/db';
-import HomePage from '../../../components/pages/HomePage/HomePage';
+import { HomePageAsync } from '../../../components/pages/HomePage/HomePageAsync';
+import { GameBoardAsync } from '../../../components/GameBoard/GameBoardAsync';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.HOME]: {
     path: RoutePaths.home,
-    element: <HomePage />,
+    element: <HomePageAsync />,
   },
   [AppRoutes.BEGINNER]: {
     path: RoutePaths.beginner,
-    element: <GameBoard gameMode={GameModes.BEGINNER} />,
+    element: <GameBoardAsync gameMode={GameModes.BEGINNER} />,
   },
   [AppRoutes.INTERMEDIATE]: {
     path: RoutePaths.intermediate,
-    element: <GameBoard gameMode={GameModes.INTERMEDIATE} />,
+    element: <GameBoardAsync gameMode={GameModes.INTERMEDIATE} />,
   },
   [AppRoutes.EXPERT]: {
     path: RoutePaths.expert,
-    element: <GameBoard gameMode={GameModes.EXPERT} />,
+    element: <GameBoardAsync gameMode={GameModes.EXPERT} />,
   },
   [AppRoutes.NIGHTMARE]: {
     path: RoutePaths.nightmare,
-    element: <GameBoard gameMode={GameModes.NIGHTMARE} />,
+    element: <GameBoardAsync gameMode={GameModes.NIGHTMARE} />,
   },
   [AppRoutes.RESULTS]: {
     path: RoutePaths.results,

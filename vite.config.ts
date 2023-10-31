@@ -1,17 +1,31 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { configDefaults } from 'vitest/dist/config.js';
 
 export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: './src/app/configs/setupTests.ts',
+    setupFiles: './src/app/testing/setupTests.ts',
     css: {
       modules: {
         classNameStrategy: 'non-scoped',
       },
+    },
+    coverage: {
+      provider: 'v8',
+      all: true,
+      reporter: ['text'],
+      exclude: [
+        ...configDefaults.coverage.exclude,
+        'src/main.tsx',
+        '**/.storybook/**',
+        '**/db/**/*',
+        '**/providers/store/**/*',
+      ],
+      reportsDirectory: './src/app/testing/unit/coverage',
     },
   },
   server: {

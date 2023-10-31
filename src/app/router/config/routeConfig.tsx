@@ -3,6 +3,7 @@ import { AppRoutes, RoutePaths } from './routes';
 import { GameModes } from '../../db/db';
 import { HomePageAsync } from '../../../components/pages/HomePage/HomePageAsync';
 import { GameBoardAsync } from '../../../components/GameBoard/GameBoardAsync';
+import { RankingPageAsync } from '../../../components/pages/HomePage/ResultsPage/RankingPageAsync';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.HOME]: {
@@ -27,5 +28,6 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   },
   [AppRoutes.RESULTS]: {
     path: RoutePaths.results,
+    element: <RankingPageAsync />,
   },
 };

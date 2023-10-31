@@ -15,7 +15,7 @@ export default defineConfig({
     devSourcemap: true,
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/styles/global/variables.scss";\n`,
+        additionalData: `@import "./src/app/styles/global/variables.scss";\n`,
       },
     },
   },

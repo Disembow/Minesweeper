@@ -4,6 +4,7 @@ import { GameModes } from '../../../db/db';
 import { HomePageAsync } from '../../../../components/pages/HomePage/HomePageAsync';
 import { GameBoardAsync } from '../../../../components/GameBoard/GameBoardAsync';
 import { RankingPageAsync } from '../../../../components/pages/ResultsPage/RankingPageAsync';
+import { NotFoundPageAsync } from '../../../../components/pages/NotFoundPage/NotFoundPageAsync';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.HOME]: {
@@ -29,5 +30,9 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.RESULTS]: {
     path: RoutePaths.results,
     element: <RankingPageAsync />,
+  },
+  [AppRoutes.NOT_FOUND]: {
+    path: RoutePaths.not_found,
+    element: <NotFoundPageAsync />,
   },
 };

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   getUserNameFromLocalStorage,
   setUserNameToLocalStorage,
-} from '../../../../../helpers/gameActions/localStorage';
+} from 'helpers/gameActions/localStorage';
 import cls from './UserNameForm.module.scss';
 
 const UserNameForm = () => {

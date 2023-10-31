@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from './Button';
 import { ButtonSize, ButtonTheme } from './types/ButtonTypes';
-import { CreateElementDecorator } from '../../../app/providers/.storybook/CreateElementDecorator';
-import { layoutStyle } from '../../../app/providers/.storybook/decoratorStyles';
+import { CreateElementDecorator } from 'app/providers/.storybook/CreateElementDecorator';
+import { layoutStyle } from 'app/providers/.storybook/decoratorStyles';
 
 const meta = {
   title: 'components/Button',

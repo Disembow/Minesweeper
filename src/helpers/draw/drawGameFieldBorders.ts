@@ -1,9 +1,5 @@
-import { options } from '../../app/db/gameOptions.ts';
-import {
-  BORDER_COLOR_BRIGHT,
-  BORDER_COLOR_SHADOWED,
-  MAIN_BG_COLOR,
-} from '../../app/db/variables.ts';
+import { options } from 'app/db/gameOptions.ts';
+import { BORDER_COLOR_BRIGHT, BORDER_COLOR_SHADOWED, MAIN_BG_COLOR } from 'app/db/variables.ts';
 
 const drawGameFieldBorders = (canvas: HTMLCanvasElement) => {
   const ctx = canvas.getContext('2d');

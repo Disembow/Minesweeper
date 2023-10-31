@@ -18,7 +18,15 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Paths */
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "app/*": ["./src/app/*"],
+      "helpers/*": ["./src/helpers/*"]
+    }
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"],

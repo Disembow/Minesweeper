@@ -30,4 +30,11 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      app: '/src/app',
+      components: '/src/components',
+      helpers: '/src/helpers',
+    },
+  },
 });

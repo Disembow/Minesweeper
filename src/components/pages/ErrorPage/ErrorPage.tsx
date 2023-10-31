@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import { classNames } from 'helpers/classNames/classNames';
+import { Button } from 'components/UI/Button/Button';
 import cls from './ErrorPage.module.scss';
-import { classNames } from '../../../helpers/classNames/classNames';
-import { Button } from '../../UI/Button/Button';
 
 interface IErrorPage {
   className?: string;

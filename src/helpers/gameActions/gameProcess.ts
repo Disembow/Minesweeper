@@ -1,12 +1,12 @@
-import { GameModes, GameType, db } from '../../app/db/db.ts';
+import { GameModes, GameType, db } from 'app/db/db.ts';
 import {
   getGameTopResults,
   getUserNameFromLocalStorage,
   setGameTopResults,
 } from './localStorage.ts';
-import { drawField } from '../draw/drawControls.ts';
-import { drawFieldContent, drawMinesAmount, drawTimer } from '../draw/drawFieldContent.ts';
-import { options } from '../../app/db/gameOptions.ts';
+import { drawField } from 'helpers/draw/drawControls.ts';
+import { drawFieldContent, drawMinesAmount, drawTimer } from 'helpers/draw/drawFieldContent.ts';
+import { options } from 'app/db/gameOptions.ts';
 
 const startGame = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
   if (db.gameMode) {

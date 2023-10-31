@@ -1,5 +1,5 @@
-import { db } from '../../app/db/db.ts';
-import { options } from '../../app/db/gameOptions.ts';
+import { db } from 'app/db/db.ts';
+import { options } from 'app/db/gameOptions.ts';
 
 enum ButtonStateType {
   START = 'start',

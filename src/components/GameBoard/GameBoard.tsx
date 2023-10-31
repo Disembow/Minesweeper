@@ -1,14 +1,11 @@
 import { FC, useEffect, useRef, useState, MouseEvent } from 'react';
-import { options } from '../../app/db/gameOptions';
-import { drawGameFieldBorders } from '../../helpers/draw/drawGameFieldBorders';
-import { loadSprites } from '../../helpers/sprites/loadSprites';
-import { ButtonStateType, drawButton, drawControls } from '../../helpers/draw/drawControls';
-import { GameModes, db } from '../../app/db/db';
-import {
-  drawFieldContentOnContextMenuClick,
-  drawMinesAmount,
-} from '../../helpers/draw/drawFieldContent';
-import { getGameFieldCoords, getStartButtonCoords } from '../../helpers/gameActions/getCoords';
+import { options } from 'app/db/gameOptions';
+import { drawGameFieldBorders } from 'helpers/draw/drawGameFieldBorders';
+import { loadSprites } from 'helpers/sprites/loadSprites';
+import { ButtonStateType, drawButton, drawControls } from 'helpers/draw/drawControls';
+import { GameModes, db } from 'app/db/db';
+import { drawFieldContentOnContextMenuClick, drawMinesAmount } from 'helpers/draw/drawFieldContent';
+import { getGameFieldCoords, getStartButtonCoords } from 'helpers/gameActions/getCoords';
 import {
   isVictoryGame,
   onLoseAction,
@@ -17,7 +14,7 @@ import {
   openTargetCell,
   restartGame,
   startGame,
-} from '../../helpers/gameActions/gameProcess';
+} from 'helpers/gameActions/gameProcess';
 import cls from './GameBoard.module.scss';
 
 type GameBoardStateType = {

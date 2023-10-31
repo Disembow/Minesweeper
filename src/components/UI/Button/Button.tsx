@@ -1,7 +1,7 @@
-import { ButtonHTMLAttributes, FC } from 'react';
+import { FC, ButtonHTMLAttributes } from 'react';
 import cls from './Button.module.scss';
-import { classNames } from '../../../helpers/classNames/classNames';
 import { ButtonSize, ButtonTheme } from './types/ButtonTypes';
+import { classNames } from 'helpers/classNames/classNames';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;

@@ -1,6 +1,6 @@
 import { FC } from 'react';
+// import Preloader from 'components/UI/Preloader/Preloader';
 import cls from './Main.module.scss';
-// import Preloader from '../../UI/Preloader/Preloader';
 
 interface IMain {
   children: JSX.Element;

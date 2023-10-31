@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import cls from './AppLink.module.scss';
-import { useAppDispatch } from '../../../../../app/providers/store/hooks';
-import { togglePopupMenuVisibility } from '../../../../../app/providers/store/slices/gameSlice';
+import { useAppDispatch } from 'app/providers/store/hooks';
+import { togglePopupMenuVisibility } from 'app/providers/store/slices/gameSlice';
 
 interface IAppLink {
   linkTo: string;

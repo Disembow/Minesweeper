@@ -1,5 +1,5 @@
 import { RawDataType } from './gameProcess.ts';
-import { LOCAL_STORAGE_RESULTS_KEY, LOCAL_STORAGE_USERNAME_KEY } from '../../app/db/variables.ts';
+import { LOCAL_STORAGE_RESULTS_KEY, LOCAL_STORAGE_USERNAME_KEY } from 'app/db/variables.ts';
 
 const setUserNameToLocalStorage = (username: string): void => {
   localStorage.setItem(LOCAL_STORAGE_USERNAME_KEY, username);

@@ -1,6 +1,6 @@
 import { classNames } from '../../../../../helpers/classNames/classNames';
-import { useAppSelector } from '../../../../../app/store/hooks';
-import { RoutePaths } from '../../../../../app/router/config/routes';
+import { useAppSelector } from '../../../../../app/providers/store/hooks';
+import { RoutePaths } from '../../../../../app/providers/router/config/routes';
 import AppLink from '../AppLink/AppLink';
 import cls from './NavBar.module.scss';
 

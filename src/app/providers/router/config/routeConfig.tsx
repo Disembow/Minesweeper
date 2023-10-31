@@ -1,9 +1,9 @@
 import { RouteProps } from 'react-router-dom';
 import { AppRoutes, RoutePaths } from './routes';
-import { GameModes } from '../../db/db';
-import { HomePageAsync } from '../../../components/pages/HomePage/HomePageAsync';
-import { GameBoardAsync } from '../../../components/GameBoard/GameBoardAsync';
-import { RankingPageAsync } from '../../../components/pages/HomePage/ResultsPage/RankingPageAsync';
+import { GameModes } from '../../../db/db';
+import { HomePageAsync } from '../../../../components/pages/HomePage/HomePageAsync';
+import { GameBoardAsync } from '../../../../components/GameBoard/GameBoardAsync';
+import { RankingPageAsync } from '../../../../components/pages/ResultsPage/RankingPageAsync';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.HOME]: {

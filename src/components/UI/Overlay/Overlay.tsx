@@ -1,6 +1,6 @@
 import cls from './Overlay.module.scss';
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
-import { togglePopupMenuVisibility } from '../../../app/store/slices/gameSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/providers/store/hooks';
+import { togglePopupMenuVisibility } from '../../../app/providers/store/slices/gameSlice';
 import { classNames } from '../../../helpers/classNames/classNames';
 
 const Overlay = () => {

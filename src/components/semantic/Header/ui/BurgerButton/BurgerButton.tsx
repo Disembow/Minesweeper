@@ -1,6 +1,6 @@
 import cls from './BurgerButton.module.scss';
-import { togglePopupMenuVisibility } from '../../../../../app/store/slices/gameSlice';
-import { useAppDispatch } from '../../../../../app/store/hooks';
+import { togglePopupMenuVisibility } from '../../../../../app/providers/store/slices/gameSlice';
+import { useAppDispatch } from '../../../../../app/providers/store/hooks';
 
 const BurgerButton = () => {
   const dispatch = useAppDispatch();

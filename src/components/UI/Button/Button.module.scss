@@ -1,0 +1,59 @@
+@mixin actions {
+  &:hover {
+    background-color: $secondary-bg-bright
+  }
+
+  &:active {
+    background-color: darken($color: $secondary-bg-bright, $amount: 10)
+  }
+}
+
+.Button {
+  background-color: $main-white;
+  border-radius: 0.3rem;
+  text-align: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.stroke {
+  border: 2px solid $shadow-black;
+
+  @include actions();
+}
+
+.stroke {
+  border: none;
+
+  @include actions();
+}
+
+.size_s {
+  width: 5rem;
+  height: 1.5rem;
+}
+
+.size_m {
+  width: 6rem;
+  height: 2rem;
+}
+
+.size_l {
+  width: 7rem;
+  height: 2.5rem;
+}
+
+.square {
+
+  &.size_s {
+    width: 1.5rem;
+  }
+
+  &.size_m {
+    width: 2rem;
+  }
+
+  &.size_l {
+    width: 2.5rem;
+  }
+}

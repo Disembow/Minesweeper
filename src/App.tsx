@@ -10,7 +10,7 @@ export const App = () => {
     const randomNum = Math.random();
     console.log(randomNum);
 
-    if (randomNum > 0.8) throw new Error();
+    if (randomNum > 0.1) throw new Error();
   }, []);
 
   return (

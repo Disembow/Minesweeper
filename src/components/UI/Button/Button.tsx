@@ -14,12 +14,14 @@ export const Button: FC<IButton> = ({
   children,
   className = '',
   theme = ButtonTheme.STROKE,
-  size = ButtonSize.L,
+  size = ButtonSize.M,
   square = false,
+  type = 'button',
   ...rest
 }) => {
   return (
     <button
+      type={type}
       className={classNames(
         cls.Button,
         { [cls[size]]: true, [cls.square]: square, [cls[theme]]: true },

@@ -1,3 +1,11 @@
+.Button {
+  background-color: $main-white;
+  border-radius: 0.3rem;
+  text-align: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
 @mixin actions {
   &:hover {
     background-color: $secondary-bg-bright
@@ -8,21 +16,13 @@
   }
 }
 
-.Button {
-  background-color: $main-white;
-  border-radius: 0.3rem;
-  text-align: center;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
 .stroke {
-  border: 2px solid $shadow-black;
+  border: 1px solid $shadow-black;
 
   @include actions();
 }
 
-.stroke {
+.bright {
   border: none;
 
   @include actions();

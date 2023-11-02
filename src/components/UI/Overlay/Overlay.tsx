@@ -10,7 +10,11 @@ const Overlay = () => {
   const handleClick = () => dispatch(togglePopupMenuVisibility());
 
   return (
-    <div className={classNames(cls.overlay, { [cls.visible]: isVisible })} onClick={handleClick} />
+    <div
+      className={classNames(cls.overlay, { [cls.visible]: isVisible })}
+      onClick={handleClick}
+      data-testid="overlay"
+    />
   );
 };
 

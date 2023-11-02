@@ -8,11 +8,11 @@
 
 @mixin actions {
   &:hover {
-    background-color: $secondary-bg-bright
+    background-color: $secondary-bg-bright;
   }
 
   &:active {
-    background-color: darken($color: $secondary-bg-bright, $amount: 10)
+    background-color: darken($color: $secondary-bg-bright, $amount: 10);
   }
 }
 
@@ -44,7 +44,6 @@
 }
 
 .square {
-
   &.size_s {
     width: 1.5rem;
   }

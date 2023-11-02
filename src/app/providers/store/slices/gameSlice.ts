@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface IInitialState {
+export interface IInitialState {
   isPopupMenuVisible: boolean;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   isPopupMenuVisible: false,
 };
 
-const gameSlice = createSlice({
+export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {

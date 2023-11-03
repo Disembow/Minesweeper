@@ -30,11 +30,6 @@ const restartGame = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
     stopTimer(canvas, sprite);
     drawMinesAmount(canvas, sprite, mines, 'stop');
     drawField(canvas, sprite);
-
-    db.game = null;
-    db.interval = null;
-    db.openedCells = null;
-    db.isGameRuns = true;
   }
 };
 
@@ -209,7 +204,12 @@ const isVictoryGame = () => {
   }
 };
 
-export type GameResultsType = { name: string; time: number; date: Date | undefined };
+export type GameResultsType = {
+  name: string;
+  time: number;
+  date: Date;
+  clicks: number;
+};
 export type RawDataType = Record<GameModes, GameResultsType[]>;
 
 const onWinAction = (): void => {
@@ -222,6 +222,7 @@ const onWinAction = (): void => {
       name,
       time: db.timer,
       date: new Date(),
+      clicks: db.clicks,
     };
 
     if (!data) {
@@ -243,12 +244,19 @@ const onWinAction = (): void => {
   }
 
   setGameTopResults(data);
+
+  db.game = null;
+  db.interval = null;
+  db.clicks = 0;
+  db.openedCells = null;
+  db.isGameRuns = true;
 };
 
 const onLoseAction = (canvas: HTMLCanvasElement, sprite: HTMLImageElement): void => {
   if (db.game && db.interval) {
     clearInterval(db.interval);
     db.interval = null;
+    db.clicks = 0;
     db.isGameRuns = false;
 
     const mines: GameType[] = [];

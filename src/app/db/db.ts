@@ -23,6 +23,7 @@ interface DB {
   interval: ReturnType<typeof setInterval> | null;
   isMouseDown: boolean;
   isGameRuns: boolean;
+  clicks: number;
 }
 
 const db: DB = {
@@ -34,6 +35,7 @@ const db: DB = {
   interval: null,
   isMouseDown: false,
   isGameRuns: false,
+  clicks: 0,
 };
 
 export { GameModes, db };

@@ -69,6 +69,8 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     const restartGameTrems = getStartButtonCoords(event, canvas);
 
     if (startGameTerms) {
+      db.clicks++;
+
       if (!db.game) startGame(canvas, sprite);
 
       if (db.game && db.isGameRuns) {
@@ -96,6 +98,8 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     canvas: HTMLCanvasElement,
     sprite: HTMLImageElement,
   ) => {
+    db.clicks++;
+
     const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
 
     if (startGameTerms) {

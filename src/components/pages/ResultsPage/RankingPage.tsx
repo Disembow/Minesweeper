@@ -19,19 +19,22 @@ const ResultsPage: FC<IRankingPage> = () => {
       return (
         <>
           <tr>
-            <td className={cls.subtable} colSpan={4}>
+            <td className={cls.subtable} colSpan={6}>
               {mode}
             </td>
           </tr>
           {topResults[mode].map((r, i) => {
-            return (
-              <tr key={i}>
-                <td>{i + 1}</td>
-                <td>{r.name}</td>
-                <td>{r.time}</td>
-                <td>{r.date ? new Date(r.date).toLocaleDateString() : 'N/A'}</td>
-              </tr>
-            );
+            if (i < 10)
+              return (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>{r.name}</td>
+                  <td>{r.time}</td>
+                  <td>{r.date ? new Date(r.date).toLocaleDateString() : '-'}</td>
+                  <td>{r.clicks || 'n/a'}</td>
+                  <td>{r.clicks ? (r.clicks / r.time).toFixed(3) : '-'}</td>
+                </tr>
+              );
           })}
         </>
       );
@@ -50,10 +53,25 @@ const ResultsPage: FC<IRankingPage> = () => {
       <table className={cls.table}>
         <thead>
           <tr>
-            <th className={cls.table__number}>#</th>
-            <th className={cls.table__name}>Name</th>
+            <th className={cls.table__number}>Rank</th>
+            <th className={cls.table__name}>Player</th>
             <th className={cls.table__time}>Time, sec</th>
             <th className={cls.table__date}>Date</th>
+            <th className={cls.table__clicks}>Clicks</th>
+            <th className={cls.table__clicks_ps} title={'Clicks per second'}>
+              Cps
+            </th>
+
+            {/* <th
+              title={
+                '3BV is the minimum number of clicks required to complete a board without using flags. The higher it is, the more difficult is the game.'
+              }
+              className={cls.table__date}
+            >
+              3BV
+            </th> */}
+            {/* <th className={cls.table__date}>3BV/s</th> */}
+            {/* <th className={cls.table__date}>Eff</th> */}
           </tr>
         </thead>
         {renderTable()}

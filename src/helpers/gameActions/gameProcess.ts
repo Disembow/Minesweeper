@@ -209,7 +209,7 @@ const isVictoryGame = () => {
   }
 };
 
-export type GameResultsType = { name: string; time: number };
+export type GameResultsType = { name: string; time: number; date: Date | undefined };
 export type RawDataType = Record<GameModes, GameResultsType[]>;
 
 const onWinAction = (): void => {
@@ -218,6 +218,12 @@ const onWinAction = (): void => {
   const name = getUserNameFromLocalStorage();
 
   if (gameMode && name && db.timer) {
+    const result = {
+      name,
+      time: db.timer,
+      date: new Date(),
+    };
+
     if (!data) {
       const rawData: RawDataType = {
         [GameModes.BEGINNER]: [],
@@ -226,17 +232,11 @@ const onWinAction = (): void => {
         [GameModes.NIGHTMARE]: [],
       };
 
-      rawData[gameMode].push({
-        name,
-        time: db.timer,
-      });
+      rawData[gameMode].push(result);
 
       data = rawData;
     } else if (data) {
-      data[gameMode].push({
-        name,
-        time: db.timer,
-      });
+      data[gameMode].push(result);
 
       data[gameMode].sort((a, b) => a.time - b.time);
     }

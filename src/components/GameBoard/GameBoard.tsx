@@ -69,9 +69,7 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     const restartGameTrems = getStartButtonCoords(event, canvas);
 
     if (startGameTerms) {
-      if (!db.game) {
-        startGame(canvas, sprite);
-      }
+      if (!db.game) startGame(canvas, sprite);
 
       if (db.game && db.isGameRuns) {
         const targetCell = db.game[cellY][cellX];
@@ -90,9 +88,7 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
       }
     }
 
-    if (restartGameTrems) {
-      restartGame(canvas, sprite);
-    }
+    if (restartGameTrems) restartGame(canvas, sprite);
   };
 
   const handleContextMenuClick = (
@@ -103,18 +99,12 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     const { startGameTerms, cellX, cellY } = getGameFieldCoords(event, canvas);
 
     if (startGameTerms) {
-      if (!db.game) {
-        startGame(canvas, sprite);
-      }
+      if (!db.game) startGame(canvas, sprite);
 
       drawFieldContentOnContextMenuClick(canvas, sprite, cellX, cellY);
 
       if (db.currentMines && db.isGameRuns) {
-        if (db.game && db.game[cellY][cellX].flag) {
-          db.currentMines--;
-        } else {
-          db.currentMines++;
-        }
+        db.game && db.game[cellY][cellX].flag ? db.currentMines-- : db.currentMines++;
 
         drawMinesAmount(canvas, sprite, db.currentMines);
       }
@@ -140,11 +130,7 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
   };
 
   const handleMouseUp = (canvas: HTMLCanvasElement | null, sprite: HTMLImageElement | null) => {
-    const isMouseDown = db.isMouseDown;
-
-    if (isMouseDown && canvas && sprite) {
-      drawButton(canvas, sprite, ButtonStateType.START);
-    }
+    if (db.isMouseDown && canvas && sprite) drawButton(canvas, sprite, ButtonStateType.START);
 
     db.isMouseDown = false;
   };

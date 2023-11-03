@@ -5,6 +5,8 @@ import Main from 'components/semantic/Main/Main';
 import Overlay from 'components/UI/Overlay/Overlay';
 
 export const App = () => {
+  document.oncontextmenu = (e: MouseEvent) => !(e.target instanceof HTMLCanvasElement);
+
   return (
     <>
       <div className="wrapper">

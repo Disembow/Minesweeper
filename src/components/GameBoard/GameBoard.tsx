@@ -139,6 +139,8 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     db.isMouseDown = false;
   };
 
+  restartGame(canvasRef.current!, sprite!); //? update
+
   return (
     <canvas
       className={cls.canvas}

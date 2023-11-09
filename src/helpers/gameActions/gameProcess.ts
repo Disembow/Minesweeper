@@ -24,6 +24,7 @@ const startGame = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
 const restartGame = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
   if (db.gameMode) {
     const { mines } = options[db.gameMode];
+    db.game = null;
 
     if (db.interval) clearInterval(db.interval);
 

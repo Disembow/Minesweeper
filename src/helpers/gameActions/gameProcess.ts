@@ -29,6 +29,7 @@ const restartGame = (canvas: HTMLCanvasElement, sprite: HTMLImageElement) => {
     if (db.interval) clearInterval(db.interval);
 
     stopTimer(canvas, sprite);
+    drawTimer(canvas, sprite, 'stop');
     drawMinesAmount(canvas, sprite, mines, 'stop');
     drawField(canvas, sprite);
   }

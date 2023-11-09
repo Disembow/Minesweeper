@@ -59,6 +59,7 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
     };
 
     draw(canvas, mines);
+    restartGame(canvasRef.current!, sprite!); //? update
 
     if (sprite) return document.removeEventListener('mouseup', () => handleMouseUp(canvas, sprite));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -138,8 +139,6 @@ const GameBoard: FC<IGameBoard> = ({ gameMode }) => {
 
     db.isMouseDown = false;
   };
-
-  restartGame(canvasRef.current!, sprite!); //? update
 
   return (
     <canvas

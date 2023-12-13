@@ -12,7 +12,7 @@
     "test:unit:coverage": "vitest run --coverage",
     "cy:open-e2e": "cypress open --e2e --browser chrome",
     "cy:run-e2e": "cypress run --e2e",
-    "cy:e2e": "start-server-and-test dev http-get://localhost:6606 cy:open-e2e",
+    "cy:e2e": "start-server-and-test dev http-get://localhost:6600 cy:open-e2e",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
